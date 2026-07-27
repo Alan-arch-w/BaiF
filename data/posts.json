@@ -2,12 +2,29 @@
   {
     "slug": "hello-world",
     "title": "Hello World",
+    "titleZh": "你好，世界",
     "date": "2026-06-30",
-    "tags": ["Notes"],
+    "tags": [
+      "Notes"
+    ],
     "summary": "A placeholder post generated from data/posts.json.",
-    "coverImage": null,
+    "summaryZh": "一篇由 data/posts.json 驱动的占位文章。",
+    "coverImage": "",
     "status": "published",
-    "contentHtml": "<p>This is a placeholder article. Replace <code>contentHtml</code> with your real content later.</p><p>You can keep it simple HTML, or later switch to Markdown + rendering.</p>"
+    "contentHtml": "<p>This is a placeholder article. Replace <code>contentHtml</code> with your real content later.</p><p>You can keep it simple HTML, or later switch to Markdown + rendering.</p>",
+    "contentHtmlZh": "<p>这是一篇占位文章。后续你可以把 <code>contentHtml</code> 替换成真实内容。</p><p>可以先保持简单的 HTML 结构，之后再切换成 Markdown + 渲染方案。</p>"
+  },
+  {
+    "slug": "",
+    "title": "",
+    "titleZh": "",
+    "date": "2026-07-27",
+    "tags": [],
+    "summary": "",
+    "summaryZh": "",
+    "coverImage": "",
+    "status": "draft",
+    "contentHtml": "",
+    "contentHtmlZh": ""
   }
 ]
-

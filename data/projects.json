@@ -1,67 +1,49 @@
 [
   {
-    "id": "lumina",
-    "title": "Lumina",
-    "year": 2024,
-    "category": "Design System",
-    "tags": ["Design System", "UI"],
-    "summary": "A comprehensive monochromatic design system for financial technology dashboards.",
-    "coverImage": null,
-    "intro": "A comprehensive monochromatic design system for financial technology dashboards.",
+    "id": "ai-customer-service-platform",
+    "title": "AI Customer Service Platform",
+    "titleZh": "AI 客服运营平台",
+    "year": 2026,
+    "category": "AI Operations",
+    "categoryZh": "AI 运营平台",
+    "tags": [
+      "AI",
+      "Dashboard",
+      "Customer Service"
+    ],
+    "summary": "An operations platform for AI customer-service agents, combining agent management, knowledge assets, analytics, and workflow governance in one workspace.",
+    "summaryZh": "一个面向 AI 客服智能体的运营平台，将智能体管理、知识资产、分析能力与流程治理整合到同一个工作台中。",
+    "coverImage": "",
+    "intro": "A dashboard-style platform for operating AI customer-service agents, with modules for agent management, knowledge assets, visitor interactions, analytics, and governance.",
+    "introZh": "一个面向 AI 客服智能体运营的工作台式平台，包含智能体管理、知识资产、访客互动、数据分析与平台治理等模块。",
     "contentSections": [
       {
         "title": "Overview",
-        "content": "This project page is generated from data/projects.json. Replace this content with your real project story."
+        "titleZh": "项目概览",
+        "content": "This project focuses on the operational side of AI customer service. Instead of presenting a single chatbot, the product organizes the full workspace around agent performance, knowledge management, visitor interactions, and platform governance.",
+        "contentZh": "这个项目关注的是 AI 客服的运营侧，而不是单一聊天机器人本身。整个产品围绕智能体绩效、知识管理、访客互动和平台治理来组织工作空间。"
       },
       {
-        "title": "Highlights",
-        "content": "Define the problem, constraints, your role, process, and measurable outcomes."
-      }
-    ],
-    "links": [
-      { "label": "Project Link", "url": "#", "type": "other" }
-    ],
-    "featured": true
-  },
-  {
-    "id": "echoes",
-    "title": "Echoes",
-    "year": 2023,
-    "category": "Generative Audio",
-    "tags": ["Web", "AI"],
-    "summary": "Web-based interface for real-time AI spatial audio generation.",
-    "coverImage": null,
-    "intro": "Web-based interface for real-time AI spatial audio generation.",
-    "contentSections": [
+        "title": "What It Shows",
+        "titleZh": "核心展示内容",
+        "content": "The interface highlights a dense but structured information model: agent matrix, satisfaction, resolution rate, escalation rate, unknown-question rate, risk sessions, and operational actions. The goal is to help teams understand both service quality and operational efficiency at a glance.",
+        "contentZh": "界面重点展示一个高密度但有结构的信息模型，包括智能体矩阵、满意度、解决率、转人工率、未知问题率、高风险会话以及运营动作入口。目标是帮助团队快速理解服务质量与运营效率。"
+      },
       {
-        "title": "Overview",
-        "content": "This is a placeholder. Replace with your real content later."
+        "title": "Access",
+        "titleZh": "访问方式",
+        "content": "Use the open button below to visit the live project website.",
+        "contentZh": "点击下方按钮即可访问该项目的在线版本。"
       }
     ],
     "links": [
-      { "label": "Project Link", "url": "#", "type": "other" }
-    ],
-    "featured": true
-  },
-  {
-    "id": "vessel",
-    "title": "Vessel",
-    "year": 2023,
-    "category": "Architecture",
-    "tags": ["Brand", "Web"],
-    "summary": "Digital presence for a brutalist architecture firm based in Tokyo.",
-    "coverImage": null,
-    "intro": "Digital presence for a brutalist architecture firm based in Tokyo.",
-    "contentSections": [
       {
-        "title": "Overview",
-        "content": "This is a placeholder. Replace with your real content later."
+        "label": "Open Website",
+        "labelZh": "打开网站",
+        "url": "https://ai-customer-service-79g2.vercel.app/",
+        "type": "demo"
       }
-    ],
-    "links": [
-      { "label": "Project Link", "url": "#", "type": "other" }
     ],
     "featured": true
   }
 ]
-

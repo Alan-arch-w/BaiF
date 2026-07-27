@@ -2,13 +2,17 @@
   {
     "id": "portfolio-sample-1",
     "title": "Portfolio Sample",
+    "titleZh": "作品集示例",
     "year": 2024,
-    "tags": ["PDF", "Case Study"],
+    "tags": [
+      "PDF",
+      "Case Study"
+    ],
     "summary": "Replace this with your real portfolio entry. Attach a PDF and a few images.",
-    "coverImage": null,
-    "pdf": null,
+    "summaryZh": "这里可以替换成你的真实作品条目，并附上 PDF 与若干展示图片。",
+    "coverImage": "",
+    "pdf": "",
     "galleryImages": [],
     "externalLinks": []
   }
 ]
-

@@ -1,15 +1,22 @@
 {
-  "id": "alan-wang",
+  "id": "BaiF",
   "name": "Alan Wang",
   "title": "Personal Site",
   "oneLiner": "Life carves its path.",
+  "oneLinerZh": "人生自会刻出它的路径。",
   "bio": "Replace this with your real bio. Keep it consistent across Home / About / AI Twin (if enabled).",
+  "bioZh": "这里可以替换成你的中文个人简介，并与首页 About / Contact 等模块保持一致。",
   "contact": {
     "email": "hello@example.com",
     "socialLinks": [
-      { "label": "GitHub", "url": "#" },
-      { "label": "LinkedIn", "url": "#" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/Alan-arch-w"
+      },
+      {
+        "label": "小红书",
+        "url": "https://www.xiaohongshu.com/user/profile/622d39ba0000000021025e99"
+      }
     ]
   }
 }
-
