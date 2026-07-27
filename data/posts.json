@@ -1,0 +1,13 @@
+[
+  {
+    "slug": "hello-world",
+    "title": "Hello World",
+    "date": "2026-06-30",
+    "tags": ["Notes"],
+    "summary": "A placeholder post generated from data/posts.json.",
+    "coverImage": null,
+    "status": "published",
+    "contentHtml": "<p>This is a placeholder article. Replace <code>contentHtml</code> with your real content later.</p><p>You can keep it simple HTML, or later switch to Markdown + rendering.</p>"
+  }
+]
+

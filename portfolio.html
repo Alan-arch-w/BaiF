@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+            colors: {
+              "zinc-950": "#09090b",
+            },
+            animation: {
+              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+            },
+            keyframes: {
+              fadeInUp: {
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      ::selection {
+        background-color: white;
+        color: black;
+      }
+      body {
+        background-color: #000;
+        color: #fff;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white"
+    >
+      <a
+        href="./index.html"
+        class="text-sm font-medium tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
+      >
+        Alan Wang
+      </a>
+      <nav class="hidden md:flex space-x-8 text-sm font-light tracking-wide">
+        <a
+          href="./projects.html"
+          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
+        >
+          Projects
+        </a>
+        <a
+          href="./portfolio.html"
+          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
+        >
+          Portfolio
+        </a>
+        <a
+          href="./articles.html"
+          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
+        >
+          Articles
+        </a>
+      </nav>
+    </header>
+
+    <main class="pt-28">
+      <section class="w-full py-20 px-6 md:px-12 bg-black">
+        <div class="max-w-screen-xl mx-auto">
+          <div class="flex items-end justify-between gap-8 mb-14">
+            <div>
+              <h1 class="text-4xl md:text-6xl font-semibold tracking-tighter leading-none">
+                Portfolio
+              </h1>
+              <p class="text-zinc-500 text-sm md:text-base tracking-wide mt-4 max-w-xl">
+                PDF/JPG entries from <span class="font-mono">data/portfolio.json</span>.
+              </p>
+            </div>
+          </div>
+
+          <div id="portfolio-list" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module">
+      import { loadJson, escapeHtml, formatYear, renderTags } from "./site.js";
+
+      const listEl = document.getElementById("portfolio-list");
+
+      function renderCard(item) {
+        const title = escapeHtml(item.title || "");
+        const summary = escapeHtml(item.summary || "");
+        const year = escapeHtml(formatYear(item.year));
+        const tags = renderTags(item.tags || []);
+
+        return `
+          <a href="./portfolio-item.html?id=${encodeURIComponent(
+            item.id
+          )}" class="group border border-white/10 hover:border-white/25 transition-colors p-6 bg-white/[0.02]">
+            <div class="flex items-start justify-between gap-6">
+              <div>
+                <h3 class="text-2xl font-medium tracking-tight">${title}</h3>
+                <p class="text-zinc-400 text-sm font-light mt-3 leading-relaxed">${summary}</p>
+              </div>
+              <div class="text-xs font-mono text-zinc-600">${year}</div>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-6">${tags}</div>
+          </a>
+        `;
+      }
+
+      async function init() {
+        try {
+          const items = await loadJson("./data/portfolio.json");
+          listEl.innerHTML = items.map(renderCard).join("");
+        } catch (e) {
+          listEl.innerHTML = `<div class="text-zinc-500 text-sm">Failed to load portfolio.</div>`;
+        }
+      }
+
+      init();
+    </script>
+  </body>
+</html>
+

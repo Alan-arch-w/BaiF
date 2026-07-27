@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+            colors: {
+              "zinc-950": "#09090b",
+            },
+            animation: {
+              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+            },
+            keyframes: {
+              fadeInUp: {
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      ::selection {
+        background-color: white;
+        color: black;
+      }
+      body {
+        background-color: #000;
+        color: #fff;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .prose-invert h1,
+      .prose-invert h2,
+      .prose-invert h3,
+      .prose-invert p,
+      .prose-invert li,
+      .prose-invert a,
+      .prose-invert code {
+        color: inherit;
+      }
+      .prose-invert a {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+      .prose-invert code {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0.1rem 0.35rem;
+        border-radius: 0.25rem;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white"
+    >
+      <a
+        href="./index.html"
+        class="text-sm font-medium tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
+      >
+        Alan Wang
+      </a>
+      <nav class="hidden md:flex space-x-8 text-sm font-light tracking-wide">
+        <a
+          href="./projects.html"
+          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
+        >
+          Projects
+        </a>
+        <a
+          href="./portfolio.html"
+          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
+        >
+          Portfolio
+        </a>
+        <a
+          href="./articles.html"
+          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
+        >
+          Articles
+        </a>
+      </nav>
+    </header>
+
+    <main class="pt-28">
+      <section class="w-full py-20 px-6 md:px-12 bg-black">
+        <div class="max-w-3xl mx-auto">
+          <a
+            href="./articles.html"
+            class="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors"
+          >
+            ← Back to Articles
+          </a>
+
+          <div class="mt-10 flex items-start justify-between gap-6">
+            <div>
+              <h1 id="post-title" class="text-4xl md:text-7xl font-semibold tracking-tighter leading-[0.95]"></h1>
+              <p id="post-summary" class="text-zinc-400 text-base md:text-lg font-light leading-relaxed mt-8"></p>
+              <div id="post-tags" class="flex flex-wrap gap-2 mt-8"></div>
+            </div>
+            <div id="post-date" class="text-xs font-mono text-zinc-600"></div>
+          </div>
+
+          <article id="post-content" class="mt-16 border-t border-white/10 pt-12 prose-invert"></article>
+        </div>
+      </section>
+    </main>
+
+    <script type="module">
+      import { loadJson, getQueryParam, renderTags } from "./site.js";
+
+      const slug = getQueryParam("slug");
+      const titleEl = document.getElementById("post-title");
+      const summaryEl = document.getElementById("post-summary");
+      const tagsEl = document.getElementById("post-tags");
+      const dateEl = document.getElementById("post-date");
+      const contentEl = document.getElementById("post-content");
+
+      function setNotFound() {
+        titleEl.textContent = "Post Not Found";
+        summaryEl.textContent = "Missing or invalid slug.";
+        dateEl.textContent = "";
+      }
+
+      async function init() {
+        if (!slug) return setNotFound();
+        try {
+          const posts = await loadJson("./data/posts.json");
+          const post = posts.find((p) => p.slug === slug);
+          if (!post) return setNotFound();
+
+          document.title = `${post.title} · Article`;
+          titleEl.textContent = post.title || "";
+          summaryEl.textContent = post.summary || "";
+          dateEl.textContent = post.date || "";
+          tagsEl.innerHTML = renderTags(post.tags || []);
+          contentEl.innerHTML = post.contentHtml || "";
+        } catch (e) {
+          setNotFound();
+        }
+      }
+
+      init();
+    </script>
+  </body>
+</html>
+

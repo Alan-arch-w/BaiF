@@ -1,0 +1,67 @@
+[
+  {
+    "id": "lumina",
+    "title": "Lumina",
+    "year": 2024,
+    "category": "Design System",
+    "tags": ["Design System", "UI"],
+    "summary": "A comprehensive monochromatic design system for financial technology dashboards.",
+    "coverImage": null,
+    "intro": "A comprehensive monochromatic design system for financial technology dashboards.",
+    "contentSections": [
+      {
+        "title": "Overview",
+        "content": "This project page is generated from data/projects.json. Replace this content with your real project story."
+      },
+      {
+        "title": "Highlights",
+        "content": "Define the problem, constraints, your role, process, and measurable outcomes."
+      }
+    ],
+    "links": [
+      { "label": "Project Link", "url": "#", "type": "other" }
+    ],
+    "featured": true
+  },
+  {
+    "id": "echoes",
+    "title": "Echoes",
+    "year": 2023,
+    "category": "Generative Audio",
+    "tags": ["Web", "AI"],
+    "summary": "Web-based interface for real-time AI spatial audio generation.",
+    "coverImage": null,
+    "intro": "Web-based interface for real-time AI spatial audio generation.",
+    "contentSections": [
+      {
+        "title": "Overview",
+        "content": "This is a placeholder. Replace with your real content later."
+      }
+    ],
+    "links": [
+      { "label": "Project Link", "url": "#", "type": "other" }
+    ],
+    "featured": true
+  },
+  {
+    "id": "vessel",
+    "title": "Vessel",
+    "year": 2023,
+    "category": "Architecture",
+    "tags": ["Brand", "Web"],
+    "summary": "Digital presence for a brutalist architecture firm based in Tokyo.",
+    "coverImage": null,
+    "intro": "Digital presence for a brutalist architecture firm based in Tokyo.",
+    "contentSections": [
+      {
+        "title": "Overview",
+        "content": "This is a placeholder. Replace with your real content later."
+      }
+    ],
+    "links": [
+      { "label": "Project Link", "url": "#", "type": "other" }
+    ],
+    "featured": true
+  }
+]
+

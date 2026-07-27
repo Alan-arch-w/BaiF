@@ -1,0 +1,14 @@
+[
+  {
+    "id": "portfolio-sample-1",
+    "title": "Portfolio Sample",
+    "year": 2024,
+    "tags": ["PDF", "Case Study"],
+    "summary": "Replace this with your real portfolio entry. Attach a PDF and a few images.",
+    "coverImage": null,
+    "pdf": null,
+    "galleryImages": [],
+    "externalLinks": []
+  }
+]
+

@@ -1,0 +1,15 @@
+{
+  "id": "alan-wang",
+  "name": "Alan Wang",
+  "title": "Personal Site",
+  "oneLiner": "Life carves its path.",
+  "bio": "Replace this with your real bio. Keep it consistent across Home / About / AI Twin (if enabled).",
+  "contact": {
+    "email": "hello@example.com",
+    "socialLinks": [
+      { "label": "GitHub", "url": "#" },
+      { "label": "LinkedIn", "url": "#" }
+    ]
+  }
+}
+
