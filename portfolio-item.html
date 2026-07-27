@@ -1,9 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio Item</title>
+    <title data-title-key="page.portfolioItem.title">Portfolio Item</title>
+    <script>
+      (() => {
+        try {
+          const theme = localStorage.getItem("site-theme") || "dark";
+          const lang = localStorage.getItem("site-language") || "en";
+          document.documentElement.dataset.theme = theme === "light" ? "light" : "dark";
+          document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+        } catch {
+          document.documentElement.dataset.theme = "dark";
+          document.documentElement.lang = "en";
+        }
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,6 +24,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./site.css" />
     <script>
       tailwind.config = {
         theme: {
@@ -35,63 +49,21 @@
         },
       };
     </script>
-    <style>
-      ::selection {
-        background-color: white;
-        color: black;
-      }
-      body {
-        background-color: #000;
-        color: #fff;
-      }
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-    </style>
   </head>
   <body class="antialiased">
-    <header
-      class="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white"
-    >
-      <a
-        href="./index.html"
-        class="text-sm font-medium tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
-      >
-        Alan Wang
-      </a>
+    <header class="site-header fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white">
+      <a href="./index.html" class="text-sm font-medium tracking-[0.2em] uppercase hover:opacity-70 transition-opacity" data-i18n="brand.name">Alan Wang</a>
       <nav class="hidden md:flex space-x-8 text-sm font-light tracking-wide">
-        <a
-          href="./projects.html"
-          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
-        >
-          Projects
-        </a>
-        <a
-          href="./portfolio.html"
-          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
-        >
-          Portfolio
-        </a>
-        <a
-          href="./articles.html"
-          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
-        >
-          Articles
-        </a>
+        <a href="./projects.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.projects">Projects</a>
+        <a href="./portfolio.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="./articles.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.articles">Articles</a>
       </nav>
     </header>
 
     <main class="pt-28">
       <section class="w-full py-20 px-6 md:px-12 bg-black">
         <div class="max-w-4xl mx-auto">
-          <a
-            href="./portfolio.html"
-            class="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors"
-          >
+          <a href="./portfolio.html" class="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors" data-i18n="page.portfolioItem.back">
             ← Back to Portfolio
           </a>
 
@@ -115,10 +87,14 @@
     </main>
 
     <script type="module">
-      import { loadJson, getQueryParam, escapeHtml, renderTags, formatYear } from "./site.js";
+      import { applyTranslations, escapeHtml, formatYear, getCurrentLanguage, getLocalizedValue, getQueryParam, loadJson, renderTags, setupGlobalControls, t } from "./site.js";
+
+      const pageTranslations = {
+        "page.portfolioItem.title": { en: "Portfolio Item", zh: "作品详情" },
+        "page.portfolioItem.back": { en: "← Back to Portfolio", zh: "← 返回作品集" }
+      };
 
       const id = getQueryParam("id");
-
       const titleEl = document.getElementById("item-title");
       const summaryEl = document.getElementById("item-summary");
       const tagsEl = document.getElementById("item-tags");
@@ -126,39 +102,49 @@
       const actionsEl = document.getElementById("item-actions");
       const pdfEl = document.getElementById("item-pdf");
       const galleryEl = document.getElementById("item-gallery");
+      let itemCache = null;
 
       function setNotFound() {
-        titleEl.textContent = "Portfolio Item Not Found";
-        summaryEl.textContent = "Missing or invalid id.";
+        applyTranslations(pageTranslations);
+        titleEl.textContent = t("common.portfolioNotFound", pageTranslations);
+        summaryEl.textContent = t("common.invalidPortfolioId", pageTranslations);
+        tagsEl.innerHTML = "";
+        yearEl.textContent = "";
+        actionsEl.innerHTML = "";
+        pdfEl.innerHTML = "";
+        galleryEl.innerHTML = "";
       }
 
       function renderActions(item) {
         const links = [];
-
         if (item.pdf) {
           links.push({
-            label: "Download PDF",
+            label: t("common.downloadPdf", pageTranslations),
             url: item.pdf,
           });
         }
-
         if (Array.isArray(item.externalLinks)) {
-          item.externalLinks.forEach((l) => {
-            if (l && l.url) links.push({ label: l.label || "Link", url: l.url });
+          item.externalLinks.forEach((link) => {
+            if (link && link.url) {
+              links.push({
+                label: getCurrentLanguage() === "zh" && link.labelZh ? link.labelZh : link.label || t("common.link", pageTranslations),
+                url: link.url,
+              });
+            }
           });
         }
 
         return links
-          .map((l) => {
-            const label = escapeHtml(l.label || "Link");
-            const url = escapeHtml(l.url || "#");
+          .map((link) => {
+            const label = escapeHtml(link.label || t("common.link", pageTranslations));
+            const url = escapeHtml(link.url || "#");
             return `<a href="${url}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center px-4 py-2 border border-white/10 hover:border-white/30 text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">${label}</a>`;
           })
           .join("");
       }
 
       function renderPdf(item) {
-        if (!item.pdf) return `<div class="text-zinc-600 text-sm">No PDF attached.</div>`;
+        if (!item.pdf) return `<div class="text-zinc-600 text-sm">${t("common.noPdf", pageTranslations)}</div>`;
         const url = escapeHtml(item.pdf);
         return `
           <div class="border border-white/10 overflow-hidden">
@@ -177,27 +163,35 @@
           .join("");
       }
 
+      function renderPage() {
+        if (!itemCache) return setNotFound();
+        applyTranslations(pageTranslations);
+        const title = getLocalizedValue(itemCache, "title");
+        document.title = `${title} · ${t("page.portfolioItem.title", pageTranslations)}`;
+        titleEl.textContent = title;
+        summaryEl.textContent = getLocalizedValue(itemCache, "summary");
+        tagsEl.innerHTML = renderTags(itemCache.tags || []);
+        yearEl.textContent = formatYear(itemCache.year);
+        actionsEl.innerHTML = renderActions(itemCache);
+        pdfEl.innerHTML = renderPdf(itemCache);
+        galleryEl.innerHTML = renderGallery(itemCache.galleryImages || []);
+      }
+
       async function init() {
         if (!id) return setNotFound();
         try {
           const items = await loadJson("./data/portfolio.json");
-          const item = items.find((x) => x.id === id);
-          if (!item) return setNotFound();
-
-          document.title = `${item.title} · Portfolio`;
-          titleEl.textContent = item.title || "";
-          summaryEl.textContent = item.summary || "";
-          tagsEl.innerHTML = renderTags(item.tags || []);
-          yearEl.textContent = formatYear(item.year);
-          actionsEl.innerHTML = renderActions(item);
-          pdfEl.innerHTML = renderPdf(item);
-          galleryEl.innerHTML = renderGallery(item.galleryImages || []);
-        } catch (e) {
+          itemCache = items.find((item) => item.id === id) || null;
+          if (!itemCache) return setNotFound();
+          renderPage();
+        } catch {
           setNotFound();
         }
       }
 
+      setupGlobalControls();
       init();
+      window.addEventListener("site:language-change", renderPage);
     </script>
   </body>
 </html>

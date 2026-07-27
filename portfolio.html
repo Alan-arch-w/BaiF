@@ -1,9 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+    <title data-title-key="page.portfolio.title">Portfolio</title>
+    <script>
+      (() => {
+        try {
+          const theme = localStorage.getItem("site-theme") || "dark";
+          const lang = localStorage.getItem("site-language") || "en";
+          document.documentElement.dataset.theme = theme === "light" ? "light" : "dark";
+          document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+        } catch {
+          document.documentElement.dataset.theme = "dark";
+          document.documentElement.lang = "en";
+        }
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,6 +24,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./site.css" />
     <script>
       tailwind.config = {
         theme: {
@@ -35,53 +49,14 @@
         },
       };
     </script>
-    <style>
-      ::selection {
-        background-color: white;
-        color: black;
-      }
-      body {
-        background-color: #000;
-        color: #fff;
-      }
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-    </style>
   </head>
   <body class="antialiased">
-    <header
-      class="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white"
-    >
-      <a
-        href="./index.html"
-        class="text-sm font-medium tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
-      >
-        Alan Wang
-      </a>
+    <header class="site-header fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white">
+      <a href="./index.html" class="text-sm font-medium tracking-[0.2em] uppercase hover:opacity-70 transition-opacity" data-i18n="brand.name">Alan Wang</a>
       <nav class="hidden md:flex space-x-8 text-sm font-light tracking-wide">
-        <a
-          href="./projects.html"
-          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
-        >
-          Projects
-        </a>
-        <a
-          href="./portfolio.html"
-          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
-        >
-          Portfolio
-        </a>
-        <a
-          href="./articles.html"
-          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
-        >
-          Articles
-        </a>
+        <a href="./projects.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.projects">Projects</a>
+        <a href="./portfolio.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="./articles.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.articles">Articles</a>
       </nav>
     </header>
 
@@ -90,10 +65,8 @@
         <div class="max-w-screen-xl mx-auto">
           <div class="flex items-end justify-between gap-8 mb-14">
             <div>
-              <h1 class="text-4xl md:text-6xl font-semibold tracking-tighter leading-none">
-                Portfolio
-              </h1>
-              <p class="text-zinc-500 text-sm md:text-base tracking-wide mt-4 max-w-xl">
+              <h1 class="text-4xl md:text-6xl font-semibold tracking-tighter leading-none" data-i18n="page.portfolio.heading">Portfolio</h1>
+              <p class="text-zinc-500 text-sm md:text-base tracking-wide mt-4 max-w-xl" data-i18n-html="page.portfolio.subtitle">
                 PDF/JPG entries from <span class="font-mono">data/portfolio.json</span>.
               </p>
             </div>
@@ -105,20 +78,25 @@
     </main>
 
     <script type="module">
-      import { loadJson, escapeHtml, formatYear, renderTags } from "./site.js";
+      import { applyTranslations, escapeHtml, formatYear, getLocalizedValue, loadJson, renderTags, setupGlobalControls, t } from "./site.js";
+
+      const pageTranslations = {
+        "page.portfolio.title": { en: "Portfolio", zh: "作品集" },
+        "page.portfolio.heading": { en: "Portfolio", zh: "作品集" },
+        "page.portfolio.subtitle": { en: "PDF/JPG entries from <span class='font-mono'>data/portfolio.json</span>.", zh: "这里展示的是来自 <span class='font-mono'>data/portfolio.json</span> 的 PDF / 图片作品条目。" }
+      };
 
       const listEl = document.getElementById("portfolio-list");
+      let itemsCache = [];
 
       function renderCard(item) {
-        const title = escapeHtml(item.title || "");
-        const summary = escapeHtml(item.summary || "");
+        const title = escapeHtml(getLocalizedValue(item, "title"));
+        const summary = escapeHtml(getLocalizedValue(item, "summary"));
         const year = escapeHtml(formatYear(item.year));
         const tags = renderTags(item.tags || []);
 
         return `
-          <a href="./portfolio-item.html?id=${encodeURIComponent(
-            item.id
-          )}" class="group border border-white/10 hover:border-white/25 transition-colors p-6 bg-white/[0.02]">
+          <a href="./portfolio-item.html?id=${encodeURIComponent(item.id)}" class="group border border-white/10 hover:border-white/25 transition-colors p-6 bg-white/[0.02]">
             <div class="flex items-start justify-between gap-6">
               <div>
                 <h3 class="text-2xl font-medium tracking-tight">${title}</h3>
@@ -131,16 +109,23 @@
         `;
       }
 
+      function renderPage() {
+        applyTranslations(pageTranslations);
+        listEl.innerHTML = itemsCache.map(renderCard).join("");
+      }
+
       async function init() {
         try {
-          const items = await loadJson("./data/portfolio.json");
-          listEl.innerHTML = items.map(renderCard).join("");
-        } catch (e) {
-          listEl.innerHTML = `<div class="text-zinc-500 text-sm">Failed to load portfolio.</div>`;
+          itemsCache = await loadJson("./data/portfolio.json");
+          renderPage();
+        } catch {
+          listEl.innerHTML = `<div class="text-zinc-500 text-sm">${t("common.failedPortfolio", pageTranslations)}</div>`;
         }
       }
 
+      setupGlobalControls();
       init();
+      window.addEventListener("site:language-change", renderPage);
     </script>
   </body>
 </html>

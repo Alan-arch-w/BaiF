@@ -11,11 +11,11 @@
     "summaryZh": "一篇由 data/posts.json 驱动的占位文章。",
     "coverImage": "",
     "status": "published",
-    "contentHtml": "<p>This is a placeholder article. Replace <code>contentHtml</code> with your real content later.</p><p>You can keep it simple HTML, or later switch to Markdown + rendering.</p>",
-    "contentHtmlZh": "<p>这是一篇占位文章。后续你可以把 <code>contentHtml</code> 替换成真实内容。</p><p>可以先保持简单的 HTML 结构，之后再切换成 Markdown + 渲染方案。</p>"
+    "contentMd": "This is a placeholder article. Replace `contentMd` with your real content later.\n\nYou can write directly in Markdown and preview the layout in the local admin page.",
+    "contentMdZh": "这是一篇占位文章。后续你可以把 `contentMdZh` 替换成真实内容。\n\n你现在可以直接用 Markdown 写作，并在本地后台里预览排版效果。"
   },
   {
-    "slug": "",
+    "slug": "1111",
     "title": "",
     "titleZh": "",
     "date": "2026-07-27",
@@ -24,7 +24,7 @@
     "summaryZh": "",
     "coverImage": "",
     "status": "draft",
-    "contentHtml": "",
-    "contentHtmlZh": ""
+    "contentMd": "",
+    "contentMdZh": "我今天很开心"
   }
 ]

@@ -1,9 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Post</title>
+    <title data-title-key="page.post.title">Post</title>
+    <script>
+      (() => {
+        try {
+          const theme = localStorage.getItem("site-theme") || "dark";
+          const lang = localStorage.getItem("site-language") || "en";
+          document.documentElement.dataset.theme = theme === "light" ? "light" : "dark";
+          document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+        } catch {
+          document.documentElement.dataset.theme = "dark";
+          document.documentElement.lang = "en";
+        }
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,6 +24,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./site.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -36,21 +51,6 @@
       };
     </script>
     <style>
-      ::selection {
-        background-color: white;
-        color: black;
-      }
-      body {
-        background-color: #000;
-        color: #fff;
-      }
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
       .prose-invert h1,
       .prose-invert h2,
       .prose-invert h3,
@@ -73,44 +73,19 @@
     </style>
   </head>
   <body class="antialiased">
-    <header
-      class="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white"
-    >
-      <a
-        href="./index.html"
-        class="text-sm font-medium tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
-      >
-        Alan Wang
-      </a>
+    <header class="site-header fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white">
+      <a href="./index.html" class="text-sm font-medium tracking-[0.2em] uppercase hover:opacity-70 transition-opacity" data-i18n="brand.name">Alan Wang</a>
       <nav class="hidden md:flex space-x-8 text-sm font-light tracking-wide">
-        <a
-          href="./projects.html"
-          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
-        >
-          Projects
-        </a>
-        <a
-          href="./portfolio.html"
-          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
-        >
-          Portfolio
-        </a>
-        <a
-          href="./articles.html"
-          class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all"
-        >
-          Articles
-        </a>
+        <a href="./projects.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.projects">Projects</a>
+        <a href="./portfolio.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="./articles.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.articles">Articles</a>
       </nav>
     </header>
 
     <main class="pt-28">
       <section class="w-full py-20 px-6 md:px-12 bg-black">
         <div class="max-w-3xl mx-auto">
-          <a
-            href="./articles.html"
-            class="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors"
-          >
+          <a href="./articles.html" class="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors" data-i18n="page.post.back">
             ← Back to Articles
           </a>
 
@@ -129,7 +104,12 @@
     </main>
 
     <script type="module">
-      import { loadJson, getQueryParam, renderTags } from "./site.js";
+      import { applyTranslations, getLocalizedValue, getQueryParam, loadJson, renderTags, setupGlobalControls, t } from "./site.js";
+
+      const pageTranslations = {
+        "page.post.title": { en: "Article", zh: "文章详情" },
+        "page.post.back": { en: "← Back to Articles", zh: "← 返回文章列表" }
+      };
 
       const slug = getQueryParam("slug");
       const titleEl = document.getElementById("post-title");
@@ -137,33 +117,51 @@
       const tagsEl = document.getElementById("post-tags");
       const dateEl = document.getElementById("post-date");
       const contentEl = document.getElementById("post-content");
+      let postCache = null;
 
       function setNotFound() {
-        titleEl.textContent = "Post Not Found";
-        summaryEl.textContent = "Missing or invalid slug.";
+        applyTranslations(pageTranslations);
+        titleEl.textContent = t("common.postNotFound", pageTranslations);
+        summaryEl.textContent = t("common.invalidPostSlug", pageTranslations);
+        tagsEl.innerHTML = "";
         dateEl.textContent = "";
+        contentEl.innerHTML = "";
+      }
+
+      function renderPage() {
+        if (!postCache) return setNotFound();
+        applyTranslations(pageTranslations);
+        const title = getLocalizedValue(postCache, "title");
+        document.title = `${title} · ${t("page.post.title", pageTranslations)}`;
+        titleEl.textContent = title;
+        summaryEl.textContent = getLocalizedValue(postCache, "summary");
+        dateEl.textContent = postCache.date || "";
+        tagsEl.innerHTML = renderTags(postCache.tags || []);
+        const markdown = getLocalizedValue(postCache, "contentMd");
+        if (markdown && window.marked?.parse) {
+          contentEl.innerHTML = window.marked.parse(markdown, { breaks: true, gfm: true });
+        } else if (markdown) {
+          contentEl.innerHTML = `<pre>${markdown}</pre>`;
+        } else {
+          contentEl.innerHTML = getLocalizedValue(postCache, "contentHtml");
+        }
       }
 
       async function init() {
         if (!slug) return setNotFound();
         try {
           const posts = await loadJson("./data/posts.json");
-          const post = posts.find((p) => p.slug === slug);
-          if (!post) return setNotFound();
-
-          document.title = `${post.title} · Article`;
-          titleEl.textContent = post.title || "";
-          summaryEl.textContent = post.summary || "";
-          dateEl.textContent = post.date || "";
-          tagsEl.innerHTML = renderTags(post.tags || []);
-          contentEl.innerHTML = post.contentHtml || "";
-        } catch (e) {
+          postCache = posts.find((post) => post.slug === slug) || null;
+          if (!postCache) return setNotFound();
+          renderPage();
+        } catch {
           setNotFound();
         }
       }
 
+      setupGlobalControls();
       init();
+      window.addEventListener("site:language-change", renderPage);
     </script>
   </body>
 </html>
-

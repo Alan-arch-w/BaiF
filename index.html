@@ -3,59 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alan Wang's Space</title>
+    <title data-title-key="page.home.title">Alan Wang's Space</title>
+    <script>
+      (() => {
+        try {
+          const theme = localStorage.getItem("site-theme") || "dark";
+          const lang = localStorage.getItem("site-language") || "en";
+          document.documentElement.dataset.theme = theme === "light" ? "light" : "dark";
+          document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+        } catch {
+          document.documentElement.dataset.theme = "dark";
+          document.documentElement.lang = "en";
+        }
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./site.css" />
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              serif: ['Playfair Display', 'serif'],
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
             },
             colors: {
-              'zinc-950': '#09090b',
+              "zinc-950": "#09090b",
             },
             animation: {
-              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
             },
             keyframes: {
               fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              }
-            }
-          }
-        }
-      }
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+            },
+          },
+        },
+      };
     </script>
     <style>
-      ::selection {
-        background-color: white;
-        color: black;
-      }
-      body {
-        background-color: #000;
-        color: #fff;
-      }
-      /* Hide scrollbar for Chrome, Safari and Opera */
       .no-scrollbar::-webkit-scrollbar {
         display: none;
       }
-      /* Hide scrollbar for IE, Edge and Firefox */
       .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
       .glass-panel {
         background: rgba(0, 0, 0, 0.8);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
       }
-      /* Dot pattern utility */
       .bg-dot-pattern {
         background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
         background-size: 4px 4px;
@@ -72,98 +78,77 @@
 </script>
   </head>
   <body class="antialiased">
-    
-    <!-- Navigation -->
-    <header class="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white">
-      <a href="./index.html" class="text-sm font-medium tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">
+    <header class="site-header fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white">
+      <a href="./index.html" class="text-sm font-medium tracking-[0.2em] uppercase hover:opacity-70 transition-opacity" data-i18n="brand.name">
         Alan Wang
       </a>
       <nav class="hidden md:flex space-x-8 text-sm font-light tracking-wide">
-        <a href="./projects.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all">Projects</a>
-        <a href="./portfolio.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all">Portfolio</a>
-        <a href="./articles.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all">Articles</a>
-        <a href="#about" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all">About</a>
-        <a href="#contact" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all">Contact</a>
+        <a href="./projects.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.projects">Projects</a>
+        <a href="./portfolio.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="./articles.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.articles">Articles</a>
+        <a href="#about" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.about">About</a>
+        <a href="#contact" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.contact">Contact</a>
       </nav>
     </header>
 
     <main>
-      <!-- Hero Section -->
       <section class="relative h-screen w-full flex flex-col justify-end pb-24 px-6 md:px-12 border-b border-white/10 overflow-hidden">
-        
-        <!-- Background Image & Effects -->
         <div class="absolute inset-0 z-0 select-none pointer-events-none">
-            <!-- 
-                IMPORTANT: 
-                Please save your image as 'hero-bg.jpg' in the same folder as this index.html file.
-                The code below looks for './hero-bg.jpg'.
-                
-                Adjustment Note:
-                Changed bg position to 'center 30%' to better frame portraits.
-                Increased opacity slightly for better visibility.
-            -->
-            <div class="absolute inset-0 bg-[url('./hero-bg.jpg')] bg-cover bg-[center_30%] bg-no-repeat opacity-60"></div>
-            
-            <!-- Dot Matrix Overlay -->
-            <div class="absolute inset-0 bg-dot-pattern mix-blend-overlay opacity-50"></div>
-            
-            <!-- Gradient Fade to Black -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+          <div class="absolute inset-0 bg-[url('./hero-bg.jpg')] bg-cover bg-[center_30%] bg-no-repeat opacity-60"></div>
+          <div class="absolute inset-0 bg-dot-pattern mix-blend-overlay opacity-50"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
         </div>
 
-        <!-- Content -->
         <div class="relative z-10 max-w-6xl">
-          <h1 class="text-5xl md:text-8xl lg:text-9xl font-semibold tracking-tighter leading-[0.9] mb-8 opacity-0 animate-fade-in-up mix-blend-screen">
-            Life carves <br /> 
+          <h1 id="hero-title" class="text-5xl md:text-8xl lg:text-9xl font-semibold tracking-tighter leading-[0.9] mb-8 opacity-0 animate-fade-in-up mix-blend-screen" data-i18n-html="home.hero.title">
+            Life carves <br />
             <span class="text-zinc-500">its</span> path.
           </h1>
-          <p class="text-zinc-400 text-sm md:text-base tracking-[0.1em] uppercase mt-4 max-w-md opacity-0 animate-fade-in-up" style="animation-delay: 200ms;">
+          <p class="text-zinc-400 text-sm md:text-base tracking-[0.1em] uppercase mt-4 max-w-md opacity-0 animate-fade-in-up" style="animation-delay: 200ms;" data-i18n="home.hero.subtitle">
             the answer to life is not elsewhere.
           </p>
         </div>
       </section>
 
-      <!-- Work Section -->
       <section id="work" class="w-full py-32 px-6 md:px-12 bg-black">
         <div class="max-w-screen-xl mx-auto">
           <div class="flex items-end justify-between gap-8 mb-16">
             <div>
-              <h2 class="text-xs font-bold tracking-[0.2em] uppercase text-zinc-600">Featured Projects</h2>
-              <p class="text-zinc-500 text-sm md:text-base tracking-wide mt-4 max-w-xl">
+              <h2 class="text-xs font-bold tracking-[0.2em] uppercase text-zinc-600" data-i18n="home.featured.title">Featured Projects</h2>
+              <p class="text-zinc-500 text-sm md:text-base tracking-wide mt-4 max-w-xl" data-i18n-html="home.featured.subtitle">
                 Selected projects from <span class="font-mono">data/projects.json</span>.
               </p>
             </div>
-            <a href="./projects.html" class="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors">
+            <a href="./projects.html" class="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors" data-i18n="home.featured.viewAll">
               View all
             </a>
           </div>
-          
+
           <div id="featured-projects" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </div>
       </section>
 
-      <!-- About Section -->
       <section id="about" class="w-full py-32 px-6 md:px-12 bg-zinc-950">
         <div class="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
           <div class="md:col-span-4">
-            <h2 class="text-xs font-bold tracking-[0.2em] uppercase text-zinc-600 sticky top-32">Philosophy</h2>
+            <h2 class="text-xs font-bold tracking-[0.2em] uppercase text-zinc-600 sticky top-32" data-i18n="home.about.title">Philosophy</h2>
           </div>
           <div class="md:col-span-8">
-            <p class="text-2xl md:text-4xl font-light leading-relaxed text-zinc-200">
+            <p id="about-body" class="text-2xl md:text-4xl font-light leading-relaxed text-zinc-200" data-i18n="home.about.body">
               I craft digital experiences that blend aesthetic purity with functional depth. With over 8 years of experience in silicon valley, I focus on removing the non-essential to reveal the essence of the product. Currently exploring the intersection of Generative AI and minimal UI patterns.
             </p>
             <div class="mt-24 grid grid-cols-2 gap-8">
               <div>
-                <h3 class="text-xs uppercase tracking-wider text-zinc-500 mb-6">Services</h3>
+                <h3 class="text-xs uppercase tracking-wider text-zinc-500 mb-6" data-i18n="home.about.services">Services</h3>
                 <ul class="space-y-3 text-zinc-400 font-light text-sm">
-                  <li>Art Direction</li>
-                  <li>UI/UX Design</li>
-                  <li>React Engineering</li>
-                  <li>Design Systems</li>
+                  <li data-i18n="home.about.service1">Art Direction</li>
+                  <li data-i18n="home.about.service2">UI/UX Design</li>
+                  <li data-i18n="home.about.service3">React Engineering</li>
+                  <li data-i18n="home.about.service4">Design Systems</li>
                 </ul>
               </div>
               <div>
-                <h3 class="text-xs uppercase tracking-wider text-zinc-500 mb-6">Clients</h3>
+                <h3 class="text-xs uppercase tracking-wider text-zinc-500 mb-6" data-i18n="home.about.clients">Clients</h3>
                 <ul class="space-y-3 text-zinc-400 font-light text-sm">
                   <li>Google</li>
                   <li>Teen Vogue</li>
@@ -176,19 +161,18 @@
         </div>
       </section>
 
-      <!-- Contact Section -->
       <section id="contact" class="w-full py-32 px-6 md:px-12 bg-black border-t border-zinc-900">
         <div class="max-w-screen-xl mx-auto">
-          <h1 class="text-5xl md:text-8xl font-semibold tracking-tighter leading-none mb-12">
+          <h1 class="text-5xl md:text-8xl font-semibold tracking-tighter leading-none mb-12" data-i18n-html="home.contact.title">
             Let's create <br /> something timeless.
           </h1>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-24">
             <div>
-              <a href="mailto:hello@example.com" class="inline-block text-xl border-b border-white pb-1 hover:text-zinc-400 hover:border-zinc-400 transition-colors">
+              <a id="contact-email-link" href="mailto:hello@example.com" class="inline-block text-xl border-b border-white pb-1 hover:text-zinc-400 hover:border-zinc-400 transition-colors" data-i18n="home.contact.cta">
                 Start a project
               </a>
             </div>
-            <div class="flex flex-col space-y-4 md:items-end">
+            <div id="contact-social-links" class="flex flex-col space-y-4 md:items-end">
               <a href="#" class="text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest">Twitter <span class="text-zinc-800 mx-2">—</span> @alexchen</a>
               <a href="#" class="text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest">LinkedIn <span class="text-zinc-800 mx-2">—</span> /in/alexchen</a>
               <a href="#" class="text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest">GitHub <span class="text-zinc-800 mx-2">—</span> @achen-dev</a>
@@ -202,49 +186,48 @@
       </section>
     </main>
 
-    <!-- Chat Widget Container -->
     <div id="chat-widget">
-      <!-- Toggle Button -->
-      <button 
+      <button
         id="chat-toggle"
         class="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 bg-zinc-900 text-white hover:bg-zinc-800 border border-zinc-800"
         aria-label="Toggle AI Chat"
+        data-i18n-aria-label="home.chat.toggle"
       >
         <svg id="icon-open" class="block" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
         <svg id="icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button>
 
-      <!-- Chat Window -->
-      <div 
-        id="chat-window" 
+      <div
+        id="chat-window"
         class="fixed bottom-24 right-8 z-40 w-[340px] md:w-[400px] glass-panel border border-zinc-800 shadow-2xl transition-all duration-500 ease-out origin-bottom-right opacity-0 scale-95 pointer-events-none rounded-lg overflow-hidden"
       >
         <div class="p-4 border-b border-zinc-800/50 flex justify-between items-center bg-black/50">
-          <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-500">AI Twin</h3>
+          <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-500" data-i18n="home.chat.title">AI Twin</h3>
           <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
         </div>
 
         <div id="chat-messages" class="h-[350px] overflow-y-auto p-4 space-y-6 no-scrollbar bg-black/40">
-          <!-- Empty State -->
           <div id="chat-empty" class="h-full flex flex-col items-center justify-center text-zinc-700 text-center space-y-3 opacity-60">
-             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
-             <p class="text-[10px] uppercase tracking-widest">Ask me anything</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+            <p class="text-[10px] uppercase tracking-widest" data-i18n="home.chat.empty">Ask me anything</p>
           </div>
         </div>
 
-        <!-- Input Area -->
         <div class="p-4 border-t border-zinc-800/50 bg-black/80">
           <div class="relative">
             <input
               type="text"
               id="chat-input"
               placeholder="Type a message..."
+              data-i18n-placeholder="home.chat.placeholder"
               class="w-full bg-zinc-900/50 text-white text-sm px-4 py-3 border border-zinc-800 focus:outline-none focus:border-zinc-600 transition-colors placeholder-zinc-700 rounded-sm font-light"
             />
-            <button 
+            <button
               id="chat-send"
               disabled
               class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white disabled:opacity-30 transition-colors"
+              aria-label="Send message"
+              data-i18n-aria-label="home.chat.send"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
@@ -253,37 +236,120 @@
       </div>
     </div>
 
-    <!-- Scripts -->
-    <script>
-      // Update Time
-      const timeEl = document.getElementById('local-time');
-      setInterval(() => {
-        timeEl.textContent = `Local Time: ${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}`;
-      }, 1000);
+    <script id="projects-data-fallback" type="application/json">
+[
+  {
+    "id": "lumina",
+    "title": "Lumina",
+    "titleZh": "Lumina",
+    "year": 2024,
+    "category": "Design System",
+    "categoryZh": "设计系统",
+    "tags": ["Design System", "UI"],
+    "summary": "A comprehensive monochromatic design system for financial technology dashboards.",
+    "summaryZh": "一个面向金融科技仪表盘的黑白极简设计系统方案。",
+    "featured": true
+  },
+  {
+    "id": "echoes",
+    "title": "Echoes",
+    "titleZh": "Echoes",
+    "year": 2023,
+    "category": "Generative Audio",
+    "categoryZh": "生成式音频",
+    "tags": ["Web", "AI"],
+    "summary": "Web-based interface for real-time AI spatial audio generation.",
+    "summaryZh": "一个用于实时 AI 空间音频生成的 Web 交互界面。",
+    "featured": true
+  },
+  {
+    "id": "vessel",
+    "title": "Vessel",
+    "titleZh": "Vessel",
+    "year": 2023,
+    "category": "Architecture",
+    "categoryZh": "建筑展示",
+    "tags": ["Brand", "Web"],
+    "summary": "Digital presence for a brutalist architecture firm based in Tokyo.",
+    "summaryZh": "为一家东京粗野主义建筑事务所打造的数字展示网站。",
+    "featured": true
+  },
+  {
+    "id": "ai-customer-service-platform",
+    "title": "AI Customer Service Platform",
+    "titleZh": "AI 客服运营平台",
+    "year": 2026,
+    "category": "AI Operations",
+    "categoryZh": "AI 运营平台",
+    "tags": ["AI", "Dashboard", "Customer Service"],
+    "summary": "An operations platform for AI customer-service agents, combining agent management, knowledge assets, analytics, and workflow governance in one workspace.",
+    "summaryZh": "一个面向 AI 客服智能体的运营平台，将智能体管理、知识资产、分析能力与流程治理整合到同一个工作台中。",
+    "featured": true
+  }
+]
     </script>
 
     <script type="module">
-      import { loadJson, escapeHtml, renderTags, formatYear } from "./site.js";
+      import { applyTranslations, getCurrentLanguage, getLocalizedValue, loadJson, renderTags, setupGlobalControls, t } from "./site.js";
+
+      const homeTranslations = {
+        "page.home.title": { en: "Alan Wang's Space", zh: "Alan Wang 的个人主页" },
+        "home.hero.title": { en: "Life carves <br /><span class='text-zinc-500'>its</span> path.", zh: "人生自会 <br /><span class='text-zinc-500'>刻出</span>它的路径。" },
+        "home.hero.subtitle": { en: "the answer to life is not elsewhere.", zh: "人生的答案，并不在别处。" },
+        "home.featured.title": { en: "Featured Projects", zh: "精选项目" },
+        "home.featured.subtitle": { en: "Selected projects from <span class='font-mono'>data/projects.json</span>.", zh: "这里展示的是来自 <span class='font-mono'>data/projects.json</span> 的精选项目。" },
+        "home.featured.viewAll": { en: "View all", zh: "查看全部" },
+        "home.about.title": { en: "Philosophy", zh: "理念" },
+        "home.about.body": {
+          en: "I craft digital experiences that blend aesthetic purity with functional depth. With over 8 years of experience in silicon valley, I focus on removing the non-essential to reveal the essence of the product. Currently exploring the intersection of Generative AI and minimal UI patterns.",
+          zh: "我关注兼具审美克制与功能深度的数字体验。过去的工作让我越来越相信，设计并不是不断叠加，而是去除不必要的部分，让产品真正的结构与价值显现出来。现在我持续探索生成式 AI 与极简交互之间的结合方式。"
+        },
+        "home.about.services": { en: "Services", zh: "能力方向" },
+        "home.about.service1": { en: "Art Direction", zh: "视觉方向" },
+        "home.about.service2": { en: "UI/UX Design", zh: "界面与体验设计" },
+        "home.about.service3": { en: "React Engineering", zh: "React 前端实现" },
+        "home.about.service4": { en: "Design Systems", zh: "设计系统" },
+        "home.about.clients": { en: "Clients", zh: "合作对象" },
+        "home.contact.title": { en: "Let's create <br /> something timeless.", zh: "一起做一些 <br /> 经得住时间的作品。" },
+        "home.contact.cta": { en: "Start a project", zh: "发起合作" },
+        "home.chat.toggle": { en: "Toggle AI chat", zh: "切换 AI 对话窗口" },
+        "home.chat.title": { en: "AI Twin", zh: "AI 分身" },
+        "home.chat.empty": { en: "Ask me anything", zh: "欢迎随时提问" },
+        "home.chat.placeholder": { en: "Type a message...", zh: "输入你的问题..." },
+        "home.chat.send": { en: "Send message", zh: "发送消息" },
+        "home.chat.offline": { en: "I am currently silent (Offline).", zh: "我现在暂时离线。" },
+        "home.chat.error": { en: "Connection disrupted.", zh: "连接已中断。" },
+        "home.time.label": { en: "Local Time", zh: "本地时间" }
+      };
 
       const featuredEl = document.getElementById("featured-projects");
+      const timeEl = document.getElementById("local-time");
+      const aboutBodyEl = document.getElementById("about-body");
+      const contactEmailEl = document.getElementById("contact-email-link");
+      const contactSocialLinksEl = document.getElementById("contact-social-links");
+      let projectsCache = [];
+      let profileCache = null;
 
-      function renderCard(p) {
-        const title = escapeHtml(p.title || "");
-        const summary = escapeHtml(p.summary || "");
-        const category = escapeHtml(p.category || "");
-        const year = escapeHtml(formatYear(p.year));
-        const tags = renderTags(p.tags || []);
+      function updateTime() {
+        const label = t("home.time.label", homeTranslations);
+        timeEl.textContent = `${label}: ${new Date().toLocaleTimeString(getCurrentLanguage() === "zh" ? "zh-CN" : "en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+        })}`;
+      }
 
-        const cover = p.coverImage
-          ? `<div class="absolute inset-0 bg-cover bg-center opacity-35" style="background-image:url('${escapeHtml(
-              p.coverImage
-            )}')"></div>`
+      function renderCard(project) {
+        const title = getLocalizedValue(project, "title");
+        const summary = getLocalizedValue(project, "summary");
+        const category = getLocalizedValue(project, "category");
+        const tags = renderTags(project.tags || []);
+        const year = project.year ? String(project.year) : "";
+        const cover = project.coverImage
+          ? `<div class="absolute inset-0 bg-cover bg-center opacity-35" style="background-image:url('${project.coverImage.replaceAll("'", "&#39;")}')"></div>`
           : `<div class="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-transparent"></div>`;
 
         return `
-          <a href="./project.html?id=${encodeURIComponent(
-            p.id
-          )}" class="group relative border border-white/10 hover:border-white/25 transition-colors overflow-hidden">
+          <a href="./project.html?id=${encodeURIComponent(project.id)}" class="group relative border border-white/10 hover:border-white/25 transition-colors overflow-hidden">
             <div class="absolute inset-0">${cover}</div>
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
             <div class="relative p-6 md:p-7 min-h-[220px] flex flex-col">
@@ -291,54 +357,119 @@
                 <div class="text-[10px] uppercase tracking-widest text-zinc-500">${category}</div>
                 <div class="text-xs font-mono text-zinc-600">${year}</div>
               </div>
-              <h3 class="text-2xl md:text-3xl font-medium tracking-tight mt-6 group-hover:translate-y-[-2px] transition-transform">
-                ${title}
-              </h3>
-              <p class="text-zinc-400 text-sm font-light leading-relaxed mt-4 max-h-[4.5em] overflow-hidden">
-                ${summary}
-              </p>
+              <h3 class="text-2xl md:text-3xl font-medium tracking-tight mt-6 group-hover:translate-y-[-2px] transition-transform">${title}</h3>
+              <p class="text-zinc-400 text-sm font-light leading-relaxed mt-4 max-h-[4.5em] overflow-hidden">${summary}</p>
               <div class="flex flex-wrap gap-2 mt-6">${tags}</div>
-              <div class="mt-auto pt-6 text-xs uppercase tracking-widest text-zinc-500 group-hover:text-white transition-colors">
-                Open →
-              </div>
+              <div class="mt-auto pt-6 text-xs uppercase tracking-widest text-zinc-500 group-hover:text-white transition-colors">${t("common.open", homeTranslations)} →</div>
             </div>
           </a>
         `;
       }
 
-      async function initFeatured() {
-        if (!featuredEl) return;
-        try {
-          const projects = await loadJson("./data/projects.json");
-          const featured = projects.filter((p) => p && p.featured);
-          const list = (featured.length ? featured : projects).slice(0, 6);
-          featuredEl.innerHTML = list.map(renderCard).join("");
-        } catch (e) {
-          featuredEl.innerHTML = `<div class="text-zinc-500 text-sm">Failed to load featured projects.</div>`;
+      function renderFeatured() {
+        const featured = projectsCache.filter((project) => project && project.featured);
+        const list = (featured.length ? featured : projectsCache).slice(0, 6);
+        featuredEl.innerHTML = list.map(renderCard).join("");
+      }
+
+      function renderProfileData() {
+        if (!profileCache) return;
+
+        const bio =
+          getCurrentLanguage() === "zh" && profileCache.bioZh
+            ? profileCache.bioZh
+            : profileCache.bio || "";
+        if (bio && aboutBodyEl) aboutBodyEl.textContent = bio;
+
+        const email = profileCache.contact?.email || "";
+        if (email && contactEmailEl) {
+          contactEmailEl.href = `mailto:${email}`;
+        }
+
+        const links = Array.isArray(profileCache.contact?.socialLinks)
+          ? profileCache.contact.socialLinks
+          : [];
+        if (links.length && contactSocialLinksEl) {
+          contactSocialLinksEl.innerHTML = links
+            .map((link) => {
+              const label = escapeHtml(
+                getCurrentLanguage() === "zh" && link.labelZh ? link.labelZh : link.label || "Link"
+              );
+              const url = escapeHtml(link.url || "#");
+              return `<a href="${url}" target="_blank" rel="noreferrer" class="text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest">${label}</a>`;
+            })
+            .join("");
         }
       }
 
+      async function initFeatured() {
+        try {
+          projectsCache = await loadJson("./data/projects.json");
+          renderFeatured();
+        } catch (error) {
+          const fallbackEl = document.getElementById("projects-data-fallback");
+          if (fallbackEl?.textContent?.trim()) {
+            try {
+              projectsCache = JSON.parse(fallbackEl.textContent);
+              renderFeatured();
+              return;
+            } catch (fallbackError) {}
+          }
+          featuredEl.innerHTML = `<div class="text-zinc-500 text-sm">${t("common.failedProjects", homeTranslations)}</div>`;
+        }
+      }
+
+      async function initProfile() {
+        try {
+          profileCache = await loadJson("./data/profile.json");
+          renderProfileData();
+        } catch {}
+      }
+
+      function renderStatic() {
+        applyTranslations(homeTranslations);
+        updateTime();
+        renderProfileData();
+      }
+
+      setupGlobalControls();
+      renderStatic();
+      window.__INDEX_BOOTSTRAPPED = true;
       initFeatured();
+      initProfile();
+      setInterval(updateTime, 1000);
+      window.addEventListener("site:language-change", () => {
+        renderStatic();
+        renderFeatured();
+      });
     </script>
 
     <script type="module">
       import { GoogleGenAI } from "@google/genai";
+      import { setupGlobalControls, t } from "./site.js";
 
-      // --- CONFIGURATION ---
-      const API_KEY = process.env.API_KEY; // Environment variable injection
-      const PORTFOLIO_OWNER = "Alex Chen";
-      const PORTFOLIO_ROLE = "Senior Product Designer & Developer";
-      const BIO = `I craft digital experiences that blend aesthetic purity with functional depth. With over 8 years of experience in silicon valley, I focus on removing the non-essential to reveal the essence of the product. Currently exploring the intersection of Generative AI and minimal UI patterns.`;
-      const SYSTEM_INSTRUCTION = `You are the AI digital twin of ${PORTFOLIO_OWNER}, a ${PORTFOLIO_ROLE}. Your goal is to answer visitor questions about Alex's background, work, and philosophy concisely and professionally. Maintain a somewhat mysterious, minimalist, and sophisticated tone. Do not be overly enthusiastic. Be helpful but brief. Style: Pure minimalist, black and white aesthetics.`;
+      const homeTranslations = {
+        "home.chat.offline": { en: "I am currently silent (Offline).", zh: "我现在暂时离线。" },
+        "home.chat.error": { en: "Connection disrupted.", zh: "连接已中断。" },
+        "home.chat.toggle": { en: "Toggle AI chat", zh: "切换 AI 对话窗口" },
+        "home.chat.title": { en: "AI Twin", zh: "AI 分身" },
+        "home.chat.empty": { en: "Ask me anything", zh: "欢迎随时提问" },
+        "home.chat.placeholder": { en: "Type a message...", zh: "输入你的问题..." },
+        "home.chat.send": { en: "Send message", zh: "发送消息" }
+      };
 
-      // --- GENAI SETUP ---
+      const API_KEY = typeof process !== "undefined" && process?.env ? process.env.API_KEY : null;
+      const PORTFOLIO_OWNER = "Alan Wang";
+      const PORTFOLIO_ROLE = "Designer and Builder";
+      const SYSTEM_INSTRUCTION = `You are the AI digital twin of ${PORTFOLIO_OWNER}, a ${PORTFOLIO_ROLE}. Answer visitor questions about Alan's background, work, and philosophy concisely and professionally.`;
+
       let chatSession = null;
       const initAI = () => {
         if (!API_KEY) return null;
         try {
           const ai = new GoogleGenAI({ apiKey: API_KEY });
           return ai.chats.create({
-            model: 'gemini-3-flash-preview',
+            model: "gemini-3-flash-preview",
             config: { systemInstruction: SYSTEM_INSTRUCTION, temperature: 0.7 },
           });
         } catch (e) {
@@ -347,85 +478,86 @@
         }
       };
 
-      // --- UI CONTROLLER ---
-      const toggleBtn = document.getElementById('chat-toggle');
-      const chatWindow = document.getElementById('chat-window');
-      const iconOpen = document.getElementById('icon-open');
-      const iconClose = document.getElementById('icon-close');
-      const input = document.getElementById('chat-input');
-      const sendBtn = document.getElementById('chat-send');
-      const messagesContainer = document.getElementById('chat-messages');
-      const emptyState = document.getElementById('chat-empty');
+      const toggleBtn = document.getElementById("chat-toggle");
+      const chatWindow = document.getElementById("chat-window");
+      const iconOpen = document.getElementById("icon-open");
+      const iconClose = document.getElementById("icon-close");
+      const input = document.getElementById("chat-input");
+      const sendBtn = document.getElementById("chat-send");
+      const messagesContainer = document.getElementById("chat-messages");
+      const emptyState = document.getElementById("chat-empty");
+      const chatWidget = document.getElementById("chat-widget");
 
       let isOpen = false;
       let isLoading = false;
 
-      // Toggle Chat
-      toggleBtn.addEventListener('click', () => {
+      function rerenderChatStatic() {
+        chatWidget.querySelectorAll("[data-i18n]").forEach((el) => {
+          el.textContent = t(el.dataset.i18n, homeTranslations);
+        });
+        chatWidget.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+          el.setAttribute("placeholder", t(el.dataset.i18nPlaceholder, homeTranslations));
+        });
+        chatWidget.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+          el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel, homeTranslations));
+        });
+      }
+
+      toggleBtn.addEventListener("click", () => {
         isOpen = !isOpen;
         if (isOpen) {
-          chatWindow.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
-          chatWindow.classList.add('opacity-100', 'scale-100');
-          iconOpen.classList.add('hidden');
-          iconClose.classList.remove('hidden');
+          chatWindow.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+          chatWindow.classList.add("opacity-100", "scale-100");
+          iconOpen.classList.add("hidden");
+          iconClose.classList.remove("hidden");
           setTimeout(() => input.focus(), 100);
         } else {
-          chatWindow.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-          chatWindow.classList.remove('opacity-100', 'scale-100');
-          iconOpen.classList.remove('hidden');
-          iconClose.classList.add('hidden');
+          chatWindow.classList.add("opacity-0", "scale-95", "pointer-events-none");
+          chatWindow.classList.remove("opacity-100", "scale-100");
+          iconOpen.classList.remove("hidden");
+          iconClose.classList.add("hidden");
         }
       });
 
-      // Handle Input State
-      input.addEventListener('input', (e) => {
+      input.addEventListener("input", (e) => {
         sendBtn.disabled = !e.target.value.trim() || isLoading;
       });
 
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !sendBtn.disabled) {
-          handleSend();
-        }
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !sendBtn.disabled) handleSend();
       });
 
-      sendBtn.addEventListener('click', handleSend);
+      sendBtn.addEventListener("click", handleSend);
 
       async function handleSend() {
         const text = input.value.trim();
         if (!text || isLoading) return;
 
-        // Reset Input
-        input.value = '';
+        input.value = "";
         sendBtn.disabled = true;
         isLoading = true;
         if (emptyState) emptyState.remove();
 
-        // Add User Message
-        appendMessage('user', text);
-
-        // Loading Indicator
+        appendMessage("user", text);
         const loadingId = appendLoading();
         scrollToBottom();
 
-        // API Call
         try {
           if (!chatSession) chatSession = initAI();
-          
-          let responseText = "I am currently silent (Offline).";
+
+          let responseText = t("home.chat.offline", homeTranslations);
           if (chatSession) {
-             const result = await chatSession.sendMessage({ message: text });
-             responseText = result.text;
+            const result = await chatSession.sendMessage({ message: text });
+            responseText = result.text;
           }
 
-          // Replace loading with response
           removeLoading(loadingId);
-          appendMessage('model', responseText);
-
+          appendMessage("model", responseText);
         } catch (error) {
           console.error(error);
           removeLoading(loadingId);
-          appendMessage('model', "Connection disrupted.");
-          chatSession = null; // Reset
+          appendMessage("model", t("home.chat.error", homeTranslations));
+          chatSession = null;
         }
 
         isLoading = false;
@@ -434,26 +566,24 @@
       }
 
       function appendMessage(role, text) {
-        const div = document.createElement('div');
-        div.className = `flex ${role === 'user' ? 'justify-end' : 'justify-start'}`;
-        
-        const bubble = document.createElement('div');
+        const div = document.createElement("div");
+        div.className = `flex ${role === "user" ? "justify-end" : "justify-start"}`;
+
+        const bubble = document.createElement("div");
         bubble.className = `max-w-[85%] p-3 text-sm font-light leading-relaxed animate-fade-in-up ${
-          role === 'user' 
-            ? 'bg-zinc-900 text-zinc-200 border border-zinc-800 rounded-sm' 
-            : 'text-zinc-400'
+          role === "user" ? "bg-zinc-900 text-zinc-200 border border-zinc-800 rounded-sm" : "text-zinc-400"
         }`;
         bubble.textContent = text;
-        
+
         div.appendChild(bubble);
         messagesContainer.appendChild(div);
       }
 
       function appendLoading() {
-        const id = 'loading-' + Date.now();
-        const div = document.createElement('div');
+        const id = `loading-${Date.now()}`;
+        const div = document.createElement("div");
         div.id = id;
-        div.className = 'flex justify-start';
+        div.className = "flex justify-start";
         div.innerHTML = `
           <div class="flex space-x-1 items-center h-8 px-2">
             <div class="w-1 h-1 bg-zinc-600 rounded-full animate-bounce" style="animation-delay: 0ms"></div>
@@ -473,6 +603,197 @@
       function scrollToBottom() {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
       }
+
+      setupGlobalControls();
+      rerenderChatStatic();
+      window.addEventListener("site:language-change", rerenderChatStatic);
+    </script>
+
+    <script>
+      setTimeout(() => {
+        if (window.__INDEX_BOOTSTRAPPED) return;
+
+        const translations = {
+          "page.home.title": { en: "Alan Wang's Space", zh: "Alan Wang 的个人主页" },
+          "nav.projects": { en: "Projects", zh: "项目" },
+          "nav.portfolio": { en: "Portfolio", zh: "作品集" },
+          "nav.articles": { en: "Articles", zh: "文章" },
+          "nav.about": { en: "About", zh: "关于" },
+          "nav.contact": { en: "Contact", zh: "联系" },
+          "controls.language": { en: "Language", zh: "语言" },
+          "controls.theme": { en: "Theme", zh: "主题" },
+          "controls.english": { en: "EN", zh: "英文" },
+          "controls.chinese": { en: "中文", zh: "中文" },
+          "controls.dark": { en: "Dark", zh: "暗色" },
+          "controls.light": { en: "Light", zh: "亮色" },
+          "common.open": { en: "Open", zh: "打开" },
+          "home.hero.title": { en: "Life carves <br /><span class='text-zinc-500'>its</span> path.", zh: "人生自会 <br /><span class='text-zinc-500'>刻出</span>它的路径。" },
+          "home.hero.subtitle": { en: "the answer to life is not elsewhere.", zh: "人生的答案，并不在别处。" },
+          "home.featured.title": { en: "Featured Projects", zh: "精选项目" },
+          "home.featured.subtitle": { en: "Selected projects from <span class='font-mono'>inline fallback data</span>.", zh: "这里展示的是来自 <span class='font-mono'>页面内置兜底数据</span> 的精选项目。" },
+          "home.featured.viewAll": { en: "View all", zh: "查看全部" },
+          "home.about.title": { en: "Philosophy", zh: "理念" },
+          "home.about.body": {
+            en: "I craft digital experiences that blend aesthetic purity with functional depth. With over 8 years of experience in silicon valley, I focus on removing the non-essential to reveal the essence of the product. Currently exploring the intersection of Generative AI and minimal UI patterns.",
+            zh: "我关注兼具审美克制与功能深度的数字体验。过去的工作让我越来越相信，设计并不是不断叠加，而是去除不必要的部分，让产品真正的结构与价值显现出来。现在我持续探索生成式 AI 与极简交互之间的结合方式。"
+          },
+          "home.about.services": { en: "Services", zh: "能力方向" },
+          "home.about.service1": { en: "Art Direction", zh: "视觉方向" },
+          "home.about.service2": { en: "UI/UX Design", zh: "界面与体验设计" },
+          "home.about.service3": { en: "React Engineering", zh: "React 前端实现" },
+          "home.about.service4": { en: "Design Systems", zh: "设计系统" },
+          "home.about.clients": { en: "Clients", zh: "合作对象" },
+          "home.contact.title": { en: "Let's create <br /> something timeless.", zh: "一起做一些 <br /> 经得住时间的作品。" },
+          "home.contact.cta": { en: "Start a project", zh: "发起合作" },
+          "home.chat.toggle": { en: "Toggle AI chat", zh: "切换 AI 对话窗口" },
+          "home.chat.title": { en: "AI Twin", zh: "AI 分身" },
+          "home.chat.empty": { en: "Ask me anything", zh: "欢迎随时提问" },
+          "home.chat.placeholder": { en: "Type a message...", zh: "输入你的问题..." },
+          "home.chat.send": { en: "Send message", zh: "发送消息" },
+          "home.time.label": { en: "Local Time", zh: "本地时间" }
+        };
+
+        const getLang = () => {
+          try {
+            return localStorage.getItem("site-language") === "zh" ? "zh" : "en";
+          } catch {
+            return "en";
+          }
+        };
+
+        const getTheme = () => {
+          try {
+            return localStorage.getItem("site-theme") === "light" ? "light" : "dark";
+          } catch {
+            return "dark";
+          }
+        };
+
+        const setLang = (lang) => {
+          try {
+            localStorage.setItem("site-language", lang);
+          } catch {}
+          applyPrefs();
+          renderAll();
+        };
+
+        const setTheme = (theme) => {
+          try {
+            localStorage.setItem("site-theme", theme);
+          } catch {}
+          applyPrefs();
+          renderControls();
+        };
+
+        const t = (key) => {
+          const value = translations[key];
+          if (!value) return key;
+          return value[getLang()] || value.en || key;
+        };
+
+        const getLocalized = (item, key) => (getLang() === "zh" && item[`${key}Zh`] ? item[`${key}Zh`] : item[key] || "");
+
+        const applyPrefs = () => {
+          document.documentElement.dataset.theme = getTheme();
+          document.documentElement.lang = getLang() === "zh" ? "zh-CN" : "en";
+        };
+
+        const applyTexts = () => {
+          document.title = t("page.home.title");
+          document.querySelectorAll("[data-i18n]").forEach((el) => {
+            el.textContent = t(el.dataset.i18n);
+          });
+          document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+            el.innerHTML = t(el.dataset.i18nHtml);
+          });
+          document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+            el.setAttribute("placeholder", t(el.dataset.i18nPlaceholder));
+          });
+          document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+            el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel));
+          });
+        };
+
+        const ensureControls = () => {
+          if (document.getElementById("site-controls")) return;
+          const root = document.createElement("div");
+          root.id = "site-controls";
+          root.className = "site-controls";
+          root.innerHTML = `
+            <div class="site-control-block">
+              <div class="site-control-label">${t("controls.language")}</div>
+              <div class="site-segmented">
+                <button type="button" class="site-segment" data-local-lang="en">${t("controls.english")}</button>
+                <button type="button" class="site-segment" data-local-lang="zh">${t("controls.chinese")}</button>
+              </div>
+            </div>
+            <div class="site-control-block">
+              <div class="site-control-label">${t("controls.theme")}</div>
+              <div class="site-segmented">
+                <button type="button" class="site-segment" data-local-theme="dark">${t("controls.dark")}</button>
+                <button type="button" class="site-segment" data-local-theme="light">${t("controls.light")}</button>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(root);
+          root.querySelectorAll("[data-local-lang]").forEach((btn) => btn.addEventListener("click", () => setLang(btn.dataset.localLang)));
+          root.querySelectorAll("[data-local-theme]").forEach((btn) => btn.addEventListener("click", () => setTheme(btn.dataset.localTheme)));
+        };
+
+        const renderControls = () => {
+          const root = document.getElementById("site-controls");
+          if (!root) return;
+          root.querySelector(".site-control-label").textContent = t("controls.language");
+          root.querySelectorAll("[data-local-lang]")[0].textContent = t("controls.english");
+          root.querySelectorAll("[data-local-lang]")[1].textContent = t("controls.chinese");
+          root.querySelectorAll(".site-control-label")[1].textContent = t("controls.theme");
+          root.querySelectorAll("[data-local-theme]")[0].textContent = t("controls.dark");
+          root.querySelectorAll("[data-local-theme]")[1].textContent = t("controls.light");
+          root.querySelectorAll("[data-local-lang]").forEach((btn) => btn.dataset.active = btn.dataset.localLang === getLang() ? "true" : "false");
+          root.querySelectorAll("[data-local-theme]").forEach((btn) => btn.dataset.active = btn.dataset.localTheme === getTheme() ? "true" : "false");
+        };
+
+        const renderFeatured = () => {
+          const el = document.getElementById("featured-projects");
+          const fallbackEl = document.getElementById("projects-data-fallback");
+          if (!el || !fallbackEl) return;
+          const projects = JSON.parse(fallbackEl.textContent || "[]");
+          el.innerHTML = projects.filter((project) => project.featured).map((project) => `
+            <a href="./project.html?id=${encodeURIComponent(project.id)}" class="group relative border border-white/10 hover:border-white/25 transition-colors overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+              <div class="relative p-6 md:p-7 min-h-[220px] flex flex-col">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="text-[10px] uppercase tracking-widest text-zinc-500">${getLocalized(project, "category")}</div>
+                  <div class="text-xs font-mono text-zinc-600">${project.year || ""}</div>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-medium tracking-tight mt-6 group-hover:translate-y-[-2px] transition-transform">${getLocalized(project, "title")}</h3>
+                <p class="text-zinc-400 text-sm font-light leading-relaxed mt-4 max-h-[4.5em] overflow-hidden">${getLocalized(project, "summary")}</p>
+                <div class="mt-auto pt-6 text-xs uppercase tracking-widest text-zinc-500 group-hover:text-white transition-colors">${t("common.open")} →</div>
+              </div>
+            </a>
+          `).join("");
+        };
+
+        const updateTime = () => {
+          const timeEl = document.getElementById("local-time");
+          if (!timeEl) return;
+          const locale = getLang() === "zh" ? "zh-CN" : "en-US";
+          timeEl.textContent = `${t("home.time.label")}: ${new Date().toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit" })}`;
+        };
+
+        const renderAll = () => {
+          applyTexts();
+          ensureControls();
+          renderControls();
+          renderFeatured();
+          updateTime();
+        };
+
+        applyPrefs();
+        renderAll();
+        setInterval(updateTime, 1000);
+      }, 120);
     </script>
   </body>
 </html>

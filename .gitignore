@@ -1,0 +1,7 @@
+admin.html
+admin.js
+admin-server.py
+admin.local.json
+admin.local.example.json
+__pycache__/
+.dbg/
