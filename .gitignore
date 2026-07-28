@@ -3,5 +3,6 @@ admin.js
 admin-server.py
 admin.local.json
 admin.local.example.json
+start-admin.bat
 __pycache__/
 .dbg/
