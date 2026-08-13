@@ -1,0 +1,15 @@
+admin.html
+admin.js
+admin-server.py
+admin.local.json
+admin.local.example.json
+start-admin.bat
+site-preview.py
+start-site-preview.bat
+photo/
+Portfolio/
+data/versions/
+assets/pdf/
+__pycache__/
+.dbg/
+.git/

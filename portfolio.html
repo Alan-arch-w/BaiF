@@ -17,14 +17,15 @@
         }
       })();
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets/vendor/tailwindcss.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./site.css" />
+    <link rel="stylesheet" href="./site.css?v=20260813-1" />
+    <script src="./site-cursor.js?v=20260812-1" defer></script>
     <script>
       tailwind.config = {
         theme: {
@@ -52,7 +53,10 @@
   </head>
   <body class="antialiased">
     <header class="site-header fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white">
-      <a href="./index.html" class="text-sm font-medium tracking-[0.2em] uppercase hover:opacity-70 transition-opacity" data-i18n="brand.name">Alan Wang</a>
+      <a href="./index.html" class="site-brand" aria-label="Alan Wang — Home">
+        <svg class="site-brand__mark" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 3 38.5 12.5v19L22 41 5.5 31.5v-19L22 3Z"/><path d="m5.5 12.5 16.5 9.5 16.5-9.5M22 22v19"/><path d="m13.8 29.2 8.2-14.3 8.2 14.3M17.4 23h9.2"/></svg>
+        <span class="site-brand__wordmark">ALAN WANG</span>
+      </a>
       <nav class="hidden md:flex space-x-8 text-sm font-light tracking-wide">
         <a href="./projects.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.projects">Projects</a>
         <a href="./portfolio.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.portfolio">Portfolio</a>
@@ -77,8 +81,22 @@
       </section>
     </main>
 
+    <script src="./data/local-content.js"></script>
     <script type="module">
-      import { applyTranslations, escapeHtml, formatYear, getLocalizedValue, loadJson, renderTags, setupGlobalControls, t } from "./site.js";
+      import {
+        applyTranslations,
+        escapeHtml,
+        formatYear,
+        getCurrentLanguage,
+        getLocalizedValue,
+        getQueryParam,
+        loadJson,
+        renderTags,
+        setupGlobalControls,
+        syncPreviewLinks,
+        t,
+        withPreviewParams,
+      } from "./site.js?v=20260812-1";
 
       const pageTranslations = {
         "page.portfolio.title": { en: "Portfolio", zh: "作品集" },
@@ -87,6 +105,9 @@
       };
 
       const listEl = document.getElementById("portfolio-list");
+      const headingEl = document.querySelector("[data-i18n='page.portfolio.heading']");
+      const subtitleEl = document.querySelector("[data-i18n-html='page.portfolio.subtitle']");
+      const requestedView = getQueryParam("view");
       let itemsCache = [];
 
       function renderCard(item) {
@@ -94,24 +115,40 @@
         const summary = escapeHtml(getLocalizedValue(item, "summary"));
         const year = escapeHtml(formatYear(item.year));
         const tags = renderTags(item.tags || []);
+        const cover = item.coverImage ? escapeHtml(item.coverImage) : "";
 
         return `
-          <a href="./portfolio-item.html?id=${encodeURIComponent(item.id)}" class="group border border-white/10 hover:border-white/25 transition-colors p-6 bg-white/[0.02]">
-            <div class="flex items-start justify-between gap-6">
+          <a href="${withPreviewParams(`./portfolio-item.html?id=${encodeURIComponent(item.id)}`)}" class="group border border-white/10 hover:border-white/25 transition-colors bg-white/[0.02] overflow-hidden">
+            ${cover ? `<div class="relative aspect-[16/10] overflow-hidden border-b border-white/10"><img src="${cover}" alt="" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" /></div>` : ""}
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-6">
               <div>
                 <h3 class="text-2xl font-medium tracking-tight">${title}</h3>
                 <p class="text-zinc-400 text-sm font-light mt-3 leading-relaxed">${summary}</p>
               </div>
               <div class="text-xs font-mono text-zinc-600">${year}</div>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-6">${tags}</div>
             </div>
-            <div class="flex flex-wrap gap-2 mt-6">${tags}</div>
           </a>
         `;
       }
 
       function renderPage() {
         applyTranslations(pageTranslations);
-        listEl.innerHTML = itemsCache.map(renderCard).join("");
+        if (requestedView === "photography") {
+          headingEl.textContent = getCurrentLanguage() === "zh" ? "摄影" : "Photography";
+          subtitleEl.textContent = getCurrentLanguage() === "zh"
+            ? "关于地点、光线与时间的摄影记录。"
+            : "Photographic notes on place, light and time.";
+        }
+        const visibleItems = requestedView === "photography"
+          ? itemsCache.filter((item) => item.tags?.includes("Photography"))
+          : requestedView === "portfolio"
+            ? itemsCache.filter((item) => !item.tags?.includes("Photography"))
+            : itemsCache;
+        listEl.innerHTML = visibleItems.map(renderCard).join("");
+        syncPreviewLinks(listEl);
       }
 
       async function init() {
@@ -129,4 +166,3 @@
     </script>
   </body>
 </html>
-

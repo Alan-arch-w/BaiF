@@ -6,3 +6,10 @@ admin.local.example.json
 start-admin.bat
 __pycache__/
 .dbg/
+site-preview.py
+start-site-preview.bat
+photo/
+Portfolio/
+data/versions/
+assets/pdf/
+.vercel/

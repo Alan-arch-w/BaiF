@@ -1,18 +1,58 @@
 [
   {
-    "id": "portfolio-sample-1",
-    "title": "Portfolio Sample",
-    "titleZh": "作品集示例",
-    "year": 2024,
+    "id": "ningxia-spatial-notes",
+    "title": "Ningxia: Mountains, Sand and Time",
+    "titleZh": "宁夏：山、沙与时间",
+    "year": 2025,
     "tags": [
-      "PDF",
-      "Case Study"
+      "Photography",
+      "Ningxia",
+      "Field Notes"
     ],
-    "summary": "Replace this with your real portfolio entry. Attach a PDF and a few images.",
-    "summaryZh": "这里可以替换成你的真实作品条目，并附上 PDF 与若干展示图片。",
-    "coverImage": "",
+    "summary": "A photographic study of landscape, memory and traces of time across Ningxia.",
+    "summaryZh": "一组关于宁夏地景、记忆与时间痕迹的摄影记录。",
+    "coverImage": "./assets/img/tengger-desert.jpg",
     "pdf": "",
-    "galleryImages": [],
+    "galleryImages": [
+      "./assets/img/tengger-desert.jpg",
+      "./assets/img/ningxia-helan-rock-art.jpg",
+      "./assets/img/western-xia-tombs.jpg",
+      "./assets/img/ningxia-lanshan-park.jpg"
+    ],
+    "externalLinks": []
+  },
+  {
+    "id": "alan-wang-architecture-portfolio",
+    "title": "Architecture Portfolio",
+    "titleZh": "建筑作品集",
+    "year": 2026,
+    "tags": [
+      "Architecture",
+      "Urban Design",
+      "Portfolio Book"
+    ],
+    "summary": "Selected architectural and urban-design work, beginning with Game of City, an algorithm-driven urban design study.",
+    "summaryZh": "建筑与城市设计作品选集，包含“Game of City：算法驱动的城市设计”等项目。",
+    "coverImage": "./assets/img/alan-wang-portfolio-cover.jpg",
+    "pdf": "",
+    "galleryImages": [
+      "./assets/img/portfolio-pages/page-01.jpg",
+      "./assets/img/portfolio-pages/page-02.jpg",
+      "./assets/img/portfolio-pages/page-03.jpg",
+      "./assets/img/portfolio-pages/page-04.jpg",
+      "./assets/img/portfolio-pages/page-05.jpg",
+      "./assets/img/portfolio-pages/page-06.jpg",
+      "./assets/img/portfolio-pages/page-07.jpg",
+      "./assets/img/portfolio-pages/page-08.jpg",
+      "./assets/img/portfolio-pages/page-09.jpg",
+      "./assets/img/portfolio-pages/page-10.jpg",
+      "./assets/img/portfolio-pages/page-11.jpg",
+      "./assets/img/portfolio-pages/page-12.jpg",
+      "./assets/img/portfolio-pages/page-13.jpg",
+      "./assets/img/portfolio-pages/page-14.jpg",
+      "./assets/img/portfolio-pages/page-15.jpg",
+      "./assets/img/portfolio-pages/page-16.jpg"
+    ],
     "externalLinks": []
   }
 ]
