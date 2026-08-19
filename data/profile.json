@@ -1,21 +1,38 @@
 {
   "id": "BaiF",
-  "name": "Alan Wang",
-  "title": "Person",
+  "name": "Dongye",
+  "title": "Product creator",
+  "titleZh": "产品创造者",
   "oneLiner": "Life carves its own path.",
   "oneLinerZh": "人生自会刻出它的路径。",
-  "bio": "Travel, document, photograph, create，AI",
-  "bioZh": "旅行、记录、摄影、创造、AI",
+  "bio": "Dongye is a creator working across product, AI, code and visual expression. With a background in architecture, he explores how spatial thinking can enter digital products through Agent systems, RAG, generative design and human-computer interaction.",
+  "bioZh": "冬叶是一名在产品、AI、代码与视觉表达之间工作的创造者。拥有建筑学背景，关注空间思维如何进入数字产品，并持续探索 Agent、RAG、生成式设计与人机交互。",
+  "homeBio": "A creator working across product, AI, code and visual expression, exploring spatial thinking in digital products.",
+  "homeBioZh": "在产品、AI、代码与视觉表达之间工作，探索空间思维如何进入数字产品。",
   "contact": {
     "email": "3247838044@qq.com",
+    "wechatQr": "./assets/img/wechat-qr.jpg?v=20260814-1",
     "socialLinks": [
       {
-        "label": "",
-        "url": "https://github.com/Alan-arch-w"
+        "type": "wechat",
+        "label": "Add me on WeChat",
+        "labelZh": "点此加微信",
+        "value": "lvdouwm",
+        "url": "#wechat"
       },
       {
-        "label": "",
-        "url": "https://www.xiaohongshu.com/user/profile/622d39ba0000000021025e99"
+        "type": "xiaohongshu",
+        "label": "AI Baifang",
+        "labelZh": "AI 白方",
+        "meta": "3,187 likes & saves",
+        "metaZh": "3,187 次赞与收藏",
+        "url": "https://xhslink.cn/m/6LIZoeIggRr"
+      },
+      {
+        "type": "github",
+        "label": "Alan-arch-w",
+        "labelZh": "Alan-arch-w",
+        "url": "https://github.com/Alan-arch-w"
       }
     ]
   }

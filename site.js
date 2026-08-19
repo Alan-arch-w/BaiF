@@ -14,8 +14,9 @@ const PREVIEW_QUERY_KEYS = {
 };
 
 const COMMON_TRANSLATIONS = {
-  "brand.name": { en: "ALAN WANG", zh: "ALAN WANG" },
+  "brand.name": { en: "DONGYE", zh: "冬叶" },
   "nav.projects": { en: "Projects", zh: "项目" },
+  "nav.photography": { en: "Photography", zh: "摄影" },
   "nav.portfolio": { en: "Portfolio", zh: "作品集" },
   "nav.articles": { en: "Articles", zh: "文章" },
   "nav.about": { en: "About", zh: "关于" },

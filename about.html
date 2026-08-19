@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-title-key="page.about.title">About DONGYE</title>
+    <script>
+      (() => {
+        try {
+          const theme = localStorage.getItem("site-theme") || "dark";
+          const lang = localStorage.getItem("site-language") || "en";
+          document.documentElement.dataset.theme = theme === "light" ? "light" : "dark";
+          document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+        } catch {
+          document.documentElement.dataset.theme = "dark";
+          document.documentElement.lang = "en";
+        }
+      })();
+    </script>
+    <script src="./assets/vendor/tailwindcss.js"></script>
+    <link rel="stylesheet" href="./site.css?v=20260814-3" />
+    <link rel="stylesheet" href="./about.css?v=20260814-10" />
+    <script src="./site-cursor.js?v=20260812-1" defer></script>
+    <script type="module" src="./about-room.js?v=20260814-16"></script>
+  </head>
+  <body class="about-page">
+    <header class="site-header fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white">
+      <a href="./index.html" class="site-brand" aria-label="DONGYE Home">
+        <svg class="site-brand__mark" viewBox="0 0 44 44" aria-hidden="true"><path d="M9 7.5c7.5-1 18.8-1 26 0 1.8.3 2.8 1.4 3 3.1.8 7.7.8 15.2 0 22.8-.2 1.7-1.2 2.8-3 3.1-7.4 1-18.6 1-26 0-1.8-.3-2.8-1.4-3-3.1-.8-7.6-.8-15.1 0-22.8.2-1.7 1.2-2.8 3-3.1Z"/><circle cx="18.2" cy="22" r="1.15" fill="currentColor" stroke="none"/><circle cx="25.8" cy="22" r="1.15" fill="currentColor" stroke="none"/></svg>
+        <span class="site-brand__wordmark">DONGYE</span>
+      </a>
+      <nav class="hidden md:flex space-x-8 text-sm font-light tracking-wide">
+        <a href="./projects.html" data-i18n="nav.projects">Projects</a>
+        <a href="./portfolio.html?view=photography" data-i18n="home.cube.photography">Photography</a>
+        <a href="./portfolio.html?view=portfolio" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="./articles.html" data-i18n="nav.articles">Articles</a>
+        <a href="./index.html#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="about-shell about-hero">
+        <div class="about-hero__copy">
+          <span class="about-kicker">DONGYE / AI BAIFANG</span>
+          <h1 data-i18n="about.hero.title">Between systems and expression.</h1>
+          <p class="about-hero__intro" data-i18n="about.hero.intro">Dongye is a creator working across product, AI, code and visual expression. With a background in architecture, he explores how spatial thinking can enter digital products through Agent systems, RAG, generative design and human-computer interaction.</p>
+          <div class="about-hero__meta">
+            <span data-i18n="about.meta.architecture">Architecture background</span>
+            <span>INTJ</span>
+            <span>AI PRODUCT / DESIGN / CODE</span>
+          </div>
+        </div>
+        <div class="about-hero__visual" aria-label="Interactive AI Baifang studio">
+          <div class="about-hero__room" data-baifang-room></div>
+        </div>
+      </section>
+
+      <section class="about-shell about-section">
+        <div class="about-section__header">
+          <span class="about-section__label" data-i18n="about.capabilities.label">Capabilities</span>
+          <h2 data-i18n="about.capabilities.title">Ideas carried from structure to expression.</h2>
+        </div>
+        <div class="about-rows">
+          <article class="about-row">
+            <h3 data-i18n="about.product.title">Product and communication</h3>
+            <p data-i18n="about.product.body">Five months of AI product practice across Agent customer service and RAG. Experienced in clarifying complex requirements, shaping B2B functions from zero to one, and connecting technical and design decisions.</p>
+            <span class="about-row__tools">AGENT / RAG / B2B / 0 TO 1</span>
+          </article>
+          <article class="about-row">
+            <h3 data-i18n="about.code.title">AI and code</h3>
+            <p data-i18n="about.code.body">Independently trained deep-learning models and built a complete front-end and back-end urban morphology generation tool. Able to understand technical boundaries and turn ideas into working prototypes with AI-assisted development.</p>
+            <span class="about-row__tools">DEEP LEARNING / FULL STACK / PROTOTYPING</span>
+          </article>
+          <article class="about-row">
+            <h3 data-i18n="about.visual.title">Design and expression</h3>
+            <p data-i18n="about.visual.body">Works across generative imagery, graphic editing, spatial modelling, video and presentation. Uses visual systems to make complex ideas easier to understand and more memorable.</p>
+            <span class="about-row__tools">PS / ILLUSTRATOR / RHINO / VIDEO / PPT</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-shell about-section">
+        <div class="about-section__header">
+          <span class="about-section__label" data-i18n="about.evidence.label">Selected evidence</span>
+          <h2 data-i18n="about.evidence.title">A practice built by making.</h2>
+        </div>
+        <div class="about-evidence">
+          <article>
+            <strong>AI PRODUCT</strong>
+            <h3 data-i18n="about.evidence.agent.title">Agent customer service</h3>
+            <p data-i18n="about.evidence.agent.body">Complex operational functions shaped through product research, requirement design and collaboration with technical teams.</p>
+          </article>
+          <article>
+            <strong>GENERATIVE DESIGN</strong>
+            <h3 data-i18n="about.evidence.city.title">Urban morphology tool</h3>
+            <p data-i18n="about.evidence.city.body">An independently developed workflow connecting deep learning, spatial data and a complete interactive product.</p>
+          </article>
+          <article>
+            <strong>AI BAIFANG</strong>
+            <h3 data-i18n="about.evidence.content.title">Knowledge made approachable</h3>
+            <p data-i18n="about.evidence.content.body">A beginner-friendly AI knowledge channel with more than 3,187 likes and saves, translating technical ideas into accessible content.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-shell about-section about-personal">
+        <div>
+          <span class="about-personal__name" data-i18n="about.personal.label">Working style and interests</span>
+          <h2 data-i18n="about.personal.title">Curious by nature, structured in action.</h2>
+        </div>
+        <div class="about-wordfield" aria-label="Personal traits and interests">
+          <span>INTJ</span>
+          <span data-i18n="about.trait.action">Action</span>
+          <span data-i18n="about.trait.planning">Planning</span>
+          <span data-i18n="about.trait.aesthetic">Aesthetic</span>
+          <span data-i18n="about.trait.communication">Communication</span>
+          <span data-i18n="about.interest.music">Music</span>
+          <span data-i18n="about.interest.travel">Travel</span>
+          <span data-i18n="about.interest.photography">Photography</span>
+          <span data-i18n="about.interest.exploration">Exploration</span>
+        </div>
+      </section>
+
+      <section class="about-shell about-contact">
+        <p data-i18n="about.contact.title">Let different ways of thinking meet.</p>
+        <a href="./index.html#contact" data-cursor="CONTACT" data-i18n="about.contact.link">Start a conversation</a>
+      </section>
+    </main>
+
+    <script type="module">
+      import { applyTranslations, setupGlobalControls, syncPreviewLinks } from "./site.js?v=20260814-1";
+
+      const translations = {
+        "page.about.title": { en: "About DONGYE", zh: "关于冬叶" },
+        "home.cube.photography": { en: "Photography", zh: "摄影" },
+        "about.hero.title": { en: "Between systems and expression.", zh: "在系统与表达之间。" },
+        "about.hero.intro": { en: "Dongye is a creator working across product, AI, code and visual expression. With a background in architecture, he explores how spatial thinking can enter digital products through Agent systems, RAG, generative design and human-computer interaction.", zh: "冬叶是一名在产品、AI、代码与视觉表达之间工作的创造者。拥有建筑学背景，关注空间思维如何进入数字产品，并持续探索 Agent、RAG、生成式设计与人机交互。" },
+        "about.meta.architecture": { en: "Architecture background", zh: "建筑学背景" },
+        "about.capabilities.label": { en: "Capabilities", zh: "能力方向" },
+        "about.capabilities.title": { en: "Ideas carried from structure to expression.", zh: "让想法从结构走向表达。" },
+        "about.product.title": { en: "Product and communication", zh: "产品与沟通" },
+        "about.product.body": { en: "Five months of AI product practice across Agent customer service and RAG. Experienced in clarifying complex requirements, shaping B2B functions from zero to one, and connecting technical and design decisions.", zh: "拥有 5 个月 AI 产品实践经历，涉及 Agent 智能客服与 RAG。擅长梳理复杂需求、从 0 到 1 落地 B 端功能，并连接技术判断与设计决策。" },
+        "about.code.title": { en: "AI and code", zh: "AI 与代码" },
+        "about.code.body": { en: "Independently trained deep-learning models and built a complete front-end and back-end urban morphology generation tool. Able to understand technical boundaries and turn ideas into working prototypes with AI-assisted development.", zh: "独立训练深度学习模型，并完成城市形态生成工具的前后端开发。能够理解技术边界，也能借助 AI 辅助开发把想法变成可运行的原型。" },
+        "about.visual.title": { en: "Design and expression", zh: "设计与表达" },
+        "about.visual.body": { en: "Works across generative imagery, graphic editing, spatial modelling, video and presentation. Uses visual systems to make complex ideas easier to understand and more memorable.", zh: "覆盖 AI 出图、平面编辑、空间建模、影像与演示表达。通过视觉系统让复杂想法更容易被理解，也更容易被记住。" },
+        "about.evidence.label": { en: "Selected evidence", zh: "实践切片" },
+        "about.evidence.title": { en: "A practice built by making.", zh: "能力在真实创造中形成。" },
+        "about.evidence.agent.title": { en: "Agent customer service", zh: "Agent 智能客服" },
+        "about.evidence.agent.body": { en: "Complex operational functions shaped through product research, requirement design and collaboration with technical teams.", zh: "通过产品研究、需求设计与技术协作，推动复杂运营功能从概念走向落地。" },
+        "about.evidence.city.title": { en: "Urban morphology tool", zh: "城市形态生成工具" },
+        "about.evidence.city.body": { en: "An independently developed workflow connecting deep learning, spatial data and a complete interactive product.", zh: "独立连接深度学习、空间数据与完整交互产品的一次开发实践。" },
+        "about.evidence.content.title": { en: "Knowledge made approachable", zh: "让 AI 知识更容易理解" },
+        "about.evidence.content.body": { en: "A beginner-friendly AI knowledge channel with more than 3,187 likes and saves, translating technical ideas into accessible content.", zh: "面向零基础读者的 AI 知识账号，已获得超过 3,187 次赞与收藏，把技术概念转化为易理解的内容。" },
+        "about.personal.label": { en: "Working style and interests", zh: "做事方式与兴趣" },
+        "about.personal.title": { en: "Curious by nature, structured in action.", zh: "保持好奇，也保持行动的结构。" },
+        "about.trait.action": { en: "Action", zh: "行动力" },
+        "about.trait.planning": { en: "Planning", zh: "规划力" },
+        "about.trait.aesthetic": { en: "Aesthetic", zh: "审美力" },
+        "about.trait.communication": { en: "Communication", zh: "沟通力" },
+        "about.interest.music": { en: "Music", zh: "音乐" },
+        "about.interest.travel": { en: "Travel", zh: "旅行" },
+        "about.interest.photography": { en: "Photography", zh: "摄影" },
+        "about.interest.exploration": { en: "Exploration", zh: "探索世界" },
+        "about.contact.title": { en: "Let different ways of thinking meet.", zh: "让不同的思考方式在这里相遇。" },
+        "about.contact.link": { en: "Start a conversation", zh: "开始交流" }
+      };
+
+      const render = () => {
+        applyTranslations(translations);
+        syncPreviewLinks(document);
+      };
+
+      setupGlobalControls();
+      render();
+      window.addEventListener("site:language-change", render);
+    </script>
+  </body>
+</html>

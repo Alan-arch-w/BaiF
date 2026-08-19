@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title data-title-key="page.home.title">Alan Wang's Space</title>
+    <title data-title-key="page.home.title">DONGYE'S SPACE</title>
     <script>
       (() => {
         try {
@@ -18,8 +18,8 @@
       })();
     </script>
     <script src="./assets/vendor/tailwindcss.js"></script>
-    <link rel="stylesheet" href="./site.css?v=20260813-1" />
-    <link rel="stylesheet" href="./home-space.css?v=20260813-1" />
+    <link rel="stylesheet" href="./site.css?v=20260814-3" />
+    <link rel="stylesheet" href="./home-space.css?v=20260814-2" />
     <script src="./site-cursor.js?v=20260812-1" defer></script>
     <script>
       tailwind.config = {
@@ -71,13 +71,13 @@
   </head>
   <body class="antialiased home-page">
     <header class="site-header fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white">
-      <a href="./index.html" class="site-brand" aria-label="Alan Wang — Home">
+      <a href="./index.html" class="site-brand" aria-label="DONGYE Home">
         <svg class="site-brand__mark" viewBox="0 0 44 44" aria-hidden="true">
-          <path d="M22 3 38.5 12.5v19L22 41 5.5 31.5v-19L22 3Z" />
-          <path d="m5.5 12.5 16.5 9.5 16.5-9.5M22 22v19" />
-          <path d="m13.8 29.2 8.2-14.3 8.2 14.3M17.4 23h9.2" />
+          <path d="M9 7.5c7.5-1 18.8-1 26 0 1.8.3 2.8 1.4 3 3.1.8 7.7.8 15.2 0 22.8-.2 1.7-1.2 2.8-3 3.1-7.4 1-18.6 1-26 0-1.8-.3-2.8-1.4-3-3.1-.8-7.6-.8-15.1 0-22.8.2-1.7 1.2-2.8 3-3.1Z" />
+          <circle cx="18.2" cy="22" r="1.15" fill="currentColor" stroke="none" />
+          <circle cx="25.8" cy="22" r="1.15" fill="currentColor" stroke="none" />
         </svg>
-        <span class="site-brand__wordmark">ALAN WANG</span>
+        <span class="site-brand__wordmark">DONGYE</span>
       </a>
       <nav class="hidden md:flex space-x-8 text-sm font-light tracking-wide">
         <a href="./projects.html" class="hover:underline underline-offset-4 decoration-1 decoration-white/50 transition-all" data-i18n="nav.projects">Projects</a>
@@ -107,8 +107,7 @@
             </div>
           </div>
 
-          <a class="spatial-hero__explore" href="#work" data-cursor="ENTER">
-            <span data-i18n="home.hero.explore">Explore selected work</span>
+          <a class="spatial-hero__explore" href="#work" data-cursor="ENTER" aria-label="Explore selected work">
             <span class="spatial-hero__explore-mark" aria-hidden="true">↓</span>
           </a>
 
@@ -166,15 +165,26 @@
             </article>
             <article id="about" class="spatial-story__panel" data-story-panel="about">
               <div class="spatial-story__heading"><h2 data-i18n="nav.about">About</h2></div>
-              <p id="about-body" class="spatial-story__statement" data-i18n="home.about.body">I craft digital experiences that blend aesthetic purity with functional depth.</p>
-              <a class="spatial-story__text-link" href="./portfolio.html" data-cursor="EXPLORE" data-i18n="nav.portfolio">Portfolio</a>
+              <div class="spatial-about">
+                <div class="spatial-about__ip" data-baifang-ip data-baifang-variant="compact" aria-label="AI Baifang interactive spatial character"></div>
+                <div class="spatial-about__content">
+                  <span class="spatial-about__identity">DONGYE / AI BAIFANG</span>
+                  <p id="about-body" class="spatial-story__statement" data-i18n="home.about.body">A creator working across product, AI, code and visual expression.</p>
+                  <div class="spatial-about__keywords" aria-label="Keywords">
+                    <span data-i18n="home.about.keyword1">Product</span>
+                    <span>AI</span>
+                    <span data-i18n="home.about.keyword2">Code</span>
+                    <span data-i18n="home.about.keyword3">Visual</span>
+                    <span data-i18n="home.about.keyword4">Spatial thinking</span>
+                    <span>INTJ</span>
+                  </div>
+                  <a class="spatial-story__text-link" href="./about.html" data-cursor="PROFILE" data-i18n="home.about.readProfile">Read profile</a>
+                </div>
+              </div>
             </article>
             <article id="contact" class="spatial-story__panel" data-story-panel="contact">
               <div class="spatial-story__heading"><h2 data-i18n="nav.contact">Contact</h2></div>
-              <p class="spatial-story__statement" data-i18n-html="home.contact.title">Let's create <br /> something timeless.</p>
-              <a id="contact-email-link" class="spatial-story__text-link" href="mailto:hello@example.com" data-cursor="WRITE" data-i18n="home.contact.cta">Start a project</a>
               <div id="contact-social-links" class="spatial-story__socials"></div>
-              <span id="local-time" class="spatial-story__time">Local Time: --:--</span>
             </article>
           </div>
 
@@ -216,6 +226,21 @@
         </div>
       </section>
     </main>
+
+    <div id="wechat-dialog" class="contact-dialog" role="dialog" aria-modal="true" aria-labelledby="wechat-dialog-title" aria-hidden="true">
+      <button class="contact-dialog__backdrop" type="button" data-wechat-close aria-label="Close" onclick="this.parentElement.classList.remove('is-open'); this.parentElement.setAttribute('aria-hidden', 'true')"></button>
+      <div class="contact-dialog__panel">
+        <div class="contact-dialog__topline">
+          <span id="wechat-dialog-title">WECHAT / 微信</span>
+          <button type="button" data-wechat-close data-cursor="CLOSE" onclick="document.getElementById('wechat-dialog').classList.remove('is-open'); document.getElementById('wechat-dialog').setAttribute('aria-hidden', 'true')">CLOSE</button>
+        </div>
+        <img id="wechat-qr" src="./assets/img/wechat-qr.jpg?v=20260814-1" alt="WeChat QR code for lvdouwm" />
+        <div class="contact-dialog__identity">
+          <span data-i18n="home.contact.wechatScan">Scan to connect</span>
+          <strong>lvdouwm</strong>
+        </div>
+      </div>
+    </div>
 
     <script id="projects-data-fallback" type="application/json">
 [
@@ -289,7 +314,7 @@
         "home.story.projects": { en: "Selected work, systems and experiments shaped through spatial thinking.", zh: "以空间思维展开的精选项目、系统与实验。" },
         "home.story.photography": { en: "Fragments of place, light and time collected through observation.", zh: "在观察中收集地点、光线与时间的片段。" },
         "home.story.articles": { en: "Notes on making, seeing and the ideas that connect them.", zh: "关于创造、观看，以及连接两者的思考。" },
-        "page.home.title": { en: "Alan Wang's Space", zh: "Alan Wang 的个人主页" },
+        "page.home.title": { en: "DONGYE'S SPACE", zh: "冬叶的个人主页" },
         "home.hero.title": { en: "Life carves <br /><span class='text-zinc-500'>its</span> path.", zh: "人生自会 <br /><span class='text-zinc-500'>刻出</span>它的路径。" },
         "home.hero.subtitle": { en: "the answer to life is not elsewhere.", zh: "人生的答案，并不在别处。" },
         "home.hero.explore": { en: "Explore selected work", zh: "探索精选作品" },
@@ -301,8 +326,8 @@
         "home.featured.viewAll": { en: "View all", zh: "查看全部" },
         "home.about.title": { en: "Philosophy", zh: "理念" },
         "home.about.body": {
-          en: "I craft digital experiences that blend aesthetic purity with functional depth. With over 8 years of experience in silicon valley, I focus on removing the non-essential to reveal the essence of the product. Currently exploring the intersection of Generative AI and minimal UI patterns.",
-          zh: "我关注兼具审美克制与功能深度的数字体验。过去的工作让我越来越相信，设计并不是不断叠加，而是去除不必要的部分，让产品真正的结构与价值显现出来。现在我持续探索生成式 AI 与极简交互之间的结合方式。"
+          en: "A creator working across product, AI, code and visual expression, exploring spatial thinking in digital products.",
+          zh: "在产品、AI、代码与视觉表达之间工作，探索空间思维如何进入数字产品。"
         },
         "home.about.services": { en: "Services", zh: "能力方向" },
         "home.about.service1": { en: "Art Direction", zh: "视觉方向" },
@@ -310,8 +335,14 @@
         "home.about.service3": { en: "React Engineering", zh: "React 前端实现" },
         "home.about.service4": { en: "Design Systems", zh: "设计系统" },
         "home.about.clients": { en: "Clients", zh: "合作对象" },
+        "home.about.keyword1": { en: "Product", zh: "产品" },
+        "home.about.keyword2": { en: "Code", zh: "代码" },
+        "home.about.keyword3": { en: "Visual", zh: "视觉" },
+        "home.about.keyword4": { en: "Spatial thinking", zh: "空间思维" },
+        "home.about.readProfile": { en: "Read profile", zh: "查看完整介绍" },
         "home.contact.title": { en: "Let's create <br /> something timeless.", zh: "一起做一些 <br /> 经得住时间的作品。" },
         "home.contact.cta": { en: "Start a project", zh: "发起合作" },
+        "home.contact.wechatScan": { en: "Scan to connect", zh: "扫码添加微信" },
         "home.chat.toggle": { en: "Toggle AI chat", zh: "切换 AI 对话窗口" },
         "home.chat.title": { en: "AI Twin", zh: "AI 分身" },
         "home.chat.empty": { en: "Ask me anything", zh: "欢迎随时提问" },
@@ -325,16 +356,18 @@
       const featuredEl = document.getElementById("featured-projects");
       const portfolioPreviewEl = document.getElementById("portfolio-preview");
       const articlesPreviewEl = document.getElementById("articles-preview");
-      const timeEl = document.getElementById("local-time");
       const aboutBodyEl = document.getElementById("about-body");
-      const contactEmailEl = document.getElementById("contact-email-link");
       const contactSocialLinksEl = document.getElementById("contact-social-links");
+      const wechatDialogEl = document.getElementById("wechat-dialog");
+      const wechatQrEl = document.getElementById("wechat-qr");
       let projectsCache = [];
       let portfolioCache = [];
       let postsCache = [];
       let profileCache = null;
 
       function updateTime() {
+        const timeEl = document.getElementById("local-time");
+        if (!timeEl) return;
         const label = t("home.time.label", homeTranslations);
         timeEl.textContent = `${label}: ${new Date().toLocaleTimeString(getCurrentLanguage() === "zh" ? "zh-CN" : "en-US", {
           hour: "2-digit",
@@ -424,14 +457,13 @@
         if (!profileCache) return;
 
         const bio =
-          getCurrentLanguage() === "zh" && profileCache.bioZh
-            ? profileCache.bioZh
-            : profileCache.bio || "";
+          getCurrentLanguage() === "zh" && profileCache.homeBioZh
+            ? profileCache.homeBioZh
+            : profileCache.homeBio || profileCache.bio || "";
         if (bio && aboutBodyEl) aboutBodyEl.textContent = bio;
 
-        const email = profileCache.contact?.email || "";
-        if (email && contactEmailEl) {
-          contactEmailEl.href = `mailto:${email}`;
+        if (profileCache.contact?.wechatQr && wechatQrEl) {
+          wechatQrEl.src = profileCache.contact.wechatQr;
         }
 
         const links = Array.isArray(profileCache.contact?.socialLinks)
@@ -440,15 +472,43 @@
         if (links.length && contactSocialLinksEl) {
           contactSocialLinksEl.innerHTML = links
             .map((link) => {
+              const type = escapeHtml(link.type || "link");
               const label = escapeHtml(
                 getCurrentLanguage() === "zh" && link.labelZh ? link.labelZh : link.label || "Link"
               );
+              const meta = escapeHtml(
+                getCurrentLanguage() === "zh" && link.metaZh ? link.metaZh : link.meta || ""
+              );
               const url = escapeHtml(link.url || "#");
-              return `<a href="${url}" target="_blank" rel="noreferrer" class="text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest">${label}</a>`;
+              const platform = {
+                wechat: getCurrentLanguage() === "zh" ? "微信" : "WeChat",
+                xiaohongshu: getCurrentLanguage() === "zh" ? "小红书" : "REDNOTE",
+                github: "GitHub",
+              }[link.type] || "Link";
+              const inner = `<span class="contact-channel__platform">${platform}</span><span class="contact-channel__identity"><strong>${label}</strong>${meta ? `<small>${meta}</small>` : ""}</span><span class="contact-channel__arrow" aria-hidden="true">↗</span>`;
+              return link.type === "wechat"
+                ? `<button type="button" class="contact-channel" data-contact-type="${type}" data-wechat-open data-cursor="WECHAT" onclick="document.getElementById('wechat-dialog').classList.add('is-open'); document.getElementById('wechat-dialog').setAttribute('aria-hidden', 'false')">${inner}</button>`
+                : `<a href="${url}" target="_blank" rel="noreferrer" class="contact-channel" data-contact-type="${type}" data-cursor="OPEN">${inner}</a>`;
             })
             .join("");
         }
       }
+
+      function setWechatDialog(open) {
+        if (!wechatDialogEl) return;
+        wechatDialogEl.classList.toggle("is-open", open);
+        wechatDialogEl.setAttribute("aria-hidden", open ? "false" : "true");
+      }
+
+      document.addEventListener("click", (event) => {
+        if (event.target.closest("[data-wechat-open]")) setWechatDialog(true);
+        if (event.target.closest("[data-wechat-close]")) setWechatDialog(false);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setWechatDialog(false);
+      });
+
 
       async function initFeatured() {
         try {
@@ -512,8 +572,8 @@
         if (window.__INDEX_BOOTSTRAPPED) return;
 
         const translations = {
-          "brand.name": { en: "ALAN WANG", zh: "ALAN WANG" },
-          "page.home.title": { en: "Alan Wang's Space", zh: "Alan Wang 的个人主页" },
+          "brand.name": { en: "DONGYE", zh: "冬叶" },
+          "page.home.title": { en: "DONGYE'S SPACE", zh: "冬叶的个人主页" },
           "nav.projects": { en: "Projects", zh: "项目" },
           "nav.portfolio": { en: "Portfolio", zh: "作品集" },
           "nav.articles": { en: "Articles", zh: "文章" },
@@ -539,8 +599,8 @@
           "home.featured.viewAll": { en: "View all", zh: "查看全部" },
           "home.about.title": { en: "Philosophy", zh: "理念" },
           "home.about.body": {
-            en: "I craft digital experiences that blend aesthetic purity with functional depth. With over 8 years of experience in silicon valley, I focus on removing the non-essential to reveal the essence of the product. Currently exploring the intersection of Generative AI and minimal UI patterns.",
-            zh: "我关注兼具审美克制与功能深度的数字体验。过去的工作让我越来越相信，设计并不是不断叠加，而是去除不必要的部分，让产品真正的结构与价值显现出来。现在我持续探索生成式 AI 与极简交互之间的结合方式。"
+            en: "A creator working across product, AI, code and visual expression, exploring spatial thinking in digital products.",
+            zh: "在产品、AI、代码与视觉表达之间工作，探索空间思维如何进入数字产品。"
           },
           "home.about.services": { en: "Services", zh: "能力方向" },
           "home.about.service1": { en: "Art Direction", zh: "视觉方向" },
@@ -548,8 +608,14 @@
           "home.about.service3": { en: "React Engineering", zh: "React 前端实现" },
           "home.about.service4": { en: "Design Systems", zh: "设计系统" },
           "home.about.clients": { en: "Clients", zh: "合作对象" },
+          "home.about.keyword1": { en: "Product", zh: "产品" },
+          "home.about.keyword2": { en: "Code", zh: "代码" },
+          "home.about.keyword3": { en: "Visual", zh: "视觉" },
+          "home.about.keyword4": { en: "Spatial thinking", zh: "空间思维" },
+          "home.about.readProfile": { en: "Read profile", zh: "查看完整介绍" },
           "home.contact.title": { en: "Let's create <br /> something timeless.", zh: "一起做一些 <br /> 经得住时间的作品。" },
           "home.contact.cta": { en: "Start a project", zh: "发起合作" },
+          "home.contact.wechatScan": { en: "Scan to connect", zh: "扫码添加微信" },
           "home.chat.toggle": { en: "Toggle AI chat", zh: "切换 AI 对话窗口" },
           "home.chat.title": { en: "AI Twin", zh: "AI 分身" },
           "home.chat.empty": { en: "Ask me anything", zh: "欢迎随时提问" },
@@ -721,6 +787,7 @@
     <script src="./assets/vendor/gsap.min.js"></script>
     <script src="./assets/vendor/ScrollTrigger.min.js"></script>
     <script src="./space-field.js?v=20260812-4"></script>
+    <script src="./baifang-ip.js?v=20260814-3"></script>
     <script src="./home-motion.js?v=20260813-1"></script>
   </body>
 </html>
