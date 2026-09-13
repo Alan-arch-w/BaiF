@@ -1,6 +1,68 @@
 window.__SITE_LOCAL_DATA__ = {
   "projects": [
     {
+      "id": "hui-zhidao",
+      "title": "Hui Zhidao",
+      "titleZh": "汇知道",
+      "year": 2026,
+      "category": "AI Product Prototype",
+      "categoryZh": "AI 产品原型",
+      "tags": [
+        "AI Agent",
+        "Talent Policy",
+        "Rapid Prototype"
+      ],
+      "summary": "An AI talent-policy self-check and application-preparation assistant for Xuhui, built from concept to working prototype in about 3-4 hours.",
+      "summaryZh": "面向徐汇区人才政策场景的智能自查与申报准备助手，在约 3-4 小时内完成从概念到可交互原型。",
+      "coverImage": "./assets/img/hui-zhidao-cover.png",
+      "intro": "Hui Zhidao turns scattered policy information into a guided decision flow. Users can upload a resume, complete missing profile details through AI clarification, compare eligibility across policies, identify gaps and materials, and generate an actionable preparation report.",
+      "introZh": "“汇知道”将分散的人才政策信息转化为连续、可执行的决策流程。用户可以上传简历，通过 AI 追问补全个人画像，匹配适用政策，识别条件差距与材料清单，并生成可行动的申报准备报告。",
+      "contentSections": [
+        {
+          "title": "Context",
+          "titleZh": "项目背景",
+          "content": "The prototype was created during a Xuhui District AI entrepreneurship activity. The core challenge was turning dense, scattered policy documents into a clear personal decision path.",
+          "contentZh": "该原型完成于一次徐汇区 AI 创业相关活动。项目关注的核心并不是政策信息缺失，而是如何把密集、分散的政策文件转化为清晰的个人判断路径。"
+        },
+        {
+          "title": "Product Flow",
+          "titleZh": "产品流程",
+          "content": "Resume upload, AI profile extraction, clarification of missing information, policy matching, gap and material analysis, then an actionable report.",
+          "contentZh": "上传简历，AI 解析个人画像，追问缺失信息，匹配政策，分析条件差距与材料清单，最终生成可执行的准备报告。"
+        },
+        {
+          "title": "Rapid Build",
+          "titleZh": "快速构建",
+          "content": "Built in about 3-4 hours, the prototype prioritizes a complete demonstrable loop across applicant self-check, service guidance and administrative review.",
+          "contentZh": "项目在约 3-4 小时内快速完成，优先建立从人才自查、服务引导到管理端查看的完整可演示闭环。"
+        },
+        {
+          "title": "Prototype Note",
+          "titleZh": "原型说明",
+          "content": "This is an independent product prototype. Matching results and generated reports are for demonstration only and do not replace official policy interpretation or review.",
+          "contentZh": "这是一个独立产品原型。匹配结果与生成报告仅用于演示，不替代官方政策解释与审核结论。"
+        }
+      ],
+      "galleryImages": [
+        "./assets/img/hui-zhidao-cover.png"
+      ],
+      "links": [
+        {
+          "label": "Open Website",
+          "url": "https://hui-zhidao.vercel.app"
+        },
+        {
+          "label": "View Source",
+          "url": "https://github.com/Alan-arch-w/Hui-Zhidao"
+        },
+        {
+          "label": "Activity Context",
+          "url": "https://mp.weixin.qq.com/s/mYQamx_fAvuIxbGY9eb7bw"
+        }
+      ],
+      "featured": true
+    },
+    {
       "id": "ai-customer-service-platform",
       "title": "AI Customer Service Platform",
       "titleZh": "AI 客服智能体运营平台",
@@ -141,15 +203,7 @@ window.__SITE_LOCAL_DATA__ = {
     "homeBioZh": "在产品、AI、代码与视觉表达之间工作，探索空间思维如何进入数字产品。",
     "contact": {
       "email": "3247838044@qq.com",
-      "wechatQr": "./assets/img/wechat-qr.jpg?v=20260814-1",
       "socialLinks": [
-        {
-          "type": "wechat",
-          "label": "Add me on WeChat",
-          "labelZh": "点此加微信",
-          "value": "lvdouwm",
-          "url": "#wechat"
-        },
         {
           "type": "xiaohongshu",
           "label": "AI Baifang",

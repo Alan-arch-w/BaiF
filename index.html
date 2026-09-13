@@ -227,23 +227,21 @@
       </section>
     </main>
 
-    <div id="wechat-dialog" class="contact-dialog" role="dialog" aria-modal="true" aria-labelledby="wechat-dialog-title" aria-hidden="true">
-      <button class="contact-dialog__backdrop" type="button" data-wechat-close aria-label="Close" onclick="this.parentElement.classList.remove('is-open'); this.parentElement.setAttribute('aria-hidden', 'true')"></button>
-      <div class="contact-dialog__panel">
-        <div class="contact-dialog__topline">
-          <span id="wechat-dialog-title">WECHAT / 微信</span>
-          <button type="button" data-wechat-close data-cursor="CLOSE" onclick="document.getElementById('wechat-dialog').classList.remove('is-open'); document.getElementById('wechat-dialog').setAttribute('aria-hidden', 'true')">CLOSE</button>
-        </div>
-        <img id="wechat-qr" src="./assets/img/wechat-qr.jpg?v=20260814-1" alt="WeChat QR code for lvdouwm" />
-        <div class="contact-dialog__identity">
-          <span data-i18n="home.contact.wechatScan">Scan to connect</span>
-          <strong>lvdouwm</strong>
-        </div>
-      </div>
-    </div>
 
-    <script id="projects-data-fallback" type="application/json">
-[
+    <script id="projects-data-fallback" type="application/json">[
+  {
+    "id": "hui-zhidao",
+    "title": "Hui Zhidao",
+    "titleZh": "汇知道",
+    "year": 2026,
+    "category": "AI Product Prototype",
+    "categoryZh": "AI 产品原型",
+    "tags": ["AI Agent", "Talent Policy", "Rapid Prototype"],
+    "summary": "An AI talent-policy self-check and application-preparation assistant for Xuhui, built in about 3-4 hours.",
+    "summaryZh": "面向徐汇区人才政策的智能自查与申报准备助手，在约 3-4 小时内完成。",
+    "coverImage": "./assets/img/hui-zhidao-cover.png",
+    "featured": true
+  },
   {
     "id": "lumina",
     "title": "Lumina",
@@ -292,8 +290,7 @@
     "summaryZh": "一个面向 AI 客服智能体的运营平台，将智能体管理、知识资产、分析能力与流程治理整合到同一个工作台中。",
     "featured": true
   }
-]
-    </script>
+]</script>
 
     <script src="./data/local-content.js"></script>
     <script type="module">
@@ -342,7 +339,6 @@
         "home.about.readProfile": { en: "Read profile", zh: "查看完整介绍" },
         "home.contact.title": { en: "Let's create <br /> something timeless.", zh: "一起做一些 <br /> 经得住时间的作品。" },
         "home.contact.cta": { en: "Start a project", zh: "发起合作" },
-        "home.contact.wechatScan": { en: "Scan to connect", zh: "扫码添加微信" },
         "home.chat.toggle": { en: "Toggle AI chat", zh: "切换 AI 对话窗口" },
         "home.chat.title": { en: "AI Twin", zh: "AI 分身" },
         "home.chat.empty": { en: "Ask me anything", zh: "欢迎随时提问" },
@@ -358,8 +354,6 @@
       const articlesPreviewEl = document.getElementById("articles-preview");
       const aboutBodyEl = document.getElementById("about-body");
       const contactSocialLinksEl = document.getElementById("contact-social-links");
-      const wechatDialogEl = document.getElementById("wechat-dialog");
-      const wechatQrEl = document.getElementById("wechat-qr");
       let projectsCache = [];
       let portfolioCache = [];
       let postsCache = [];
@@ -462,10 +456,6 @@
             : profileCache.homeBio || profileCache.bio || "";
         if (bio && aboutBodyEl) aboutBodyEl.textContent = bio;
 
-        if (profileCache.contact?.wechatQr && wechatQrEl) {
-          wechatQrEl.src = profileCache.contact.wechatQr;
-        }
-
         const links = Array.isArray(profileCache.contact?.socialLinks)
           ? profileCache.contact.socialLinks
           : [];
@@ -481,33 +471,15 @@
               );
               const url = escapeHtml(link.url || "#");
               const platform = {
-                wechat: getCurrentLanguage() === "zh" ? "微信" : "WeChat",
                 xiaohongshu: getCurrentLanguage() === "zh" ? "小红书" : "REDNOTE",
                 github: "GitHub",
               }[link.type] || "Link";
               const inner = `<span class="contact-channel__platform">${platform}</span><span class="contact-channel__identity"><strong>${label}</strong>${meta ? `<small>${meta}</small>` : ""}</span><span class="contact-channel__arrow" aria-hidden="true">↗</span>`;
-              return link.type === "wechat"
-                ? `<button type="button" class="contact-channel" data-contact-type="${type}" data-wechat-open data-cursor="WECHAT" onclick="document.getElementById('wechat-dialog').classList.add('is-open'); document.getElementById('wechat-dialog').setAttribute('aria-hidden', 'false')">${inner}</button>`
-                : `<a href="${url}" target="_blank" rel="noreferrer" class="contact-channel" data-contact-type="${type}" data-cursor="OPEN">${inner}</a>`;
+              return `<a href="${url}" target="_blank" rel="noreferrer" class="contact-channel" data-contact-type="${type}" data-cursor="OPEN">${inner}</a>`;
             })
             .join("");
         }
       }
-
-      function setWechatDialog(open) {
-        if (!wechatDialogEl) return;
-        wechatDialogEl.classList.toggle("is-open", open);
-        wechatDialogEl.setAttribute("aria-hidden", open ? "false" : "true");
-      }
-
-      document.addEventListener("click", (event) => {
-        if (event.target.closest("[data-wechat-open]")) setWechatDialog(true);
-        if (event.target.closest("[data-wechat-close]")) setWechatDialog(false);
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") setWechatDialog(false);
-      });
 
 
       async function initFeatured() {
@@ -615,7 +587,6 @@
           "home.about.readProfile": { en: "Read profile", zh: "查看完整介绍" },
           "home.contact.title": { en: "Let's create <br /> something timeless.", zh: "一起做一些 <br /> 经得住时间的作品。" },
           "home.contact.cta": { en: "Start a project", zh: "发起合作" },
-          "home.contact.wechatScan": { en: "Scan to connect", zh: "扫码添加微信" },
           "home.chat.toggle": { en: "Toggle AI chat", zh: "切换 AI 对话窗口" },
           "home.chat.title": { en: "AI Twin", zh: "AI 分身" },
           "home.chat.empty": { en: "Ask me anything", zh: "欢迎随时提问" },
@@ -791,3 +762,7 @@
     <script src="./home-motion.js?v=20260813-1"></script>
   </body>
 </html>
+
+
+
+

@@ -11,15 +11,7 @@
   "homeBioZh": "在产品、AI、代码与视觉表达之间工作，探索空间思维如何进入数字产品。",
   "contact": {
     "email": "3247838044@qq.com",
-    "wechatQr": "./assets/img/wechat-qr.jpg?v=20260814-1",
     "socialLinks": [
-      {
-        "type": "wechat",
-        "label": "Add me on WeChat",
-        "labelZh": "点此加微信",
-        "value": "lvdouwm",
-        "url": "#wechat"
-      },
       {
         "type": "xiaohongshu",
         "label": "AI Baifang",
