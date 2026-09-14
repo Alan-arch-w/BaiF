@@ -1,12 +1,12 @@
 {
   "id": "BaiF",
-  "name": "Dongye",
+  "name": "BaiF",
   "title": "Product creator",
   "titleZh": "产品创造者",
   "oneLiner": "Life carves its own path.",
   "oneLinerZh": "人生自会刻出它的路径。",
-  "bio": "Dongye is a creator working across product, AI, code and visual expression. With a background in architecture, he explores how spatial thinking can enter digital products through Agent systems, RAG, generative design and human-computer interaction.",
-  "bioZh": "冬叶是一名在产品、AI、代码与视觉表达之间工作的创造者。拥有建筑学背景，关注空间思维如何进入数字产品，并持续探索 Agent、RAG、生成式设计与人机交互。",
+  "bio": "BaiF is a creator working across product, AI, code and visual expression. With a background in architecture, he explores how spatial thinking can enter digital products through Agent systems, RAG, generative design and human-computer interaction.",
+  "bioZh": "白方是一名在产品、AI、代码与视觉表达之间工作的创造者。拥有建筑学背景，关注空间思维如何进入数字产品，并持续探索 Agent、RAG、生成式设计与人机交互。",
   "homeBio": "A creator working across product, AI, code and visual expression, exploring spatial thinking in digital products.",
   "homeBioZh": "在产品、AI、代码与视觉表达之间工作，探索空间思维如何进入数字产品。",
   "contact": {
@@ -29,3 +29,4 @@
     ]
   }
 }
+

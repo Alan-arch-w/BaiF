@@ -14,7 +14,7 @@ const PREVIEW_QUERY_KEYS = {
 };
 
 const COMMON_TRANSLATIONS = {
-  "brand.name": { en: "DONGYE", zh: "冬叶" },
+  "brand.name": { en: "BaiF", zh: "白方" },
   "nav.projects": { en: "Projects", zh: "项目" },
   "nav.photography": { en: "Photography", zh: "摄影" },
   "nav.portfolio": { en: "Portfolio", zh: "作品集" },
@@ -408,3 +408,4 @@ export function setupSpatialCursor() {
 
 applyDocumentPreferences();
 document.documentElement.dataset.siteBuild = "20260812-1";
+
