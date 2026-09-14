@@ -47,3 +47,10 @@ export function renderTags(tags) {
     return `<span class="project-tag text-[10px] uppercase tracking-widest text-zinc-500 border border-white/10 px-2 py-1 rounded-full">${base.escapeHtml(value)}</span>`;
   }).join("");
 }
+
+if (document.body?.classList.contains("home-page") && !document.querySelector("script[data-home-hash-fix]")) {
+  const hashFix = document.createElement("script");
+  hashFix.dataset.homeHashFix = "true";
+  hashFix.src = "./home-hash-fix.js?v=20260914-1";
+  document.head.appendChild(hashFix);
+}
