@@ -20,41 +20,22 @@
     <script src="./assets/vendor/tailwindcss.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./site.css?v=20260814-3" />
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-              serif: ["Playfair Display", "serif"],
-            },
-            colors: {
-              "zinc-950": "#09090b",
-            },
-            animation: {
-              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
-            },
-            keyframes: {
-              fadeInUp: {
-                "0%": { opacity: "0", transform: "translateY(20px)" },
-                "100%": { opacity: "1", transform: "translateY(0)" },
-              },
-            },
-          },
-        },
+            fontFamily: { sans: ["Inter", "sans-serif"], serif: ["Playfair Display", "serif"] },
+            colors: { "zinc-950": "#09090b" },
+            animation: { "fade-in-up": "fadeInUp 0.8s ease-out forwards" },
+            keyframes: { fadeInUp: { "0%": { opacity: "0", transform: "translateY(20px)" }, "100%": { opacity: "1", transform: "translateY(0)" } } }
+          }
+        }
       };
     </script>
     <style>
-      .glass-panel {
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-      }
+      .glass-panel { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
     </style>
   </head>
   <body class="antialiased">
@@ -77,16 +58,14 @@
       <section id="project-hero" class="w-full py-20 px-6 md:px-12 bg-black bg-cover bg-center">
         <div class="max-w-4xl mx-auto">
           <div class="flex items-center justify-between gap-6">
-            <a href="./projects.html" class="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors" data-i18n="page.project.back">
-              ← Back to Projects
-            </a>
+            <a href="./projects.html" class="text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors" data-i18n="page.project.back">← Back to Projects</a>
             <div class="text-xs uppercase tracking-widest text-zinc-700" id="project-meta"></div>
           </div>
-
           <h1 id="project-title" class="text-4xl md:text-7xl font-semibold tracking-tighter leading-[0.95] mt-10"></h1>
           <p id="project-intro" class="text-zinc-400 text-base md:text-lg font-light leading-relaxed mt-8"></p>
           <div id="project-tags" class="flex flex-wrap gap-2 mt-8"></div>
           <div id="project-cover" class="mt-12"></div>
+          <div id="project-gallery" class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
           <div id="project-links" class="flex flex-wrap gap-3 mt-10"></div>
           <div class="mt-16 border-t border-white/10 pt-12" id="project-sections"></div>
         </div>
@@ -108,6 +87,7 @@
       const introEl = document.getElementById("project-intro");
       const tagsEl = document.getElementById("project-tags");
       const coverEl = document.getElementById("project-cover");
+      const galleryEl = document.getElementById("project-gallery");
       const linksEl = document.getElementById("project-links");
       const sectionsEl = document.getElementById("project-sections");
       const metaEl = document.getElementById("project-meta");
@@ -120,35 +100,37 @@
         metaEl.textContent = "";
         tagsEl.innerHTML = "";
         coverEl.innerHTML = "";
+        galleryEl.innerHTML = "";
         linksEl.innerHTML = "";
         sectionsEl.innerHTML = "";
       }
 
       function renderLinks(links) {
         if (!Array.isArray(links) || links.length === 0) return "";
-        return links
-          .map((link) => {
-            const label = escapeHtml(getCurrentLanguage() === "zh" && link.labelZh ? link.labelZh : link.label || t("common.link", pageTranslations));
-            const url = escapeHtml(link.url || "#");
-            return `<a href="${url}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center px-4 py-2 border border-white/10 hover:border-white/30 text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">${label}</a>`;
-          })
-          .join("");
+        return links.map((link) => {
+          const label = escapeHtml(getCurrentLanguage() === "zh" && link.labelZh ? link.labelZh : link.label || t("common.link", pageTranslations));
+          const url = escapeHtml(link.url || "#");
+          return `<a href="${url}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center px-4 py-2 border border-white/10 hover:border-white/30 text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">${label}</a>`;
+        }).join("");
       }
 
       function renderSections(sections) {
         if (!Array.isArray(sections) || sections.length === 0) return "";
-        return sections
-          .map((section) => {
-            const heading = escapeHtml(getCurrentLanguage() === "zh" && section.titleZh ? section.titleZh : section.title || "");
-            const content = escapeHtml(getCurrentLanguage() === "zh" && section.contentZh ? section.contentZh : section.content || "");
-            return `
-              <section class="mb-12">
-                <h2 class="text-xs font-bold tracking-[0.2em] uppercase mb-6 text-zinc-600">${heading}</h2>
-                <p class="text-zinc-300/90 text-base leading-relaxed font-light whitespace-pre-line">${content}</p>
-              </section>
-            `;
-          })
-          .join("");
+        return sections.map((section) => {
+          const heading = escapeHtml(getCurrentLanguage() === "zh" && section.titleZh ? section.titleZh : section.title || "");
+          const content = escapeHtml(getCurrentLanguage() === "zh" && section.contentZh ? section.contentZh : section.content || "");
+          return `<section class="mb-12"><h2 class="text-xs font-bold tracking-[0.2em] uppercase mb-6 text-zinc-600">${heading}</h2><p class="text-zinc-300/90 text-base leading-relaxed font-light whitespace-pre-line">${content}</p></section>`;
+        }).join("");
+      }
+
+      function renderGallery(images, title) {
+        if (!Array.isArray(images) || images.length < 2) return "";
+        return images.map((image, index) => {
+          const src = escapeHtml(image || "");
+          if (!src) return "";
+          const span = index === 0 ? "sm:col-span-2" : "";
+          return `<figure class="${span} overflow-hidden border border-white/10 bg-white/[0.02]"><img src="${src}" alt="${escapeHtml(title)} screenshot ${index + 1}" loading="lazy" class="block w-full h-auto" /></figure>`;
+        }).join("");
       }
 
       function renderPage() {
@@ -166,6 +148,7 @@
         coverEl.innerHTML = projectCache.coverImage
           ? `<figure class="relative overflow-hidden border border-white/10 bg-white/[0.02]"><img src="${escapeHtml(projectCache.coverImage)}" alt="${escapeHtml(title)}" class="block w-full h-auto" /></figure>`
           : "";
+        galleryEl.innerHTML = renderGallery(projectCache.galleryImages, title);
         linksEl.innerHTML = renderLinks(projectCache.links || []);
         sectionsEl.innerHTML = renderSections(projectCache.contentSections || []);
       }
@@ -188,4 +171,3 @@
     </script>
   </body>
 </html>
-

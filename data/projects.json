@@ -127,30 +127,46 @@
     "summary": "A playful sharing and remix platform for small AI-coding experiments, unfinished prototypes and strange-but-interesting web ideas.",
     "summaryZh": "面向 AI Coding 时代的轻量作品分享与二创平台，让简单、未完成但有趣的网页作品被看见、被体验、被再次改造。",
     "coverImage": "./assets/img/lawanle-cover.png",
-    "intro": "Webcoding Trash treats small Vibe Coding experiments as creative material rather than disposable drafts. Visitors can randomly inspect a work, try its interactive prototype, save it, add tags and send it into a recycle queue for a lightweight remix.",
-    "introZh": "“垃完了”把 Vibe Coding 时代的轻量实验视为可以继续流动的创作素材，而不是只能被删除的废稿。用户可以随机抽检作品、直接体验互动原型、收藏、贴标签，并将感兴趣的作品放入回收区进行轻量二创。",
+    "intro": "Webcoding Trash is a low-pressure creative playground for the AI Coding era. Instead of asking every work to become a polished product, it gives small ideas, half-finished pages and strange experiments a place to be discovered, played with and continued by someone else.",
+    "introZh": "“垃完了”是一个面向 AI Coding 时代的低压力创作游乐场。它不要求每个作品都成为完成度很高的产品，而是让一个突然冒出的点子、一个半成品网页或一个奇怪的小实验，都有机会被发现、被体验，并被下一个人继续改造。",
     "contentSections": [
       {
         "title": "Context",
         "titleZh": "项目背景",
-        "content": "AI coding tools make it possible to turn a rough idea into a webpage in minutes, but many small experiments do not fit a formal portfolio or a conventional developer community. The project creates a low-pressure place for these works to be discovered and played.",
-        "contentZh": "AI Coding 工具让一个粗略想法可以在几分钟内变成网页，但大量轻量实验既不适合正式作品集，也很容易被传统内容流淹没。项目希望为这些作品提供一个低压力、可被发现和体验的空间。"
+        "content": "AI coding tools have made it possible to turn natural-language ideas into interactive pages in minutes. At the same time, many of these works are too experimental for a formal portfolio and too lightweight for a traditional developer community, so they disappear before anyone can respond to them.",
+        "contentZh": "AI Coding 工具让自然语言想法可以在几分钟内变成可交互网页，但大量作品又太实验性，不适合放进正式作品集，也太轻量，难以进入传统开发者社区，常常还没有被回应就消失了。"
       },
       {
-        "title": "Product Loop",
-        "titleZh": "产品闭环",
-        "content": "The core loop is discover, experience, modify and rediscover. Random inspection lowers the pressure of browsing, while direct interaction turns a static showcase into something people can actually play with.",
-        "contentZh": "核心闭环是“被看见 → 被体验 → 被改变 → 再次被看见”。随机抽检降低了浏览压力，直接操作则让作品从静态展示变成可玩的内容。"
+        "title": "Product Positioning",
+        "titleZh": "产品定位",
+        "content": "The product combines AI-coding sharing with lightweight remixing. It is designed for Vibe Coding beginners, hackathon teams, creative developers and anyone who wants to make something playful without first proving that it is useful or complete.",
+        "contentZh": "项目定位为“AI Coding 分享 + 轻二创平台”，面向 Vibe Coding 初学者、黑客松团队、创意网页制作者，以及想先做出点好玩东西、而不是先证明它足够实用和完整的人。"
       },
       {
-        "title": "Interaction",
-        "titleZh": "交互机制",
-        "content": "The web prototype includes an inspection deck, interactive sandbox previews, tagging and favorites, a recycle area and a lightweight mutant publishing flow. The Android shell is intentionally excluded from this web release.",
-        "contentZh": "网页原型包含随机质检牌组、互动沙盒预览、贴标签与收藏、回收区，以及轻量的变异作品发布流程。本次网页版发布不包含安卓壳和 APK 构建产物。"
+        "title": "Core Loop",
+        "titleZh": "核心闭环",
+        "content": "The experience follows a simple loop: discover, experience, modify and rediscover. A random inspection deck makes browsing feel like digging through a playful archive; interactive previews let people use the work instead of only looking at a screenshot; the recycle queue turns a viewer into the next creator.",
+        "contentZh": "产品围绕“被看见 → 被体验 → 被改变 → 再次被看见”展开。随机质检牌组像翻找一个有趣的数字档案库，互动预览让用户真正操作作品，而不是只看截图；回收区则让浏览者成为下一位创作者。"
+      },
+      {
+        "title": "Feature System",
+        "titleZh": "功能模块",
+        "content": "The inspection area supports random draws, card flipping, live sandbox interaction, favorites and tags. The recycle area collects selected works and offers preset remix directions or natural-language instructions before publishing a mutant version back into the pool. The personal space records inspection progress, saved works, pending remixes and creation history.",
+        "contentZh": "“垃圾质检”支持随机抽取、翻开卡牌、进入沙盒体验、收藏和贴标签；“回收再造”收集感兴趣的作品，通过预置改造方向或自然语言指令完成二创，再把变异版本发布回作品池；“我的空间”则记录抽检进度、收藏、待回收项目和创作历史。"
+      },
+      {
+        "title": "Hackathon Team",
+        "titleZh": "黑客松团队",
+        "content": "Created for the final roadshow by team 夯爆了: Zhang Yuguang, Wang Meng and Zhang Bohan. The visual language uses a dark mobile container, acid-lime action color and playful trash/recycle metaphors to make experimentation feel casual rather than intimidating.",
+        "contentZh": "项目用于决赛路演，由“夯爆了”团队完成：张裕广、王萌、章博涵。视觉上采用深色移动端容器、酸性荧光绿操作色和“垃圾 / 回收”隐喻，让实验和试错变得轻松，而不是有压力的作品提交。"
       }
     ],
     "galleryImages": [
-      "./assets/img/lawanle-cover.png"
+      "./assets/img/lawanle-cover.png",
+      "./assets/img/lawanle-purifier.png",
+      "./assets/img/lawanle-gongde.png",
+      "./assets/img/lawanle-recycle.png",
+      "./assets/img/lawanle-my-space.png"
     ],
     "links": [
       {
