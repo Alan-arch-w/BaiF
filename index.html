@@ -19,8 +19,7 @@
     </script>
     <script src="./assets/vendor/tailwindcss.js"></script>
     <link rel="stylesheet" href="./site.css?v=20260814-3" />
-    <link rel="stylesheet" href="./home-space.css?v=20260814-2" />
-    <script src="./site-cursor.js?v=20260812-1" defer></script>
+    <link rel="stylesheet" href="./home-space.css?v=20260914-1" />
     <script>
       tailwind.config = {
         theme: {
@@ -29,45 +28,11 @@
               sans: ["Arial", "sans-serif"],
               serif: ["Georgia", "serif"],
             },
-            colors: {
-              "zinc-950": "#09090b",
-            },
-            animation: {
-              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
-            },
-            keyframes: {
-              fadeInUp: {
-                "0%": { opacity: "0", transform: "translateY(20px)" },
-                "100%": { opacity: "1", transform: "translateY(0)" },
-              },
-            },
+            colors: { "zinc-950": "#09090b" },
           },
         },
       };
     </script>
-    <style>
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      .glass-panel {
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-      }
-    </style>
-    <script type="importmap">
-{
-  "imports": {
-    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react/": "https://esm.sh/react@^19.2.3/"
-  }
-}
-</script>
   </head>
   <body class="antialiased home-page">
     <header class="site-header fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white">
@@ -96,43 +61,43 @@
           <canvas class="spatial-cube-field" data-cube-field aria-hidden="true"></canvas>
 
           <div class="spatial-hero__copy">
-            <h1 id="hero-title" class="spatial-hero__title" data-i18n-html="home.hero.title">
+            <h1 class="spatial-hero__title" data-i18n-html="home.hero.title">
               Life carves <br />
               <span class="text-zinc-500">its</span> path.
             </h1>
             <div class="spatial-hero__foot">
-              <p class="spatial-hero__subtitle" data-i18n="home.hero.subtitle">
-                the answer to life is not elsewhere.
-              </p>
+              <p class="spatial-hero__subtitle" data-i18n="home.hero.subtitle">the answer to life is not elsewhere.</p>
             </div>
           </div>
 
-          <a class="spatial-hero__explore" href="#work" data-cursor="ENTER" aria-label="Explore selected work">
+          <a class="spatial-hero__explore" href="#work" data-cursor="ENTER" data-i18n-aria-label="home.hero.explore" aria-label="Explore selected work">
             <span class="spatial-hero__explore-mark" aria-hidden="true">↓</span>
           </a>
 
-          <nav class="cube-viewport" aria-label="Explore sections">
-            <div class="cube-idle-spin">
-              <div class="cube-tilt">
-                <div class="spatial-cube">
-                <a class="space-face space-face--front" href="./projects.html" data-cursor="PROJECTS">
-                  <span class="space-face__label" data-i18n="nav.projects">Projects</span>
-                </a>
-                <a class="space-face space-face--back" href="./portfolio.html?view=photography" data-cursor="PHOTOGRAPHY">
-                  <span class="space-face__label" data-i18n="home.cube.photography">Photography</span>
-                </a>
-                <a class="space-face space-face--left" href="./portfolio.html?view=portfolio" data-cursor="PORTFOLIO">
-                  <span class="space-face__label" data-i18n="nav.portfolio">Portfolio</span>
-                </a>
-                <a class="space-face space-face--right" href="./articles.html" data-cursor="ARTICLES">
-                  <span class="space-face__label" data-i18n="nav.articles">Articles</span>
-                </a>
-                <a class="space-face space-face--top" href="#about" data-cursor="ABOUT">
-                  <span class="space-face__label" data-i18n="nav.about">About</span>
-                </a>
-                <a class="space-face space-face--bottom" href="#contact" data-cursor="CONTACT">
-                  <span class="space-face__label" data-i18n="nav.contact">Contact</span>
-                </a>
+          <nav class="cube-anchor" aria-label="Explore sections">
+            <div class="cube-viewport">
+              <div class="cube-idle-spin">
+                <div class="cube-tilt">
+                  <div class="spatial-cube">
+                    <a class="space-face space-face--front" href="./projects.html" data-cursor="PROJECTS">
+                      <span class="space-face__label" data-i18n="nav.projects">Projects</span>
+                    </a>
+                    <a class="space-face space-face--back" href="./portfolio.html?view=photography" data-cursor="PHOTOGRAPHY">
+                      <span class="space-face__label" data-i18n="home.cube.photography">Photography</span>
+                    </a>
+                    <a class="space-face space-face--left" href="./portfolio.html?view=portfolio" data-cursor="PORTFOLIO">
+                      <span class="space-face__label" data-i18n="nav.portfolio">Portfolio</span>
+                    </a>
+                    <a class="space-face space-face--right" href="./articles.html" data-cursor="ARTICLES">
+                      <span class="space-face__label" data-i18n="nav.articles">Articles</span>
+                    </a>
+                    <a class="space-face space-face--top" href="#about" data-cursor="ABOUT">
+                      <span class="space-face__label" data-i18n="nav.about">About</span>
+                    </a>
+                    <a class="space-face space-face--bottom" href="#contact" data-cursor="CONTACT">
+                      <span class="space-face__label" data-i18n="nav.contact">Contact</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -196,570 +161,15 @@
             <span data-story-index="contact" data-i18n="nav.contact">Contact</span>
           </div>
 
-          <div class="spatial-hero__progress" aria-hidden="true">
-            <span class="spatial-hero__progress-fill"></span>
-          </div>
-        </div>
-      </section>
-
-      <section class="home-legacy-contact" aria-hidden="true">
-        <div class="max-w-screen-xl mx-auto">
-          <h1 class="text-5xl md:text-8xl font-semibold tracking-tighter leading-none mb-12" data-i18n-html="home.contact.title">
-            Let's create <br /> something timeless.
-          </h1>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-24">
-            <div>
-              <a href="mailto:hello@example.com" class="inline-block text-xl border-b border-white pb-1 hover:text-zinc-400 hover:border-zinc-400 transition-colors" data-i18n="home.contact.cta">
-                Start a project
-              </a>
-            </div>
-            <div class="flex flex-col space-y-4 md:items-end">
-              <a href="#" class="text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest">Twitter <span class="text-zinc-800 mx-2">—</span> @alexchen</a>
-              <a href="#" class="text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest">LinkedIn <span class="text-zinc-800 mx-2">—</span> /in/alexchen</a>
-              <a href="#" class="text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest">GitHub <span class="text-zinc-800 mx-2">—</span> @achen-dev</a>
-            </div>
-          </div>
-          <div class="mt-32 pt-8 border-t border-zinc-900 flex justify-between items-end text-xs text-zinc-700 uppercase tracking-widest">
-            <span>© 2024</span>
-            <span>Local Time: --:--</span>
-          </div>
         </div>
       </section>
     </main>
 
-
-    <script id="projects-data-fallback" type="application/json">[
-  {
-    "id": "hui-zhidao",
-    "title": "Hui Zhidao",
-    "titleZh": "汇知道",
-    "year": 2026,
-    "category": "AI Product Prototype",
-    "categoryZh": "AI 产品原型",
-    "tags": ["AI Agent", "Talent Policy", "Rapid Prototype"],
-    "summary": "An AI talent-policy self-check and application-preparation assistant for Xuhui, built in about 3-4 hours.",
-    "summaryZh": "面向徐汇区人才政策的智能自查与申报准备助手，在约 3-4 小时内完成。",
-    "coverImage": "./assets/img/hui-zhidao-cover.png",
-    "featured": true
-  },
-  {
-    "id": "lumina",
-    "title": "Lumina",
-    "titleZh": "Lumina",
-    "year": 2024,
-    "category": "Design System",
-    "categoryZh": "设计系统",
-    "tags": ["Design System", "UI"],
-    "summary": "A comprehensive monochromatic design system for financial technology dashboards.",
-    "summaryZh": "一个面向金融科技仪表盘的黑白极简设计系统方案。",
-    "featured": true
-  },
-  {
-    "id": "echoes",
-    "title": "Echoes",
-    "titleZh": "Echoes",
-    "year": 2023,
-    "category": "Generative Audio",
-    "categoryZh": "生成式音频",
-    "tags": ["Web", "AI"],
-    "summary": "Web-based interface for real-time AI spatial audio generation.",
-    "summaryZh": "一个用于实时 AI 空间音频生成的 Web 交互界面。",
-    "featured": true
-  },
-  {
-    "id": "vessel",
-    "title": "Vessel",
-    "titleZh": "Vessel",
-    "year": 2023,
-    "category": "Architecture",
-    "categoryZh": "建筑展示",
-    "tags": ["Brand", "Web"],
-    "summary": "Digital presence for a brutalist architecture firm based in Tokyo.",
-    "summaryZh": "为一家东京粗野主义建筑事务所打造的数字展示网站。",
-    "featured": true
-  },
-  {
-    "id": "ai-customer-service-platform",
-    "title": "AI Customer Service Platform",
-    "titleZh": "AI 客服运营平台",
-    "year": 2026,
-    "category": "AI Operations",
-    "categoryZh": "AI 运营平台",
-    "tags": ["AI", "Dashboard", "Customer Service"],
-    "summary": "An operations platform for AI customer-service agents, combining agent management, knowledge assets, analytics, and workflow governance in one workspace.",
-    "summaryZh": "一个面向 AI 客服智能体的运营平台，将智能体管理、知识资产、分析能力与流程治理整合到同一个工作台中。",
-    "featured": true
-  }
-]</script>
-
     <script src="./data/local-content.js"></script>
-    <script type="module">
-      import {
-        applyTranslations,
-        escapeHtml,
-        getCurrentLanguage,
-        getLocalizedValue,
-        loadJson,
-        renderTags,
-        setupGlobalControls,
-        syncPreviewLinks,
-        t,
-        withPreviewParams,
-      } from "./site.js?v=20260812-1";
-
-      const homeTranslations = {
-        "home.story.projects": { en: "Selected work, systems and experiments shaped through spatial thinking.", zh: "以空间思维展开的精选项目、系统与实验。" },
-        "home.story.photography": { en: "Fragments of place, light and time collected through observation.", zh: "在观察中收集地点、光线与时间的片段。" },
-        "home.story.articles": { en: "Notes on making, seeing and the ideas that connect them.", zh: "关于创造、观看，以及连接两者的思考。" },
-        "page.home.title": { en: "BaiF'S SPACE", zh: "白方的个人主页" },
-        "home.hero.title": { en: "Life carves <br /><span class='text-zinc-500'>its</span> path.", zh: "人生自会 <br /><span class='text-zinc-500'>刻出</span>它的路径。" },
-        "home.hero.subtitle": { en: "the answer to life is not elsewhere.", zh: "人生的答案，并不在别处。" },
-        "home.hero.explore": { en: "Explore selected work", zh: "探索精选作品" },
-        "home.cube.photography": { en: "Photography", zh: "摄影" },
-        "home.cube.selected": { en: "Selected work", zh: "精选作品" },
-        "home.cube.enter": { en: "Enter projects", zh: "进入项目" },
-        "home.featured.title": { en: "Featured Projects", zh: "精选项目" },
-        "home.featured.subtitle": { en: "Selected projects from <span class='font-mono'>data/projects.json</span>.", zh: "这里展示的是来自 <span class='font-mono'>data/projects.json</span> 的精选项目。" },
-        "home.featured.viewAll": { en: "View all", zh: "查看全部" },
-        "home.about.title": { en: "Philosophy", zh: "理念" },
-        "home.about.body": {
-          en: "A creator working across product, AI, code and visual expression, exploring spatial thinking in digital products.",
-          zh: "在产品、AI、代码与视觉表达之间工作，探索空间思维如何进入数字产品。"
-        },
-        "home.about.services": { en: "Services", zh: "能力方向" },
-        "home.about.service1": { en: "Art Direction", zh: "视觉方向" },
-        "home.about.service2": { en: "UI/UX Design", zh: "界面与体验设计" },
-        "home.about.service3": { en: "React Engineering", zh: "React 前端实现" },
-        "home.about.service4": { en: "Design Systems", zh: "设计系统" },
-        "home.about.clients": { en: "Clients", zh: "合作对象" },
-        "home.about.keyword1": { en: "Product", zh: "产品" },
-        "home.about.keyword2": { en: "Code", zh: "代码" },
-        "home.about.keyword3": { en: "Visual", zh: "视觉" },
-        "home.about.keyword4": { en: "Spatial thinking", zh: "空间思维" },
-        "home.about.readProfile": { en: "Read profile", zh: "查看完整介绍" },
-        "home.contact.title": { en: "Let's create <br /> something timeless.", zh: "一起做一些 <br /> 经得住时间的作品。" },
-        "home.contact.cta": { en: "Start a project", zh: "发起合作" },
-        "home.chat.toggle": { en: "Toggle AI chat", zh: "切换 AI 对话窗口" },
-        "home.chat.title": { en: "AI Twin", zh: "AI 分身" },
-        "home.chat.empty": { en: "Ask me anything", zh: "欢迎随时提问" },
-        "home.chat.placeholder": { en: "Type a message...", zh: "输入你的问题..." },
-        "home.chat.send": { en: "Send message", zh: "发送消息" },
-        "home.chat.offline": { en: "I am currently silent (Offline).", zh: "我现在暂时离线。" },
-        "home.chat.error": { en: "Connection disrupted.", zh: "连接已中断。" },
-        "home.time.label": { en: "Local Time", zh: "本地时间" }
-      };
-
-      const featuredEl = document.getElementById("featured-projects");
-      const portfolioPreviewEl = document.getElementById("portfolio-preview");
-      const articlesPreviewEl = document.getElementById("articles-preview");
-      const aboutBodyEl = document.getElementById("about-body");
-      const contactSocialLinksEl = document.getElementById("contact-social-links");
-      let projectsCache = [];
-      let portfolioCache = [];
-      let postsCache = [];
-      let profileCache = null;
-
-      function updateTime() {
-        const timeEl = document.getElementById("local-time");
-        if (!timeEl) return;
-        const label = t("home.time.label", homeTranslations);
-        timeEl.textContent = `${label}: ${new Date().toLocaleTimeString(getCurrentLanguage() === "zh" ? "zh-CN" : "en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-        })}`;
-      }
-
-      function renderCard(project) {
-        const title = getLocalizedValue(project, "title");
-        const summary = getLocalizedValue(project, "summary");
-        const category = getLocalizedValue(project, "category");
-        const tags = renderTags(project.tags || []);
-        const year = project.year ? String(project.year) : "";
-        const cover = project.coverImage
-          ? `<div class="absolute inset-0 bg-cover bg-center opacity-35" style="background-image:url('${project.coverImage.replaceAll("'", "&#39;")}')"></div>`
-          : `<div class="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-transparent"></div>`;
-
-        return `
-          <a href="${withPreviewParams(`./project.html?id=${encodeURIComponent(project.id)}`)}" class="group relative border border-white/10 hover:border-white/25 transition-colors overflow-hidden">
-            <div class="absolute inset-0">${cover}</div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-            <div class="relative p-6 md:p-7 min-h-[220px] flex flex-col">
-              <div class="flex items-start justify-between gap-4">
-                <div class="text-[10px] uppercase tracking-widest text-zinc-500">${category}</div>
-                <div class="text-xs font-mono text-zinc-600">${year}</div>
-              </div>
-              <h3 class="text-2xl md:text-3xl font-medium tracking-tight mt-6 group-hover:translate-y-[-2px] transition-transform">${title}</h3>
-              <p class="text-zinc-400 text-sm font-light leading-relaxed mt-4 max-h-[4.5em] overflow-hidden">${summary}</p>
-              <div class="flex flex-wrap gap-2 mt-6">${tags}</div>
-              <div class="mt-auto pt-6 text-xs uppercase tracking-widest text-zinc-500 group-hover:text-white transition-colors">${t("common.open", homeTranslations)} →</div>
-            </div>
-          </a>
-        `;
-      }
-
-      function renderStoryRow({ href, title, meta = "", summary = "", cursor = "OPEN" }) {
-        return `
-          <a href="${withPreviewParams(href)}" class="spatial-story__row" data-cursor="${cursor}">
-            <span class="spatial-story__row-main">
-              <strong>${escapeHtml(title)}</strong>
-              ${summary ? `<span>${escapeHtml(summary)}</span>` : ""}
-            </span>
-            <span class="spatial-story__row-meta">${escapeHtml(meta)}</span>
-          </a>
-        `;
-      }
-
-      function renderFeatured() {
-        const featured = projectsCache.filter((project) => project && project.featured);
-        const list = (featured.length ? featured : projectsCache).slice(0, 3);
-        featuredEl.innerHTML = list.map((project) => renderStoryRow({
-          href: `./project.html?id=${encodeURIComponent(project.id)}`,
-          title: getLocalizedValue(project, "title"),
-          summary: getLocalizedValue(project, "summary"),
-          meta: [getLocalizedValue(project, "category"), project.year].filter(Boolean).join(" · "),
-          cursor: "VIEW",
-        })).join("");
-        syncPreviewLinks(featuredEl);
-      }
-
-      function renderPortfolioPreview() {
-        if (!portfolioPreviewEl) return;
-        portfolioPreviewEl.innerHTML = portfolioCache.filter((item) => item.tags?.includes("Photography")).slice(0, 3).map((item) => renderStoryRow({
-          href: `./portfolio-item.html?id=${encodeURIComponent(item.id)}`,
-          title: getLocalizedValue(item, "title"),
-          summary: getLocalizedValue(item, "summary"),
-          meta: [item.tags?.[0], item.year].filter(Boolean).join(" · "),
-          cursor: "VIEW",
-        })).join("");
-        syncPreviewLinks(portfolioPreviewEl);
-      }
-
-      function renderArticlesPreview() {
-        if (!articlesPreviewEl) return;
-        const published = postsCache.filter((post) => post.status !== "draft").slice(0, 3);
-        articlesPreviewEl.innerHTML = published.map((post) => renderStoryRow({
-          href: `./post.html?slug=${encodeURIComponent(post.slug)}`,
-          title: getLocalizedValue(post, "title"),
-          summary: getLocalizedValue(post, "summary"),
-          meta: [post.tags?.[0], post.date].filter(Boolean).join(" · "),
-          cursor: "READ",
-        })).join("");
-        syncPreviewLinks(articlesPreviewEl);
-      }
-
-      function renderProfileData() {
-        if (!profileCache) return;
-
-        const bio =
-          getCurrentLanguage() === "zh" && profileCache.homeBioZh
-            ? profileCache.homeBioZh
-            : profileCache.homeBio || profileCache.bio || "";
-        if (bio && aboutBodyEl) aboutBodyEl.textContent = bio;
-
-        const links = Array.isArray(profileCache.contact?.socialLinks)
-          ? profileCache.contact.socialLinks
-          : [];
-        if (links.length && contactSocialLinksEl) {
-          contactSocialLinksEl.innerHTML = links
-            .map((link) => {
-              const type = escapeHtml(link.type || "link");
-              const label = escapeHtml(
-                getCurrentLanguage() === "zh" && link.labelZh ? link.labelZh : link.label || "Link"
-              );
-              const meta = escapeHtml(
-                getCurrentLanguage() === "zh" && link.metaZh ? link.metaZh : link.meta || ""
-              );
-              const url = escapeHtml(link.url || "#");
-              const platform = {
-                xiaohongshu: getCurrentLanguage() === "zh" ? "小红书" : "REDNOTE",
-                github: "GitHub",
-              }[link.type] || "Link";
-              const inner = `<span class="contact-channel__platform">${platform}</span><span class="contact-channel__identity"><strong>${label}</strong>${meta ? `<small>${meta}</small>` : ""}</span><span class="contact-channel__arrow" aria-hidden="true">↗</span>`;
-              return `<a href="${url}" target="_blank" rel="noreferrer" class="contact-channel" data-contact-type="${type}" data-cursor="OPEN">${inner}</a>`;
-            })
-            .join("");
-        }
-      }
-
-
-      async function initFeatured() {
-        try {
-          projectsCache = await loadJson("./data/projects.json");
-          renderFeatured();
-        } catch (error) {
-          const fallbackEl = document.getElementById("projects-data-fallback");
-          if (fallbackEl?.textContent?.trim()) {
-            try {
-              projectsCache = JSON.parse(fallbackEl.textContent);
-              renderFeatured();
-              return;
-            } catch (fallbackError) {}
-          }
-          featuredEl.innerHTML = `<div class="text-zinc-500 text-sm">${t("common.failedProjects", homeTranslations)}</div>`;
-        }
-      }
-
-      async function initProfile() {
-        try {
-          profileCache = await loadJson("./data/profile.json");
-          renderProfileData();
-        } catch {}
-      }
-
-      async function initStoryCollections() {
-        const [portfolioResult, postsResult] = await Promise.allSettled([
-          loadJson("./data/portfolio.json"),
-          loadJson("./data/posts.json"),
-        ]);
-        portfolioCache = portfolioResult.status === "fulfilled" ? portfolioResult.value : [];
-        postsCache = postsResult.status === "fulfilled" ? postsResult.value : [];
-        renderPortfolioPreview();
-        renderArticlesPreview();
-      }
-
-      function renderStatic() {
-        applyTranslations(homeTranslations);
-        updateTime();
-        renderProfileData();
-      }
-
-      setupGlobalControls();
-      renderStatic();
-      window.__INDEX_BOOTSTRAPPED = true;
-      initFeatured();
-      initProfile();
-      initStoryCollections();
-      setInterval(updateTime, 1000);
-      window.addEventListener("site:language-change", () => {
-        renderStatic();
-        renderFeatured();
-        renderPortfolioPreview();
-        renderArticlesPreview();
-      });
-    </script>
-
-
-    <script>
-      setTimeout(() => {
-        if (window.__INDEX_BOOTSTRAPPED) return;
-
-        const translations = {
-          "brand.name": { en: "BaiF", zh: "白方" },
-          "page.home.title": { en: "BaiF'S SPACE", zh: "白方的个人主页" },
-          "nav.projects": { en: "Projects", zh: "项目" },
-          "nav.portfolio": { en: "Portfolio", zh: "作品集" },
-          "nav.articles": { en: "Articles", zh: "文章" },
-          "nav.about": { en: "About", zh: "关于" },
-          "nav.contact": { en: "Contact", zh: "联系" },
-          "controls.language": { en: "Language", zh: "语言" },
-          "controls.theme": { en: "Theme", zh: "主题" },
-          "controls.english": { en: "EN", zh: "英文" },
-          "controls.chinese": { en: "中文", zh: "中文" },
-          "controls.dark": { en: "Dark", zh: "暗色" },
-          "controls.light": { en: "Light", zh: "亮色" },
-          "controls.toggleLanguage": { en: "Toggle language", zh: "切换语言" },
-          "controls.toggleTheme": { en: "Toggle theme", zh: "切换主题" },
-          "common.open": { en: "Open", zh: "打开" },
-          "home.hero.title": { en: "Life carves <br /><span class='text-zinc-500'>its</span> path.", zh: "人生自会 <br /><span class='text-zinc-500'>刻出</span>它的路径。" },
-          "home.hero.subtitle": { en: "the answer to life is not elsewhere.", zh: "人生的答案，并不在别处。" },
-          "home.hero.explore": { en: "Explore selected work", zh: "探索精选作品" },
-          "home.cube.photography": { en: "Photography", zh: "摄影" },
-          "home.cube.selected": { en: "Selected work", zh: "精选作品" },
-          "home.cube.enter": { en: "Enter projects", zh: "进入项目" },
-          "home.featured.title": { en: "Featured Projects", zh: "精选项目" },
-          "home.featured.subtitle": { en: "Selected projects from <span class='font-mono'>inline fallback data</span>.", zh: "这里展示的是来自 <span class='font-mono'>页面内置兜底数据</span> 的精选项目。" },
-          "home.featured.viewAll": { en: "View all", zh: "查看全部" },
-          "home.about.title": { en: "Philosophy", zh: "理念" },
-          "home.about.body": {
-            en: "A creator working across product, AI, code and visual expression, exploring spatial thinking in digital products.",
-            zh: "在产品、AI、代码与视觉表达之间工作，探索空间思维如何进入数字产品。"
-          },
-          "home.about.services": { en: "Services", zh: "能力方向" },
-          "home.about.service1": { en: "Art Direction", zh: "视觉方向" },
-          "home.about.service2": { en: "UI/UX Design", zh: "界面与体验设计" },
-          "home.about.service3": { en: "React Engineering", zh: "React 前端实现" },
-          "home.about.service4": { en: "Design Systems", zh: "设计系统" },
-          "home.about.clients": { en: "Clients", zh: "合作对象" },
-          "home.about.keyword1": { en: "Product", zh: "产品" },
-          "home.about.keyword2": { en: "Code", zh: "代码" },
-          "home.about.keyword3": { en: "Visual", zh: "视觉" },
-          "home.about.keyword4": { en: "Spatial thinking", zh: "空间思维" },
-          "home.about.readProfile": { en: "Read profile", zh: "查看完整介绍" },
-          "home.contact.title": { en: "Let's create <br /> something timeless.", zh: "一起做一些 <br /> 经得住时间的作品。" },
-          "home.contact.cta": { en: "Start a project", zh: "发起合作" },
-          "home.chat.toggle": { en: "Toggle AI chat", zh: "切换 AI 对话窗口" },
-          "home.chat.title": { en: "AI Twin", zh: "AI 分身" },
-          "home.chat.empty": { en: "Ask me anything", zh: "欢迎随时提问" },
-          "home.chat.placeholder": { en: "Type a message...", zh: "输入你的问题..." },
-          "home.chat.send": { en: "Send message", zh: "发送消息" },
-          "home.time.label": { en: "Local Time", zh: "本地时间" }
-        };
-
-        const getLang = () => {
-          try {
-            return localStorage.getItem("site-language") === "zh" ? "zh" : "en";
-          } catch {
-            return "en";
-          }
-        };
-
-        const getTheme = () => {
-          try {
-            return localStorage.getItem("site-theme") === "light" ? "light" : "dark";
-          } catch {
-            return "dark";
-          }
-        };
-
-        const setLang = (lang) => {
-          try {
-            localStorage.setItem("site-language", lang);
-          } catch {}
-          applyPrefs();
-          renderAll();
-        };
-
-        const setTheme = (theme) => {
-          try {
-            localStorage.setItem("site-theme", theme);
-          } catch {}
-          applyPrefs();
-          renderControls();
-        };
-
-        const t = (key) => {
-          const value = translations[key];
-          if (!value) return key;
-          return value[getLang()] || value.en || key;
-        };
-
-        const withPreviewParams = (url) => {
-          const params = new URLSearchParams(window.location.search);
-          const version = params.get("version");
-          const preview = params.get("preview");
-          const [beforeHash, hash = ""] = String(url).split("#");
-          const [path, query = ""] = beforeHash.split("?");
-          const nextParams = new URLSearchParams(query);
-          if (version) nextParams.set("version", version);
-          if (version || preview) nextParams.set("preview", "1");
-          const nextQuery = nextParams.toString();
-          return `${path}${nextQuery ? `?${nextQuery}` : ""}${hash ? `#${hash}` : ""}`;
-        };
-
-        const getLocalized = (item, key) => (getLang() === "zh" && item[`${key}Zh`] ? item[`${key}Zh`] : item[key] || "");
-
-        const applyPrefs = () => {
-          document.documentElement.dataset.theme = getTheme();
-          document.documentElement.lang = getLang() === "zh" ? "zh-CN" : "en";
-        };
-
-        const applyTexts = () => {
-          document.title = t("page.home.title");
-          document.querySelectorAll("[data-i18n]").forEach((el) => {
-            el.textContent = t(el.dataset.i18n);
-          });
-          document.querySelectorAll("[data-i18n-html]").forEach((el) => {
-            el.innerHTML = t(el.dataset.i18nHtml);
-          });
-          document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-            el.setAttribute("placeholder", t(el.dataset.i18nPlaceholder));
-          });
-          document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
-            el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel));
-          });
-        };
-
-        const ensureControls = () => {
-          if (document.getElementById("site-controls")) return;
-          const root = document.createElement("div");
-          root.id = "site-controls";
-          root.className = "site-controls";
-          root.innerHTML = `
-            <button type="button" class="site-control-button" data-local-lang-toggle aria-label="${t("controls.toggleLanguage")}" title="${t("controls.toggleLanguage")}">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 5h9M8.5 5c0 7-3 11-6 13m8-9h7m-3.5 0c0 4.5 2.2 8 5.5 10m-11-2 4-10 4 10m-6.8-4h5.6"></path>
-              </svg>
-            </button>
-            <button type="button" class="site-control-button" data-local-theme-toggle aria-label="${t("controls.toggleTheme")}" title="${t("controls.toggleTheme")}"></button>
-          `;
-          document.body.appendChild(root);
-          root.querySelector("[data-local-lang-toggle]")?.addEventListener("click", () => setLang(getLang() === "zh" ? "en" : "zh"));
-          root.querySelector("[data-local-theme-toggle]")?.addEventListener("click", () => setTheme(getTheme() === "light" ? "dark" : "light"));
-        };
-
-        const renderControls = () => {
-          const root = document.getElementById("site-controls");
-          if (!root) return;
-          const langBtn = root.querySelector("[data-local-lang-toggle]");
-          const themeBtn = root.querySelector("[data-local-theme-toggle]");
-          if (langBtn) {
-            langBtn.dataset.state = getLang();
-            langBtn.setAttribute("aria-label", t("controls.toggleLanguage"));
-            langBtn.setAttribute("title", t("controls.toggleLanguage"));
-          }
-          if (themeBtn) {
-            themeBtn.dataset.state = getTheme();
-            themeBtn.setAttribute("aria-label", t("controls.toggleTheme"));
-            themeBtn.setAttribute("title", t("controls.toggleTheme"));
-            themeBtn.innerHTML = getTheme() === "light"
-              ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.75V2m0 20v-1.75M4.93 4.93 3.69 3.69m16.62 16.62-1.24-1.24M20.25 12H22M2 12h1.75m1.18 7.07-1.24 1.24m16.62-16.62-1.24 1.24M12 17.25a5.25 5.25 0 1 1 0-10.5 5.25 5.25 0 0 1 0 10.5Z"></path></svg>`
-              : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3c-.02.25-.03.5-.03.75a8.25 8.25 0 0 0 8.25 8.25c.25 0 .5-.01.75-.03Z"></path></svg>`;
-          }
-        };
-
-        const renderFeatured = () => {
-          const el = document.getElementById("featured-projects");
-          const fallbackEl = document.getElementById("projects-data-fallback");
-          if (!el || !fallbackEl) return;
-          const projects = JSON.parse(fallbackEl.textContent || "[]");
-          el.innerHTML = projects.filter((project) => project.featured).map((project) => `
-            <a href="${withPreviewParams(`./project.html?id=${encodeURIComponent(project.id)}`)}" class="group relative border border-white/10 hover:border-white/25 transition-colors overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-transparent"></div>
-              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-              <div class="relative p-6 md:p-7 min-h-[220px] flex flex-col">
-                <div class="flex items-start justify-between gap-4">
-                  <div class="text-[10px] uppercase tracking-widest text-zinc-500">${getLocalized(project, "category")}</div>
-                  <div class="text-xs font-mono text-zinc-600">${project.year || ""}</div>
-                </div>
-                <h3 class="text-2xl md:text-3xl font-medium tracking-tight mt-6 group-hover:translate-y-[-2px] transition-transform">${getLocalized(project, "title")}</h3>
-                <p class="text-zinc-400 text-sm font-light leading-relaxed mt-4 max-h-[4.5em] overflow-hidden">${getLocalized(project, "summary")}</p>
-                <div class="mt-auto pt-6 text-xs uppercase tracking-widest text-zinc-500 group-hover:text-white transition-colors">${t("common.open")} →</div>
-              </div>
-            </a>
-          `).join("");
-        };
-
-        const updateTime = () => {
-          const timeEl = document.getElementById("local-time");
-          if (!timeEl) return;
-          const locale = getLang() === "zh" ? "zh-CN" : "en-US";
-          timeEl.textContent = `${t("home.time.label")}: ${new Date().toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit" })}`;
-        };
-
-        const renderAll = () => {
-          applyTexts();
-          ensureControls();
-          renderControls();
-          document.querySelectorAll('a[href]').forEach((link) => {
-            const href = link.getAttribute("href") || "";
-            if (/\.html(?:$|[?#])/i.test(href)) {
-              link.setAttribute("href", withPreviewParams(href));
-            }
-          });
-          renderFeatured();
-          updateTime();
-        };
-
-        applyPrefs();
-        renderAll();
-        setInterval(updateTime, 1000);
-      }, 120);
-    </script>
+    <script type="module" src="./home.js?v=20260914-1"></script>
     <script src="./assets/vendor/gsap.min.js"></script>
-    <script src="./assets/vendor/ScrollTrigger.min.js"></script>
     <script src="./space-field.js?v=20260812-4"></script>
     <script src="./baifang-ip.js?v=20260814-3"></script>
-    <script src="./home-motion.js?v=20260813-1"></script>
+    <script src="./home-motion.js?v=20260914-1"></script>
   </body>
 </html>
-

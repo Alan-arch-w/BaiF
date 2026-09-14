@@ -842,26 +842,6 @@ html[data-theme="light"] .home-page {
   transform: translateZ(calc(var(--model-size) * -0.05));
 }
 
-.spatial-hero__progress {
-  position: absolute;
-  z-index: 5;
-  right: 3rem;
-  top: 8.5rem;
-  bottom: 4rem;
-  width: 1px;
-  background: var(--drawing-faint);
-}
-
-.spatial-hero__progress-fill {
-  position: absolute;
-  inset: 0;
-  display: block;
-  background: var(--drawing-signal);
-  transform: scaleY(0);
-  transform-origin: top;
-  will-change: transform;
-}
-
 .home-page #work,
 .home-page #about,
 .home-page #contact {
@@ -986,12 +966,6 @@ html[data-theme="light"] .home-page {
     top: 36%;
     right: 8vw;
     opacity: 0.92;
-  }
-
-  .spatial-hero__progress {
-    right: 1.5rem;
-    top: 8rem;
-    bottom: 3.5rem;
   }
 
   .home-page #work::before,

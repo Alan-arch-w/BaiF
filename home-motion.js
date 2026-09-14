@@ -2,11 +2,8 @@
   "use strict";
 
   const gsap = window.gsap;
-  const ScrollTrigger = window.ScrollTrigger;
   const hero = document.querySelector("[data-home-hero]");
   if (!hero || !gsap) return;
-
-  if (ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = window.matchMedia("(any-pointer: fine)").matches || navigator.maxTouchPoints === 0;
@@ -128,13 +125,12 @@
   const storyViewportTarget = () => {
     const visible = visibleViewport();
     const mobile = visible.width <= 900;
-    const cubeSize = viewport?.offsetWidth || Math.min(visible.height * 0.72, 672);
     const desiredCenterX = mobile
       ? visible.left + visible.width * 0.94
       : visible.left + visible.width * 0.89;
-    const restingCenterX = window.innerWidth * 0.5;
+    const restingCenterX = visible.left + visible.width * 0.5;
     const desiredCenterY = visible.top + visible.height * (mobile ? 0.49 : 0.5);
-    const restingCenterY = window.innerHeight * (mobile ? 0.39 : 0.42);
+    const restingCenterY = visible.top + visible.height * (mobile ? 0.39 : 0.42);
     return {
       x: desiredCenterX - restingCenterX,
       y: desiredCenterY - restingCenterY,
@@ -280,7 +276,7 @@
   };
 
   const requestStep = (direction) => {
-    if (transitioning) return;
+    if (transitioning || introPlaying) return;
     const next = gsap.utils.clamp(-1, chapters.length - 1, state + direction);
     if (next === state) return;
     const now = performance.now();
@@ -336,10 +332,6 @@
   }
 
   const hashState = { work: 0, about: 3, contact: 4 };
-  window.addEventListener("site:language-change", () => {
-    if (state >= 0) setActiveChapter(state);
-  });
-
   let resizeFrame = 0;
   window.addEventListener("resize", () => {
     cancelAnimationFrame(resizeFrame);
