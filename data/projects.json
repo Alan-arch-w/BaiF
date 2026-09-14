@@ -110,5 +110,62 @@
       }
     ],
     "featured": true
+  },
+  {
+    "id": "lawanle-webcoding-trash",
+    "title": "Webcoding Trash",
+    "titleZh": "垃完了 · Webcoding Trash",
+    "year": 2026,
+    "category": "Hackathon Product",
+    "categoryZh": "黑客松产品原型",
+    "tags": [
+      "Vibe Coding",
+      "AI Creativity",
+      "Interactive Prototype",
+      "Hackathon"
+    ],
+    "summary": "A playful sharing and remix platform for small AI-coding experiments, unfinished prototypes and strange-but-interesting web ideas.",
+    "summaryZh": "面向 AI Coding 时代的轻量作品分享与二创平台，让简单、未完成但有趣的网页作品被看见、被体验、被再次改造。",
+    "coverImage": "./assets/img/lawanle-cover.png",
+    "intro": "Webcoding Trash treats small Vibe Coding experiments as creative material rather than disposable drafts. Visitors can randomly inspect a work, try its interactive prototype, save it, add tags and send it into a recycle queue for a lightweight remix.",
+    "introZh": "“垃完了”把 Vibe Coding 时代的轻量实验视为可以继续流动的创作素材，而不是只能被删除的废稿。用户可以随机抽检作品、直接体验互动原型、收藏、贴标签，并将感兴趣的作品放入回收区进行轻量二创。",
+    "contentSections": [
+      {
+        "title": "Context",
+        "titleZh": "项目背景",
+        "content": "AI coding tools make it possible to turn a rough idea into a webpage in minutes, but many small experiments do not fit a formal portfolio or a conventional developer community. The project creates a low-pressure place for these works to be discovered and played.",
+        "contentZh": "AI Coding 工具让一个粗略想法可以在几分钟内变成网页，但大量轻量实验既不适合正式作品集，也很容易被传统内容流淹没。项目希望为这些作品提供一个低压力、可被发现和体验的空间。"
+      },
+      {
+        "title": "Product Loop",
+        "titleZh": "产品闭环",
+        "content": "The core loop is discover, experience, modify and rediscover. Random inspection lowers the pressure of browsing, while direct interaction turns a static showcase into something people can actually play with.",
+        "contentZh": "核心闭环是“被看见 → 被体验 → 被改变 → 再次被看见”。随机抽检降低了浏览压力，直接操作则让作品从静态展示变成可玩的内容。"
+      },
+      {
+        "title": "Interaction",
+        "titleZh": "交互机制",
+        "content": "The web prototype includes an inspection deck, interactive sandbox previews, tagging and favorites, a recycle area and a lightweight mutant publishing flow. The Android shell is intentionally excluded from this web release.",
+        "contentZh": "网页原型包含随机质检牌组、互动沙盒预览、贴标签与收藏、回收区，以及轻量的变异作品发布流程。本次网页版发布不包含安卓壳和 APK 构建产物。"
+      }
+    ],
+    "galleryImages": [
+      "./assets/img/lawanle-cover.png"
+    ],
+    "links": [
+      {
+        "label": "Open Website",
+        "labelZh": "打开网站",
+        "url": "https://lawanle.vercel.app",
+        "type": "demo"
+      },
+      {
+        "label": "View Source",
+        "labelZh": "查看源码",
+        "url": "https://github.com/Alan-arch-w/Lawanle",
+        "type": "github"
+      }
+    ],
+    "featured": true
   }
 ]
