@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./site.css?v=20260814-3" />
+    <link rel="stylesheet" href="./site.css?v=20260914-2" />
     <script>
       tailwind.config = {
         theme: {
@@ -67,7 +67,7 @@
           <div id="project-cover" class="mt-12"></div>
           <div id="project-gallery" class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 items-start"></div>
           <div id="project-video" class="mt-10"></div>
-          <div id="project-links" class="flex flex-wrap gap-3 mt-10"></div>
+          <div id="project-links" class="project-actions flex flex-wrap gap-3 mt-10"></div>
           <div class="mt-16 border-t border-white/10 pt-12" id="project-sections"></div>
         </div>
       </section>
@@ -75,7 +75,7 @@
 
     <script src="./data/local-content.js"></script>
     <script type="module">
-      import { applyTranslations, escapeHtml, formatYear, getCurrentLanguage, getLocalizedValue, getQueryParam, loadJson, renderTags, setupGlobalControls, t } from "./site.js?v=20260812-1";
+      import { applyTranslations, escapeHtml, formatYear, getCurrentLanguage, getLocalizedValue, getQueryParam, loadJson, renderTags, setupGlobalControls, t } from "./site.js?v=20260914-2";
 
       const pageTranslations = {
         "page.project.title": { en: "Project", zh: "项目详情" },
@@ -113,7 +113,7 @@
         return links.map((link) => {
           const label = escapeHtml(getCurrentLanguage() === "zh" && link.labelZh ? link.labelZh : link.label || t("common.link", pageTranslations));
           const url = escapeHtml(link.url || "#");
-          return `<a href="${url}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center px-4 py-2 border border-white/10 hover:border-white/30 text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">${label}</a>`;
+          return `<a href="${url}" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center border text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">${label}</a>`;
         }).join("");
       }
 
@@ -153,7 +153,7 @@
         document.title = `${title} · ${t("page.project.title", pageTranslations)}`;
         titleEl.textContent = title;
         heroEl.style.backgroundImage = projectCache.coverImage
-          ? `linear-gradient(180deg, rgba(0,0,0,.82), rgba(0,0,0,.96) 56%, #000 100%), url("${projectCache.coverImage.replaceAll('"', '%22')}")`
+          ? `linear-gradient(180deg, color-mix(in srgb, var(--site-bg) 78%, transparent), color-mix(in srgb, var(--site-bg) 96%, transparent) 56%, var(--site-bg) 100%), url("${projectCache.coverImage.replaceAll('"', '%22')}")`
           : "";
         introEl.textContent = getLocalizedValue(projectCache, "intro") || getLocalizedValue(projectCache, "summary");
         metaEl.textContent = [getLocalizedValue(projectCache, "category"), formatYear(projectCache.year)].filter(Boolean).join(" · ");
@@ -182,6 +182,7 @@
       setupGlobalControls();
       init();
       window.addEventListener("site:language-change", renderPage);
+      window.addEventListener("site:theme-change", renderPage);
     </script>
   </body>
 </html>

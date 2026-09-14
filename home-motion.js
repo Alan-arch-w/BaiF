@@ -6,7 +6,6 @@
   if (!hero || !gsap) return;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const finePointer = window.matchMedia("(any-pointer: fine)").matches || navigator.maxTouchPoints === 0;
   const panels = gsap.utils.toArray("[data-story-panel]");
   const idleLayer = document.querySelector(".cube-idle-spin");
   const cube = document.querySelector(".spatial-cube");
@@ -19,12 +18,13 @@
   const header = document.querySelector(".site-header");
 
   const chapters = [
-    { name: "projects", face: ".space-face--front", rotationX: 0, rotationY: 360, rotationZ: 45 },
-    { name: "photography", face: ".space-face--back", rotationX: 0, rotationY: 540, rotationZ: 45 },
-    { name: "articles", face: ".space-face--right", rotationX: 0, rotationY: 630, rotationZ: 45 },
-    { name: "about", face: ".space-face--top", rotationX: -90, rotationY: 720, rotationZ: 45 },
-    { name: "contact", face: ".space-face--bottom", rotationX: 90, rotationY: 720, rotationZ: 45 },
+    { name: "projects", face: ".space-face--front", rotationX: 0, rotationY: 360, rotationZ: 45, labelKey: "nav.projects" },
+    { name: "photography", face: ".space-face--back", rotationX: 0, rotationY: 540, rotationZ: 45, labelKey: "home.cube.photography" },
+    { name: "articles", face: ".space-face--right", rotationX: 0, rotationY: 630, rotationZ: 45, labelKey: "nav.articles" },
+    { name: "about", face: ".space-face--top", rotationX: -90, rotationY: 720, rotationZ: 45, labelKey: "nav.about" },
+    { name: "contact", face: ".space-face--bottom", rotationX: 90, rotationY: 720, rotationZ: 45, labelKey: "nav.contact" },
   ];
+  const hashState = { work: 0, projects: 0, about: 3, contact: 4 };
 
   let state = -1;
   let transitioning = false;
@@ -43,14 +43,12 @@
     window.scrollTo(0, 0);
   };
 
-  const visibleViewport = () => {
-    return {
-      width: document.documentElement.clientWidth || window.innerWidth,
-      height: document.documentElement.clientHeight || window.innerHeight,
-      left: 0,
-      top: 0,
-    };
-  };
+  const visibleViewport = () => ({
+    width: document.documentElement.clientWidth || window.innerWidth,
+    height: document.documentElement.clientHeight || window.innerHeight,
+    left: 0,
+    top: 0,
+  });
 
   const startIdleRotation = () => {
     if (!idleLayer || reduceMotion || state !== -1 || idleYawTween) return;
@@ -71,102 +69,69 @@
   const resetMotionLayers = () => {
     neutralizeIdleRotation();
     gsap.killTweensOf([idleLayer, tilt]);
-    gsap.set(idleLayer, {
-      x: 0,
-      y: 0,
-      z: 0,
-      rotationX: 0,
-      rotationY: 0,
-      rotationZ: 0,
-      scale: 1,
-    });
-    gsap.set(tilt, {
-      x: 0,
-      y: 0,
-      z: 0,
-      rotationX: 0,
-      rotationY: 0,
-      rotationZ: 0,
-      scale: 1,
-    });
+    gsap.set(idleLayer, { x: 0, y: 0, z: 0, rotationX: 0, rotationY: 0, rotationZ: 0, scale: 1 });
+    gsap.set(tilt, { x: 0, y: 0, z: 0, rotationX: 0, rotationY: 0, rotationZ: 0, scale: 1 });
   };
 
   const startStoryDrift = () => {
     if (!idleLayer || reduceMotion || state < 0 || storyDriftTimeline) return;
     gsap.set(idleLayer, { transformOrigin: "50% 50%", force3D: true });
     storyDriftTimeline = gsap.timeline({ repeat: -1, yoyo: true })
-      .to(idleLayer, {
-        y: -10,
-        x: 2,
-        rotationX: 0.5,
-        rotationY: -0.68,
-        rotationZ: 0.34,
-        duration: 4.4,
-        ease: "sine.inOut",
-      })
-      .to(idleLayer, {
-        y: 7,
-        x: -2,
-        rotationX: -0.38,
-        rotationY: 0.52,
-        rotationZ: -0.26,
-        duration: 5.2,
-        ease: "sine.inOut",
-      });
+      .to(idleLayer, { y: -10, x: 2, rotationX: 0.5, rotationY: -0.68, rotationZ: 0.34, duration: 4.4, ease: "sine.inOut" })
+      .to(idleLayer, { y: 7, x: -2, rotationX: -0.38, rotationY: 0.52, rotationZ: -0.26, duration: 5.2, ease: "sine.inOut" });
   };
+
+  const ensureStoryNav = () => {
+    let nav = document.querySelector(".home-story-nav");
+    if (nav) return nav;
+    nav = document.createElement("nav");
+    nav.className = "home-story-nav";
+    nav.setAttribute("aria-label", "Home sections");
+    nav.innerHTML = chapters.map((chapter) => `<button type="button" data-story-nav="${chapter.name}" data-i18n="${chapter.labelKey}"></button>`).join("");
+    hero.querySelector(".spatial-hero__stage")?.append(nav);
+    return nav;
+  };
+
+  const storyNav = ensureStoryNav();
 
   const setActiveChapter = (index) => {
     panels.forEach((panel, panelIndex) => panel.classList.toggle("is-active", panelIndex === index));
     document.querySelectorAll(".space-face").forEach((face) => face.classList.remove("is-active-face"));
     const activeFace = index >= 0 ? document.querySelector(chapters[index].face) : null;
     activeFace?.classList.add("is-active-face");
+    storyNav?.querySelectorAll("[data-story-nav]").forEach((button) => {
+      button.classList.toggle("is-active", button.dataset.storyNav === chapters[index]?.name);
+      button.setAttribute("aria-current", button.dataset.storyNav === chapters[index]?.name ? "page" : "false");
+    });
   };
 
   const storyViewportTarget = () => {
     const visible = visibleViewport();
     const mobile = visible.width <= 900;
-    const desiredCenterX = mobile
-      ? visible.left + visible.width * 0.94
-      : visible.left + visible.width * 0.89;
+    const desiredCenterX = mobile ? visible.left + visible.width * 0.94 : visible.left + visible.width * 0.89;
     const restingCenterX = visible.left + visible.width * 0.5;
     const desiredCenterY = visible.top + visible.height * (mobile ? 0.49 : 0.5);
     const restingCenterY = visible.top + visible.height * (mobile ? 0.39 : 0.42);
-    return {
-      x: desiredCenterX - restingCenterX,
-      y: desiredCenterY - restingCenterY,
-      scale: 1,
-    };
+    return { x: desiredCenterX - restingCenterX, y: desiredCenterY - restingCenterY, scale: 1 };
   };
 
-  const introViewportTarget = () => ({
-    x: 0,
-    y: 0,
-    scale: visibleViewport().width <= 900 ? 0.54 : 0.54,
-  });
+  const introViewportTarget = () => ({ x: 0, y: 0, scale: 0.54 });
 
   const snapSettledState = ({ restartIdle = true } = {}) => {
     const inStory = state >= 0;
     setActiveChapter(state);
-
     if (inStory) {
       const chapter = chapters[state];
       resetMotionLayers();
       document.body.classList.add("story-active");
       gsap.set(viewport, storyViewportTarget());
-      gsap.set(cube, {
-        rotationX: chapter.rotationX,
-        rotationY: chapter.rotationY,
-        rotationZ: chapter.rotationZ,
-      });
+      gsap.set(cube, { rotationX: chapter.rotationX, rotationY: chapter.rotationY, rotationZ: chapter.rotationZ });
       gsap.set(copy, { autoAlpha: 0, x: -18 });
       gsap.set(explore, { autoAlpha: 0, y: 12 });
-      panels.forEach((panel, index) => {
-        gsap.set(panel, { autoAlpha: index === state ? 1 : 0, x: index === state ? 0 : 24 });
-      });
+      panels.forEach((panel, index) => gsap.set(panel, { autoAlpha: index === state ? 1 : 0, x: index === state ? 0 : 24 }));
       startStoryDrift();
       return;
     }
-
     resetMotionLayers();
     document.body.classList.remove("story-active");
     gsap.set(viewport, introViewportTarget());
@@ -177,33 +142,9 @@
     if (restartIdle) startIdleRotation();
   };
 
-  const playIntroEntrance = () => {
-    const target = introViewportTarget();
-    introPlaying = true;
-    gsap.set(header, { autoAlpha: 0, y: -12 });
-    gsap.set(viewport, { ...target, autoAlpha: 0, y: 18, scale: target.scale * 0.84 });
-    gsap.set(copy, { autoAlpha: 0, x: 0, y: 20 });
-    gsap.set(explore, { autoAlpha: 0, y: 12 });
-
-    gsap.timeline({
-      defaults: { overwrite: "auto" },
-      onComplete: () => {
-        introPlaying = false;
-        gsap.set(viewport, { ...introViewportTarget(), autoAlpha: 1 });
-        startIdleRotation();
-      },
-    })
-      .to(header, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.08)
-      .to(viewport, { ...target, autoAlpha: 1, duration: 1.15, ease: "expo.out" }, 0.42)
-      .to(copy, { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out" }, 1.18)
-      .to(explore, { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out" }, 1.48)
-      .call(startIdleRotation, [], 0.98);
-  };
-
   const showChapter = (nextState, direction) => {
     if (transitioning || nextState < -1 || nextState >= chapters.length || nextState === state) return;
     transitioning = true;
-
     const previousState = state;
     const previousPanel = previousState >= 0 ? panels[previousState] : null;
     const nextPanel = nextState >= 0 ? panels[nextState] : null;
@@ -211,24 +152,9 @@
     const leavingStory = previousState === 0 && nextState === -1;
     state = nextState;
     setActiveChapter(nextState);
+    const timeline = gsap.timeline({ defaults: { overwrite: "auto" }, onComplete: () => { transitioning = false; snapSettledState(); } });
 
-    const timeline = gsap.timeline({
-      defaults: { overwrite: "auto" },
-      onComplete: () => {
-        transitioning = false;
-        snapSettledState();
-      },
-    });
-
-    if (previousPanel) {
-      timeline.to(previousPanel, {
-        autoAlpha: 0,
-        x: direction > 0 ? -18 : 18,
-        duration: 0.28,
-        ease: "power2.inOut",
-      }, 0);
-    }
-
+    if (previousPanel) timeline.to(previousPanel, { autoAlpha: 0, x: direction > 0 ? -18 : 18, duration: 0.28, ease: "power2.inOut" }, 0);
     if (enteringStory) {
       document.body.classList.add("story-active");
       neutralizeIdleRotation();
@@ -238,30 +164,12 @@
         .to(idleLayer, { rotationX: 0, rotationY: 0, rotationZ: 0, duration: 0.92, ease: "power2.inOut" }, 0)
         .to(viewport, { ...storyViewportTarget(), duration: 1.02, ease: "expo.inOut" }, 0);
     }
-
     if (nextState >= 0) {
       const chapter = chapters[nextState];
-      timeline.to(cube, {
-        rotationX: chapter.rotationX,
-        rotationY: chapter.rotationY,
-        rotationZ: chapter.rotationZ,
-        duration: enteringStory ? 1.02 : 0.8,
-        ease: enteringStory ? "expo.inOut" : "power2.inOut",
-      }, 0);
-
+      timeline.to(cube, { rotationX: chapter.rotationX, rotationY: chapter.rotationY, rotationZ: chapter.rotationZ, duration: enteringStory ? 1.02 : 0.8, ease: enteringStory ? "expo.inOut" : "power2.inOut" }, 0);
       nextPanel.scrollTop = 0;
-      timeline.fromTo(nextPanel, {
-        autoAlpha: 0,
-        x: direction > 0 ? 22 : -22,
-      }, {
-        autoAlpha: 1,
-        x: 0,
-        duration: 0.46,
-        ease: "expo.out",
-        immediateRender: false,
-      }, enteringStory ? 0.52 : 0.22);
+      timeline.fromTo(nextPanel, { autoAlpha: 0, x: direction > 0 ? 22 : -22 }, { autoAlpha: 1, x: 0, duration: 0.46, ease: "expo.out", immediateRender: false }, enteringStory ? 0.52 : 0.22);
     }
-
     if (leavingStory) {
       document.body.classList.remove("story-active");
       neutralizeIdleRotation();
@@ -280,9 +188,54 @@
     const next = gsap.utils.clamp(-1, chapters.length - 1, state + direction);
     if (next === state) return;
     const now = performance.now();
-    if (now - lastStepAt < 1150) return;
+    if (now - lastStepAt < 850) return;
     lastStepAt = now;
     showChapter(next, direction);
+  };
+
+  const selectChapter = (index) => {
+    if (reduceMotion) {
+      panels[index]?.scrollIntoView({ block: "start", behavior: "smooth" });
+      return;
+    }
+    showChapter(index, index > state ? 1 : -1);
+    history.replaceState(null, "", `#${index >= 0 ? chapters[index].name : ""}`);
+  };
+
+  storyNav?.querySelectorAll("[data-story-nav]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = chapters.findIndex((chapter) => chapter.name === button.dataset.storyNav);
+      if (index >= 0) selectChapter(index);
+    });
+  });
+
+  const activateHashState = () => {
+    const target = hashState[window.location.hash.slice(1)];
+    if (target === undefined || transitioning || introPlaying || target === state) return;
+    showChapter(target, target > state ? 1 : -1);
+  };
+
+  const playIntroEntrance = () => {
+    const target = introViewportTarget();
+    introPlaying = true;
+    gsap.set(header, { autoAlpha: 0, y: -12 });
+    gsap.set(viewport, { ...target, autoAlpha: 0, y: 18, scale: target.scale * 0.84 });
+    gsap.set(copy, { autoAlpha: 0, x: 0, y: 20 });
+    gsap.set(explore, { autoAlpha: 0, y: 12 });
+    gsap.timeline({
+      defaults: { overwrite: "auto" },
+      onComplete: () => {
+        introPlaying = false;
+        gsap.set(viewport, { ...introViewportTarget(), autoAlpha: 1 });
+        startIdleRotation();
+        window.setTimeout(activateHashState, 40);
+      },
+    })
+      .to(header, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.08)
+      .to(viewport, { ...target, autoAlpha: 1, duration: 1.15, ease: "expo.out" }, 0.42)
+      .to(copy, { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out" }, 1.18)
+      .to(explore, { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out" }, 1.48)
+      .call(startIdleRotation, [], 0.98);
   };
 
   if (!reduceMotion) {
@@ -315,39 +268,31 @@
       }
     });
 
-    window.addEventListener("touchstart", (event) => {
-      touchStartY = event.touches[0]?.clientY ?? null;
-    }, { passive: true });
-
+    window.addEventListener("touchstart", (event) => { touchStartY = event.touches[0]?.clientY ?? null; }, { passive: true });
     window.addEventListener("touchend", (event) => {
-      if (touchStartY === null || event.target.closest("[data-story-panel].is-active")) return;
-      const endY = event.changedTouches[0]?.clientY ?? touchStartY;
-      const delta = touchStartY - endY;
+      if (touchStartY === null) return;
+      const startY = touchStartY;
       touchStartY = null;
-      if (Math.abs(delta) > 48) requestStep(delta > 0 ? 1 : -1);
+      if (event.target.closest("[data-story-panel].is-active")) return;
+      const endY = event.changedTouches[0]?.clientY ?? startY;
+      const delta = startY - endY;
+      if (Math.abs(delta) > 42) requestStep(delta > 0 ? 1 : -1);
     }, { passive: true });
   } else {
     document.body.classList.add("story-ready");
     panels.forEach((panel) => panel.classList.add("is-active"));
   }
 
-  const hashState = { work: 0, about: 3, contact: 4 };
   let resizeFrame = 0;
-  window.addEventListener("resize", () => {
+  const settleOnResize = () => {
     cancelAnimationFrame(resizeFrame);
     resizeFrame = requestAnimationFrame(() => {
       resizeFrame = 0;
       if (!transitioning && !introPlaying && !reduceMotion) snapSettledState();
     });
-  }, { passive: true });
-
-  window.visualViewport?.addEventListener("resize", () => {
-    cancelAnimationFrame(resizeFrame);
-    resizeFrame = requestAnimationFrame(() => {
-      resizeFrame = 0;
-      if (!transitioning && !introPlaying && !reduceMotion) snapSettledState();
-    });
-  }, { passive: true });
+  };
+  window.addEventListener("resize", settleOnResize, { passive: true });
+  window.visualViewport?.addEventListener("resize", settleOnResize, { passive: true });
 
   const restoreStableHomeState = () => {
     if (reduceMotion) return;
@@ -359,11 +304,9 @@
       requestAnimationFrame(() => {
         resetPageOrigin();
         snapSettledState();
+        activateHashState();
       });
     });
-    window.setTimeout(() => {
-      if (!transitioning) snapSettledState();
-    }, 180);
   };
 
   window.addEventListener("pageshow", (event) => {
@@ -371,16 +314,23 @@
     restoreStableHomeState();
   });
   window.addEventListener("popstate", restoreStableHomeState);
+
   document.addEventListener("click", (event) => {
-    const anchor = event.target.closest('a[href^="#"]');
+    const face = event.target.closest?.(".space-face");
+    if (face) {
+      const index = chapters.findIndex((chapter) => document.querySelector(chapter.face) === face);
+      if (index >= 0) {
+        event.preventDefault();
+        selectChapter(index);
+        return;
+      }
+    }
+    const anchor = event.target.closest?.('a[href^="#"]');
     if (!anchor || reduceMotion) return;
     const target = anchor.getAttribute("href").slice(1);
     if (!(target in hashState)) return;
     event.preventDefault();
-    const nextState = hashState[target];
-    const direction = nextState > state ? 1 : -1;
-    showChapter(nextState, direction);
-    history.replaceState(null, "", `#${target}`);
+    selectChapter(hashState[target]);
   });
 
   if (!reduceMotion) {
@@ -391,7 +341,6 @@
     const titleX = heroTitle ? gsap.quickTo(heroTitle, "x", { duration: 0.65, ease: "power3.out" }) : null;
     const titleY = heroTitle ? gsap.quickTo(heroTitle, "y", { duration: 0.65, ease: "power3.out" }) : null;
     const subtitleX = heroSubtitle ? gsap.quickTo(heroSubtitle, "x", { duration: 0.8, ease: "power3.out" }) : null;
-
     hero.addEventListener("pointermove", (event) => {
       if (event.pointerType && event.pointerType !== "mouse" && event.pointerType !== "pen") return;
       const px = event.clientX / window.innerWidth - 0.5;
@@ -404,17 +353,10 @@
       titleY?.(state < 0 ? py * 5 : 0);
       subtitleX?.(state < 0 ? px * -4 : 0);
     }, { passive: true });
-
     hero.addEventListener("pointerleave", () => {
-      tiltX?.(0);
-      tiltY?.(0);
-      floatX?.(0);
-      floatY?.(0);
-      titleX?.(0);
-      titleY?.(0);
-      subtitleX?.(0);
+      tiltX?.(0); tiltY?.(0); floatX?.(0); floatY?.(0); titleX?.(0); titleY?.(0); subtitleX?.(0);
     });
   }
 
-  document.documentElement.dataset.homeMotionBuild = "20260813-1";
+  document.documentElement.dataset.homeMotionBuild = "20260914-2";
 })();
