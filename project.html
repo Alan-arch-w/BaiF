@@ -65,7 +65,7 @@
           <p id="project-intro" class="text-zinc-400 text-base md:text-lg font-light leading-relaxed mt-8"></p>
           <div id="project-tags" class="flex flex-wrap gap-2 mt-8"></div>
           <div id="project-cover" class="mt-12"></div>
-          <div id="project-gallery" class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+          <div id="project-gallery" class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 items-start"></div>
           <div id="project-links" class="flex flex-wrap gap-3 mt-10"></div>
           <div class="mt-16 border-t border-white/10 pt-12" id="project-sections"></div>
         </div>
@@ -124,12 +124,11 @@
       }
 
       function renderGallery(images, title) {
-        if (!Array.isArray(images) || images.length < 2) return "";
+        if (!Array.isArray(images) || images.length === 0) return "";
         return images.map((image, index) => {
           const src = escapeHtml(image || "");
           if (!src) return "";
-          const span = index === 0 ? "sm:col-span-2" : "";
-          return `<figure class="${span} overflow-hidden border border-white/10 bg-white/[0.02]"><img src="${src}" alt="${escapeHtml(title)} screenshot ${index + 1}" loading="lazy" class="block w-full h-auto" /></figure>`;
+          return `<figure class="max-w-[260px] w-full mx-auto overflow-hidden border border-white/10 bg-white/[0.02]"><img src="${src}" alt="${escapeHtml(title)} screenshot ${index + 1}" loading="lazy" class="block w-full h-auto" /></figure>`;
         }).join("");
       }
 
@@ -146,7 +145,7 @@
         metaEl.textContent = [getLocalizedValue(projectCache, "category"), formatYear(projectCache.year)].filter(Boolean).join(" · ");
         tagsEl.innerHTML = renderTags(projectCache.tags || []);
         coverEl.innerHTML = projectCache.coverImage
-          ? `<figure class="relative overflow-hidden border border-white/10 bg-white/[0.02]"><img src="${escapeHtml(projectCache.coverImage)}" alt="${escapeHtml(title)}" class="block w-full h-auto" /></figure>`
+          ? `<figure class="max-w-[320px] mx-auto relative overflow-hidden border border-white/10 bg-white/[0.02]"><img src="${escapeHtml(projectCache.coverImage)}" alt="${escapeHtml(title)}" class="block w-full h-auto" /></figure>`
           : "";
         galleryEl.innerHTML = renderGallery(projectCache.galleryImages, title);
         linksEl.innerHTML = renderLinks(projectCache.links || []);

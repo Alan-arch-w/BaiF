@@ -116,8 +116,8 @@
     "title": "Webcoding Trash",
     "titleZh": "垃完了 · Webcoding Trash",
     "year": 2026,
-    "category": "Hackathon Product",
-    "categoryZh": "黑客松产品原型",
+    "category": "IF.Land Hackathon Finalist",
+    "categoryZh": "IF.Land 黑客松决赛项目",
     "tags": [
       "Vibe Coding",
       "AI Creativity",
@@ -125,16 +125,16 @@
       "Hackathon"
     ],
     "summary": "A playful sharing and remix platform for small AI-coding experiments, unfinished prototypes and strange-but-interesting web ideas.",
-    "summaryZh": "面向 AI Coding 时代的轻量作品分享与二创平台，让简单、未完成但有趣的网页作品被看见、被体验、被再次改造。",
+    "summaryZh": "IF.Land 黑客松决赛项目：面向 AI Coding 时代的轻量作品分享与二创平台，让简单、未完成但有趣的网页作品被看见、被体验、被再次改造。",
     "coverImage": "./assets/img/lawanle-cover.png",
     "intro": "Webcoding Trash is a low-pressure creative playground for the AI Coding era. Instead of asking every work to become a polished product, it gives small ideas, half-finished pages and strange experiments a place to be discovered, played with and continued by someone else.",
-    "introZh": "“垃完了”是一个面向 AI Coding 时代的低压力创作游乐场。它不要求每个作品都成为完成度很高的产品，而是让一个突然冒出的点子、一个半成品网页或一个奇怪的小实验，都有机会被发现、被体验，并被下一个人继续改造。",
+    "introZh": "“垃完了”是 IF.Land 黑客松决赛项目，也是一个面向 AI Coding 时代的低压力创作游乐场。它不要求每个作品都成为完成度很高的产品，而是让一个突然冒出的点子、一个半成品网页或一个奇怪的小实验，都有机会被发现、被体验，并被下一个人继续改造。",
     "contentSections": [
       {
-        "title": "Context",
-        "titleZh": "项目背景",
-        "content": "AI coding tools have made it possible to turn natural-language ideas into interactive pages in minutes. At the same time, many of these works are too experimental for a formal portfolio and too lightweight for a traditional developer community, so they disappear before anyone can respond to them.",
-        "contentZh": "AI Coding 工具让自然语言想法可以在几分钟内变成可交互网页，但大量作品又太实验性，不适合放进正式作品集，也太轻量，难以进入传统开发者社区，常常还没有被回应就消失了。"
+        "title": "Hackathon Context",
+        "titleZh": "黑客松背景",
+        "content": "Webcoding Trash was developed as a finalist project for the IF.Land Hackathon. The challenge was to turn the fleeting, low-pressure spirit of Vibe Coding into a product experience that people could understand and play with immediately.",
+        "contentZh": "“垃完了”是 IF.Land 黑客松的决赛项目。项目希望把 Vibe Coding 中稍纵即逝、低压力、先做再说的创作状态，转化为一个用户可以立即理解和上手体验的产品。"
       },
       {
         "title": "Product Positioning",
@@ -155,16 +155,14 @@
         "contentZh": "“垃圾质检”支持随机抽取、翻开卡牌、进入沙盒体验、收藏和贴标签；“回收再造”收集感兴趣的作品，通过预置改造方向或自然语言指令完成二创，再把变异版本发布回作品池；“我的空间”则记录抽检进度、收藏、待回收项目和创作历史。"
       },
       {
-        "title": "Hackathon Team",
-        "titleZh": "黑客松团队",
-        "content": "Created for the final roadshow by team 夯爆了: Zhang Yuguang, Wang Meng and Zhang Bohan. The visual language uses a dark mobile container, acid-lime action color and playful trash/recycle metaphors to make experimentation feel casual rather than intimidating.",
-        "contentZh": "项目用于决赛路演，由“夯爆了”团队完成：张裕广、王萌、章博涵。视觉上采用深色移动端容器、酸性荧光绿操作色和“垃圾 / 回收”隐喻，让实验和试错变得轻松，而不是有压力的作品提交。"
+        "title": "Visual Language",
+        "titleZh": "视觉语言",
+        "content": "The final presentation uses a dark mobile container, acid-lime action color and playful trash/recycle metaphors. This makes experimentation feel casual and inviting rather than like a high-pressure work submission.",
+        "contentZh": "最终呈现采用深色移动端容器、酸性荧光绿操作色和“垃圾 / 回收”隐喻，让实验和试错变得轻松，而不是有压力的作品提交。"
       }
     ],
     "galleryImages": [
-      "./assets/img/lawanle-cover.png",
       "./assets/img/lawanle-purifier.png",
-      "./assets/img/lawanle-gongde.png",
       "./assets/img/lawanle-recycle.png",
       "./assets/img/lawanle-my-space.png"
     ],
