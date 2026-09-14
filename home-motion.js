@@ -1,6 +1,11 @@
 (() => {
   "use strict";
 
+  const focusStyles = document.createElement("link");
+  focusStyles.rel = "stylesheet";
+  focusStyles.href = "./home-focus.css?v=20260914-1";
+  document.head.append(focusStyles);
+
   const gsap = window.gsap;
   const hero = document.querySelector("[data-home-hero]");
   if (!hero || !gsap) return;
@@ -13,11 +18,11 @@
   const explore = document.querySelector(".spatial-hero__explore");
   const idleLayer = document.querySelector(".cube-idle-spin");
   const chapters = [
-    { name: "projects", face: ".space-face--front", x: 0, y: 360, z: 45, label: "nav.projects" },
-    { name: "photography", face: ".space-face--back", x: 0, y: 540, z: 45, label: "home.cube.photography" },
-    { name: "articles", face: ".space-face--right", x: 0, y: 630, z: 45, label: "nav.articles" },
-    { name: "about", face: ".space-face--top", x: -90, y: 720, z: 45, label: "nav.about" },
-    { name: "contact", face: ".space-face--bottom", x: 90, y: 720, z: 45, label: "nav.contact" },
+    { name: "projects", face: ".space-face--front", x: -3, y: 364, z: 0, label: "nav.projects" },
+    { name: "photography", face: ".space-face--back", x: -3, y: 544, z: 0, label: "home.cube.photography" },
+    { name: "articles", face: ".space-face--right", x: -3, y: 634, z: 0, label: "nav.articles" },
+    { name: "about", face: ".space-face--top", x: -86, y: 720, z: 0, label: "nav.about" },
+    { name: "contact", face: ".space-face--bottom", x: 86, y: 720, z: 0, label: "nav.contact" },
   ];
   const hashState = { work: 0, projects: 0, photography: 1, articles: 2, about: 3, contact: 4 };
   let state = -1;
@@ -29,8 +34,8 @@
   const mobile = () => window.innerWidth <= 900;
   const introTarget = () => ({ x: 0, y: 0, scale: mobile() ? 0.48 : 0.54 });
   const storyTarget = () => mobile()
-    ? { x: window.innerWidth * 0.2, y: -window.innerHeight * 0.07, scale: 0.72 }
-    : { x: window.innerWidth * 0.39, y: window.innerHeight * 0.08, scale: 1 };
+    ? { x: 0, y: 0, scale: 1.05 }
+    : { x: window.innerWidth * 0.24, y: window.innerHeight * 0.02, scale: 0.9 };
 
   const startIdle = () => {
     if (reduceMotion || !idleLayer || idleTween || state >= 0) return;
@@ -204,5 +209,5 @@
   window.addEventListener("resize", () => { if (!transitioning && !introPlaying && !reduceMotion) settle(); }, { passive: true });
   window.addEventListener("pageshow", (event) => { if (event.persisted) resetHome(); });
   window.addEventListener("popstate", resetHome);
-  document.documentElement.dataset.homeMotionBuild = "20260914-4";
+  document.documentElement.dataset.homeMotionBuild = "20260914-5";
 })();

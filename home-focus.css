@@ -1,0 +1,41 @@
+/* Chapter focus: one readable face with only a narrow edge left in view. */
+.home-page.story-active .cube-idle-spin {
+  transform: rotateY(0deg) !important;
+}
+
+.home-page.story-active .space-face.is-active-face .space-face__label {
+  color: var(--space-ink) !important;
+  opacity: 1 !important;
+  letter-spacing: 0.1em !important;
+  transform: translate3d(0, 0, 3px) scale(1) !important;
+}
+
+@media (max-width: 900px) {
+  .home-page.story-active .cube-anchor {
+    left: 50% !important;
+    top: 40% !important;
+  }
+
+  .home-page.story-active .space-face.is-active-face .space-face__label {
+    max-width: 88%;
+    font-size: clamp(1rem, 4.6vw, 1.35rem) !important;
+    line-height: 1.05;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .home-page.story-paged .spatial-story__panel,
+  .home-page.story-active .spatial-story__panel {
+    top: 62% !important;
+    max-height: 28svh !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-page.story-active .cube-anchor { top: 39% !important; }
+  .home-page.story-paged .spatial-story__panel,
+  .home-page.story-active .spatial-story__panel {
+    top: 60% !important;
+    max-height: 30svh !important;
+  }
+}
