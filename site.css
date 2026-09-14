@@ -1,179 +1,215 @@
 @import url("./site-base.css");
 
-/* Shared interaction layer: compact touch targets, clear actions and theme-safe surfaces. */
-:root {
-  color-scheme: dark;
-  --site-action: #d36f4b;
-  --site-action-contrast: #fffaf6;
-}
+/* Shared polish layer: one fixed header, one monochrome action language. */
+:root { color-scheme: dark; }
+html[data-theme="light"] { color-scheme: light; }
 
-html[data-theme="light"] {
-  color-scheme: light;
-  --site-action: #9f3d26;
-  --site-action-contrast: #fffaf6;
-}
-
-html {
-  scroll-padding-top: 5rem;
-}
+html { scroll-padding-top: 5.5rem; }
 
 button,
 a {
   touch-action: manipulation;
-  -webkit-tap-highlight-color: color-mix(in srgb, var(--site-text) 16%, transparent);
+  -webkit-tap-highlight-color: color-mix(in srgb, var(--site-text) 14%, transparent);
 }
 
-/* Project pages: make the primary demo action impossible to miss. */
-.project-actions {
-  align-items: center;
+.site-header,
+.site-header.mix-blend-difference {
+  position: fixed !important;
+  inset: 0 0 auto !important;
+  z-index: 70 !important;
+  color: var(--site-text) !important;
+  background: color-mix(in srgb, var(--site-bg) 88%, transparent);
+  border-bottom: 1px solid var(--site-border);
+  mix-blend-mode: normal !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
-.project-actions a {
-  min-height: 2.75rem;
-  padding-inline: 1.1rem;
-  border-radius: 999px;
-  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+.site-header .site-brand,
+.site-header a { color: var(--site-text); }
+
+/* Project detail surfaces remain paper-on-paper or ink-on-ink in both themes. */
+.project-page,
+.project-page main,
+.project-page #project-hero {
+  background-color: var(--site-bg) !important;
+  color: var(--site-text);
 }
 
-.project-actions a:first-child {
-  border-color: var(--site-action);
-  background: var(--site-action);
-  color: var(--site-action-contrast);
-  box-shadow: 0 0.7rem 1.6rem color-mix(in srgb, var(--site-action) 24%, transparent);
-  font-weight: 600;
-}
+.project-detail { min-height: 100svh; }
+.project-back,
+.project-meta { color: var(--site-text-muted); }
+.project-back:hover,
+.project-back:focus-visible { color: var(--site-text); }
+.project-intro,
+.project-sections p { color: var(--site-text-soft); }
+.project-sections { border-color: var(--site-border); }
+.project-sections h2 { color: var(--site-text-muted); }
 
-.project-actions a:first-child::after {
-  content: "↗";
-  margin-left: 0.6rem;
-  font-size: 0.9rem;
-}
-
-.project-actions a:first-child:hover,
-.project-actions a:first-child:focus-visible {
-  border-color: var(--site-action);
-  background: color-mix(in srgb, var(--site-action) 84%, white);
-  color: var(--site-action-contrast);
-  transform: translateY(-0.12rem);
-}
-
-.project-actions a:not(:first-child) {
+.project-cover,
+.project-gallery figure,
+.project-video {
+  overflow: hidden;
+  border: 1px solid var(--site-border);
   background: var(--site-card);
 }
 
-/* The homepage cube remains atmospheric on desktop but becomes a compact control on touch screens. */
-.home-story-nav {
-  display: none;
+.project-cover {
+  width: min(100%, 42rem);
+  margin-inline: auto;
 }
 
+.project-cover img,
+.project-gallery img,
+.project-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-gallery:empty,
+.project-actions:empty { display: none; }
+
+.project-gallery figure { width: 100%; }
+.project-video { max-width: 56rem; margin-inline: auto; }
+.project-video video { background: #000; }
+.project-video figcaption {
+  padding: 0.8rem 1rem;
+  color: var(--site-text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.project-actions { align-items: center; }
+.project-actions a {
+  display: inline-flex;
+  min-height: 2.9rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid var(--site-border-strong);
+  border-radius: 0;
+  background: transparent;
+  color: var(--site-text);
+  font: 600 0.68rem/1 Arial, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.project-actions a[data-action="demo"] {
+  background: var(--site-text);
+  color: var(--site-bg);
+}
+
+.project-actions a::after {
+  content: "↗";
+  margin-left: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.project-actions a[data-action="github"]::after { content: "↗"; }
+.project-actions a:hover,
+.project-actions a:focus-visible { transform: translateY(-0.14rem); }
+.project-actions a[data-action="demo"]:hover,
+.project-actions a[data-action="demo"]:focus-visible {
+  background: color-mix(in srgb, var(--site-text) 86%, var(--site-bg));
+  color: var(--site-bg);
+}
+.project-actions a[data-action="github"]:hover,
+.project-actions a[data-action="github"]:focus-visible { background: var(--site-hover); }
+
+.home-story-nav { display: none; }
+
 @media (max-width: 900px) {
-  .home-page {
-    overflow-x: hidden;
+  .site-header,
+  .site-header.mix-blend-difference {
+    min-height: 4.25rem;
+    padding: calc(0.9rem + env(safe-area-inset-top)) 1rem 0.9rem !important;
   }
 
-  .home-page .site-header {
-    padding: 1.05rem 1rem !important;
-  }
+  .site-brand { gap: 0.5rem; }
+  .site-brand__mark { width: 1.55rem; height: 1.55rem; }
+  .site-brand__wordmark { font-size: 0.64rem; }
 
-  .home-page .site-brand {
-    gap: 0.5rem;
-  }
-
-  .home-page .site-brand__mark {
-    width: 1.55rem;
-    height: 1.55rem;
-  }
-
-  .home-page .site-brand__wordmark {
-    font-size: 0.64rem;
-  }
-
-  .home-page .spatial-hero {
-    height: 520svh !important;
-    min-height: 0 !important;
-  }
-
-  .home-page .spatial-hero__stage {
-    min-height: 100svh;
-    height: 100svh;
-  }
+  .home-page { overflow-x: hidden; }
+  .home-page .spatial-hero { height: 520svh !important; min-height: 0 !important; }
+  .home-page .spatial-hero__stage { min-height: 100svh; height: 100svh; }
 
   .home-page .cube-anchor {
-    --cube-size: clamp(14rem, 66vw, 18rem) !important;
-    top: 34% !important;
-  }
-
-  .home-page .cube-viewport {
-    transform: scale(0.9) !important;
+    --cube-size: clamp(12.5rem, 58vw, 16rem) !important;
+    top: 31% !important;
   }
 
   .home-page .space-face__label {
-    font-size: clamp(1rem, 4.5vw, 1.45rem);
-    letter-spacing: 0.08em;
+    font-size: clamp(0.92rem, 4vw, 1.3rem);
+    letter-spacing: 0.07em;
+  }
+
+  .home-page.story-active .space-face.is-active-face .space-face__label {
+    color: var(--space-ink) !important;
+    opacity: 1 !important;
+    letter-spacing: 0.08em !important;
+    transform: translate3d(0, 0, 3px) rotate(-45deg) scale(1) !important;
   }
 
   .home-page .spatial-hero__copy {
-    top: 69% !important;
+    top: 65% !important;
+    bottom: auto !important;
     width: calc(100vw - 2rem);
   }
 
   .home-page .spatial-hero__title {
-    font-size: clamp(0.92rem, 4vw, 1.2rem);
-    line-height: 1;
+    max-width: 10ch;
+    font-size: clamp(2.9rem, 14vw, 5rem);
+    line-height: 0.82;
   }
 
-  .home-page .spatial-hero__foot {
-    margin-top: 1rem;
-  }
+  .home-page .spatial-hero__foot { margin-top: 1rem; }
+  .home-page .spatial-hero__explore { bottom: 4.8rem !important; }
 
-  .home-page .spatial-hero__explore {
-    bottom: 4.4rem !important;
-  }
-
+  .home-page.story-paged .spatial-story__panel,
   .home-page .spatial-story__panel {
     left: 1rem !important;
     right: 1rem !important;
-    top: 54% !important;
-    max-height: 32svh !important;
+    top: 49% !important;
+    width: auto !important;
+    max-height: 39svh !important;
     overflow-x: hidden !important;
     overflow-y: auto !important;
-    padding-bottom: 4rem;
+    padding: 0 0 4.4rem !important;
   }
 
-  .home-page .spatial-story__row {
+  .home-page .spatial-story__heading h2 { font-size: clamp(2rem, 10vw, 3rem); }
+  .home-page .spatial-story__intro { margin-bottom: 0.55rem; }
+  .home-page .spatial-story__row,
+  .home-page .story-paged .spatial-story__row {
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 0.75rem;
-    padding: 0.75rem 0;
+    gap: 0.7rem;
+    padding: 0.72rem 0 !important;
   }
-
-  .home-page .spatial-story__row strong {
-    font-size: 1rem;
-    line-height: 1.2;
-  }
-
-  .home-page .spatial-story__row-meta {
-    max-width: 7rem;
-    font-size: 0.5rem;
-  }
-
-  .home-page .spatial-story__statement {
-    font-size: clamp(1.05rem, 4.7vw, 1.4rem);
-  }
+  .home-page .spatial-story__row strong { font-size: 0.98rem; line-height: 1.2; }
+  .home-page .spatial-story__row-main > span { display: none; }
+  .home-page .spatial-story__row-meta { max-width: 6.5rem; font-size: 0.5rem; }
+  .home-page .spatial-story__statement { font-size: clamp(1rem, 4.5vw, 1.35rem); }
 
   .home-story-nav {
     position: fixed;
-    z-index: 45;
+    z-index: 65;
     left: 50%;
-    bottom: calc(0.7rem + env(safe-area-inset-bottom));
+    bottom: calc(0.65rem + env(safe-area-inset-bottom));
     display: flex;
-    width: min(calc(100vw - 1.25rem), 27rem);
+    width: min(calc(100vw - 1.2rem), 27rem);
     justify-content: space-between;
-    gap: 0.2rem;
-    padding: 0.28rem;
+    gap: 0.15rem;
+    padding: 0.26rem;
     border: 1px solid var(--site-border);
     border-radius: 999px;
-    background: color-mix(in srgb, var(--site-panel) 86%, transparent);
-    box-shadow: 0 0.8rem 2rem color-mix(in srgb, var(--site-bg) 48%, transparent);
+    background: color-mix(in srgb, var(--site-panel) 90%, transparent);
+    box-shadow: 0 0.8rem 2rem color-mix(in srgb, var(--site-bg) 45%, transparent);
     transform: translateX(-50%);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -181,15 +217,15 @@ a {
 
   .home-story-nav button {
     min-width: 0;
+    min-height: 2.15rem;
     flex: 1 1 0;
-    min-height: 2rem;
-    padding: 0.45rem 0.35rem;
+    padding: 0.45rem 0.28rem;
     border: 1px solid transparent;
     border-radius: 999px;
     background: transparent;
     color: var(--site-text-muted);
-    font: 500 0.55rem/1 Arial, sans-serif;
-    letter-spacing: 0.04em;
+    font: 500 0.5rem/1 Arial, sans-serif;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
   }
 
@@ -201,77 +237,65 @@ a {
     color: var(--site-text);
   }
 
-  .home-page.story-active .home-story-nav {
-    bottom: calc(0.95rem + env(safe-area-inset-bottom));
-  }
-
   #projects-list > a {
     grid-template-columns: 1.5rem minmax(0, 1fr) !important;
     gap: 0.8rem !important;
     padding: 1.25rem 0 !important;
   }
+  #projects-list > a > span { width: auto !important; margin: 0 !important; font-size: 0.62rem; }
+  #projects-list > a h3 { margin-bottom: 0.45rem; font-size: clamp(1.35rem, 6.2vw, 2rem) !important; line-height: 1.05; text-wrap: balance; }
+  #projects-list > a p { font-size: 0.76rem; line-height: 1.5; }
+  #projects-list > a > div:last-child { grid-column: 2; width: min(100%, 20rem); }
 
-  #projects-list > a > span {
-    width: auto !important;
-    margin: 0 !important;
-    font-size: 0.62rem;
+  .project-detail { padding: 4rem 1rem 5rem !important; }
+  .project-detail h1 { font-size: clamp(2.35rem, 12vw, 4rem); }
+  .project-cover { width: 100%; }
+  .project-gallery { grid-template-columns: 1fr !important; gap: 1rem !important; }
+  .project-gallery figure { max-width: 24rem; margin-inline: auto; }
+  .project-actions { flex-direction: column; align-items: stretch; }
+  .project-actions a { width: 100%; }
+
+  .about-page { overflow-x: hidden !important; overflow-y: auto !important; }
+  .about-page .about-hero {
+    display: flex !important;
+    min-height: auto !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1.5rem !important;
+    padding-top: 7.25rem !important;
+    padding-bottom: 3rem !important;
   }
-
-  #projects-list > a h3 {
-    margin-bottom: 0.45rem;
-    font-size: clamp(1.35rem, 6.2vw, 2rem) !important;
-    line-height: 1.05;
-    text-wrap: balance;
-  }
-
-  #projects-list > a p {
-    font-size: 0.76rem;
-    line-height: 1.5;
-  }
-
-  #projects-list > a > div:last-child {
-    grid-column: 2;
-    width: min(100%, 20rem);
-  }
-
-  .project-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .project-actions a {
-    justify-content: center;
+  .about-page .about-hero__copy { width: 100%; }
+  .about-page .about-hero h1 { font-size: clamp(3rem, 15vw, 5rem); }
+  .about-page .about-hero__visual {
+    position: relative !important;
+    order: 2;
     width: 100%;
+    min-height: clamp(22rem, 98vw, 30rem) !important;
+  }
+  .about-page .about-hero__room {
+    position: absolute !important;
+    inset: 0 -8% !important;
+    min-height: 100% !important;
+  }
+  .about-page .baifang-room,
+  .about-page .baifang-room__canvas {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 22rem !important;
+    visibility: visible !important;
   }
 }
 
 @media (max-width: 560px) {
-  .home-page .cube-anchor {
-    --cube-size: clamp(13rem, 64vw, 16rem) !important;
-    top: 32% !important;
-  }
-
-  .home-page .cube-viewport {
-    transform: scale(0.88) !important;
-  }
-
-  .home-page .spatial-hero__copy {
-    top: 67% !important;
-  }
-
-  .home-page .spatial-story__panel {
-    top: 52% !important;
-    max-height: 34svh !important;
-  }
-
-  .home-story-nav button {
-    font-size: 0.5rem;
-  }
+  .home-page .cube-anchor { --cube-size: clamp(11.5rem, 55vw, 14rem) !important; top: 29% !important; }
+  .home-page .spatial-hero__copy { top: 62% !important; }
+  .home-page.story-paged .spatial-story__panel,
+  .home-page .spatial-story__panel { top: 46% !important; max-height: 43svh !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .project-actions a,
-  .home-story-nav button {
-    transition: none;
-  }
+  .home-story-nav button { transition: none; }
 }

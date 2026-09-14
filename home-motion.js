@@ -11,7 +11,6 @@
   const viewport = document.querySelector(".cube-viewport");
   const copy = document.querySelector(".spatial-hero__copy");
   const explore = document.querySelector(".spatial-hero__explore");
-  const header = document.querySelector(".site-header");
   const idleLayer = document.querySelector(".cube-idle-spin");
   const chapters = [
     { name: "projects", face: ".space-face--front", x: 0, y: 360, z: 45, label: "nav.projects" },
@@ -20,7 +19,7 @@
     { name: "about", face: ".space-face--top", x: -90, y: 720, z: 45, label: "nav.about" },
     { name: "contact", face: ".space-face--bottom", x: 90, y: 720, z: 45, label: "nav.contact" },
   ];
-  const hashState = { work: 0, projects: 0, about: 3, contact: 4 };
+  const hashState = { work: 0, projects: 0, photography: 1, articles: 2, about: 3, contact: 4 };
   let state = -1;
   let transitioning = false;
   let introPlaying = false;
@@ -28,12 +27,10 @@
   let idleTween = null;
 
   const mobile = () => window.innerWidth <= 900;
-  const introTarget = () => ({ x: 0, y: 0, scale: 0.54 });
-  const storyTarget = () => ({
-    x: (window.innerWidth || 0) * (mobile() ? 0.44 : 0.39),
-    y: (window.innerHeight || 0) * (mobile() ? 0.10 : 0.08),
-    scale: 1,
-  });
+  const introTarget = () => ({ x: 0, y: 0, scale: mobile() ? 0.48 : 0.54 });
+  const storyTarget = () => mobile()
+    ? { x: window.innerWidth * 0.2, y: -window.innerHeight * 0.07, scale: 0.72 }
+    : { x: window.innerWidth * 0.39, y: window.innerHeight * 0.08, scale: 1 };
 
   const startIdle = () => {
     if (reduceMotion || !idleLayer || idleTween || state >= 0) return;
@@ -45,19 +42,18 @@
     idleTween = null;
   };
 
-  const ensureStoryNav = () => {
-    let nav = hero.querySelector(".home-story-nav");
-    if (nav) return nav;
-    nav = document.createElement("nav");
-    nav.className = "home-story-nav";
-    nav.setAttribute("aria-label", "Home sections");
-    nav.innerHTML = chapters.map((chapter) => `<button type="button" data-story-nav="${chapter.name}" data-i18n="${chapter.label}"></button>`).join("");
-    hero.querySelector(".spatial-hero__stage")?.append(nav);
-    return nav;
-  };
+  const nav = (() => {
+    const existing = hero.querySelector(".home-story-nav");
+    if (existing) return existing;
+    const element = document.createElement("nav");
+    element.className = "home-story-nav";
+    element.setAttribute("aria-label", "Home sections");
+    element.innerHTML = chapters.map((chapter) => `<button type="button" data-story-nav="${chapter.name}" data-i18n="${chapter.label}"></button>`).join("");
+    hero.querySelector(".spatial-hero__stage")?.append(element);
+    return element;
+  })();
 
-  const nav = ensureStoryNav();
-  const setActive = (index) => {
+  function setActive(index) {
     panels.forEach((panel, panelIndex) => panel.classList.toggle("is-active", panelIndex === index));
     document.querySelectorAll(".space-face").forEach((face) => face.classList.remove("is-active-face"));
     if (index >= 0) document.querySelector(chapters[index].face)?.classList.add("is-active-face");
@@ -66,9 +62,9 @@
       button.classList.toggle("is-active", active);
       button.setAttribute("aria-current", active ? "page" : "false");
     });
-  };
+  }
 
-  const settle = () => {
+  function settle() {
     setActive(state);
     if (state < 0) {
       document.body.classList.remove("story-active");
@@ -88,18 +84,15 @@
     gsap.set(copy, { autoAlpha: 0, x: -18 });
     gsap.set(explore, { autoAlpha: 0, y: 12 });
     panels.forEach((panel, index) => gsap.set(panel, { autoAlpha: index === state ? 1 : 0, x: index === state ? 0 : 24 }));
-  };
+  }
 
-  const showChapter = (next, direction = 1) => {
+  function showChapter(next, direction = 1) {
     if (transitioning || next < -1 || next >= chapters.length || next === state) return;
     transitioning = true;
     const previous = state;
     state = next;
     setActive(next);
-    const timeline = gsap.timeline({
-      defaults: { overwrite: "auto" },
-      onComplete: () => { transitioning = false; settle(); },
-    });
+    const timeline = gsap.timeline({ defaults: { overwrite: "auto" }, onComplete: () => { transitioning = false; settle(); } });
     const currentPanel = previous >= 0 ? panels[previous] : null;
     const nextPanel = next >= 0 ? panels[next] : null;
     if (currentPanel) timeline.to(currentPanel, { autoAlpha: 0, x: direction > 0 ? -18 : 18, duration: 0.22 }, 0);
@@ -119,38 +112,38 @@
         .to(explore, { autoAlpha: 0, y: 12, duration: 0.2 }, 0)
         .to(viewport, { ...storyTarget(), duration: 0.78, ease: "expo.inOut" }, 0);
     }
-    nextPanel.scrollTop = 0;
+    if (nextPanel) nextPanel.scrollTop = 0;
     timeline.to(cube, { rotationX: chapter.x, rotationY: chapter.y, rotationZ: chapter.z, duration: 0.72, ease: "expo.inOut" }, 0)
       .fromTo(nextPanel, { autoAlpha: 0, x: direction > 0 ? 18 : -18 }, { autoAlpha: 1, x: 0, duration: 0.36, ease: "expo.out" }, previous < 0 ? 0.38 : 0.16);
-  };
+  }
 
-  const selectChapter = (index) => {
+  function selectChapter(index) {
     if (reduceMotion) {
       panels[index]?.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
     showChapter(index, index >= state ? 1 : -1);
     history.replaceState(null, "", `#${chapters[index].name}`);
-  };
+  }
 
   nav.querySelectorAll("[data-story-nav]").forEach((button) => button.addEventListener("click", () => {
     const index = chapters.findIndex((chapter) => chapter.name === button.dataset.storyNav);
     if (index >= 0) selectChapter(index);
   }));
 
-  const activateHash = () => {
+  function activateHash() {
     const target = hashState[window.location.hash.slice(1)];
     if (target !== undefined && !transitioning && !introPlaying) selectChapter(target);
-  };
+  }
 
-  const resetHome = () => {
+  function resetHome() {
     state = -1;
     transitioning = false;
     window.scrollTo(0, 0);
     gsap.killTweensOf([viewport, cube, copy, explore, ...panels]);
     settle();
     if (window.location.hash) window.setTimeout(activateHash, 50);
-  };
+  }
 
   document.body.classList.add("story-ready");
   if (reduceMotion) {
@@ -159,15 +152,13 @@
     document.body.classList.add("story-paged");
     settle();
     introPlaying = true;
-    gsap.set(header, { autoAlpha: 0, y: -12 });
-    gsap.set(viewport, { ...introTarget(), autoAlpha: 0, y: 18, scale: 0.45 });
+    gsap.set(viewport, { ...introTarget(), autoAlpha: 0, y: 18, scale: mobile() ? 0.42 : 0.45 });
     gsap.set(copy, { autoAlpha: 0, y: 20 });
     gsap.set(explore, { autoAlpha: 0, y: 12 });
     gsap.timeline({ onComplete: () => { introPlaying = false; settle(); activateHash(); } })
-      .to(header, { autoAlpha: 1, y: 0, duration: 0.55 }, 0.08)
-      .to(viewport, { ...introTarget(), autoAlpha: 1, duration: 0.95, ease: "expo.out" }, 0.28)
-      .to(copy, { autoAlpha: 1, y: 0, duration: 0.55 }, 0.92)
-      .to(explore, { autoAlpha: 1, y: 0, duration: 0.35 }, 1.18);
+      .to(viewport, { ...introTarget(), autoAlpha: 1, duration: 0.95, ease: "expo.out" }, 0.12)
+      .to(copy, { autoAlpha: 1, y: 0, duration: 0.55 }, 0.76)
+      .to(explore, { autoAlpha: 1, y: 0, duration: 0.35 }, 1.02);
 
     window.addEventListener("wheel", (event) => {
       const activePanel = state >= 0 ? panels[state] : null;
@@ -213,5 +204,5 @@
   window.addEventListener("resize", () => { if (!transitioning && !introPlaying && !reduceMotion) settle(); }, { passive: true });
   window.addEventListener("pageshow", (event) => { if (event.persisted) resetHome(); });
   window.addEventListener("popstate", resetHome);
-  document.documentElement.dataset.homeMotionBuild = "20260914-3";
+  document.documentElement.dataset.homeMotionBuild = "20260914-4";
 })();
