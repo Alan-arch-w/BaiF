@@ -66,6 +66,7 @@
           <div id="project-tags" class="flex flex-wrap gap-2 mt-8"></div>
           <div id="project-cover" class="mt-12"></div>
           <div id="project-gallery" class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 items-start"></div>
+          <div id="project-video" class="mt-10"></div>
           <div id="project-links" class="flex flex-wrap gap-3 mt-10"></div>
           <div class="mt-16 border-t border-white/10 pt-12" id="project-sections"></div>
         </div>
@@ -88,6 +89,7 @@
       const tagsEl = document.getElementById("project-tags");
       const coverEl = document.getElementById("project-cover");
       const galleryEl = document.getElementById("project-gallery");
+      const videoEl = document.getElementById("project-video");
       const linksEl = document.getElementById("project-links");
       const sectionsEl = document.getElementById("project-sections");
       const metaEl = document.getElementById("project-meta");
@@ -101,6 +103,7 @@
         tagsEl.innerHTML = "";
         coverEl.innerHTML = "";
         galleryEl.innerHTML = "";
+        videoEl.innerHTML = "";
         linksEl.innerHTML = "";
         sectionsEl.innerHTML = "";
       }
@@ -132,6 +135,17 @@
         }).join("");
       }
 
+      function renderVideo(video, title, poster) {
+        if (!video) return "";
+        const source = typeof video === "string" ? video : video.url;
+        if (!source) return "";
+        const label = typeof video === "object"
+          ? (getCurrentLanguage() === "zh" && video.labelZh ? video.labelZh : video.label)
+          : "Project demonstration";
+        const posterAttr = poster ? ` poster="${escapeHtml(poster)}"` : "";
+        return `<figure class="max-w-4xl mx-auto overflow-hidden border border-white/10 bg-white/[0.02]"><video class="block w-full h-auto bg-black" controls preload="metadata"${posterAttr}><source src="${escapeHtml(source)}" type="video/mp4" /></video><figcaption class="px-4 py-3 text-xs tracking-wide text-zinc-500">${escapeHtml(label || title)}</figcaption></figure>`;
+      }
+
       function renderPage() {
         if (!projectCache) return setNotFound();
         applyTranslations(pageTranslations);
@@ -148,6 +162,7 @@
           ? `<figure class="max-w-[320px] mx-auto relative overflow-hidden border border-white/10 bg-white/[0.02]"><img src="${escapeHtml(projectCache.coverImage)}" alt="${escapeHtml(title)}" class="block w-full h-auto" /></figure>`
           : "";
         galleryEl.innerHTML = renderGallery(projectCache.galleryImages, title);
+        videoEl.innerHTML = renderVideo(projectCache.video, title, projectCache.coverImage);
         linksEl.innerHTML = renderLinks(projectCache.links || []);
         sectionsEl.innerHTML = renderSections(projectCache.contentSections || []);
       }

@@ -6,58 +6,23 @@
     "year": 2026,
     "category": "AI Product Prototype",
     "categoryZh": "AI 产品原型",
-    "tags": [
-      "AI Agent",
-      "Talent Policy",
-      "Rapid Prototype"
-    ],
+    "tags": ["AI Agent", "Talent Policy", "Rapid Prototype"],
     "summary": "An AI talent-policy self-check and application-preparation assistant for Xuhui, built from concept to working prototype in about 3-4 hours.",
     "summaryZh": "面向徐汇区人才政策场景的智能自查与申报准备助手，在约 3-4 小时内完成从概念到可交互原型。",
     "coverImage": "./assets/img/hui-zhidao-cover.png",
     "intro": "Hui Zhidao turns scattered policy information into a guided decision flow. Users can upload a resume, complete missing profile details through AI clarification, compare eligibility across policies, identify gaps and materials, and generate an actionable preparation report.",
     "introZh": "“汇知道”将分散的人才政策信息转化为连续、可执行的决策流程。用户可以上传简历，通过 AI 追问补全个人画像，匹配适用政策，识别条件差距与材料清单，并生成可行动的申报准备报告。",
     "contentSections": [
-      {
-        "title": "Context",
-        "titleZh": "项目背景",
-        "content": "The prototype was created during a Xuhui District AI entrepreneurship activity. The core challenge was turning dense, scattered policy documents into a clear personal decision path.",
-        "contentZh": "该原型完成于一次徐汇区 AI 创业相关活动。项目关注的核心并不是政策信息缺失，而是如何把密集、分散的政策文件转化为清晰的个人判断路径。"
-      },
-      {
-        "title": "Product Flow",
-        "titleZh": "产品流程",
-        "content": "Resume upload, AI profile extraction, clarification of missing information, policy matching, gap and material analysis, then an actionable report.",
-        "contentZh": "上传简历，AI 解析个人画像，追问缺失信息，匹配政策，分析条件差距与材料清单，最终生成可执行的准备报告。"
-      },
-      {
-        "title": "Rapid Build",
-        "titleZh": "快速构建",
-        "content": "Built in about 3-4 hours, the prototype prioritizes a complete demonstrable loop across applicant self-check, service guidance and administrative review.",
-        "contentZh": "项目在约 3-4 小时内快速完成，优先建立从人才自查、服务引导到管理端查看的完整可演示闭环。"
-      },
-      {
-        "title": "Prototype Note",
-        "titleZh": "原型说明",
-        "content": "This is an independent product prototype. Matching results and generated reports are for demonstration only and do not replace official policy interpretation or review.",
-        "contentZh": "这是一个独立产品原型。匹配结果与生成报告仅用于演示，不替代官方政策解释与审核结论。"
-      }
+      {"title": "Context", "titleZh": "项目背景", "content": "The prototype was created during a Xuhui District AI entrepreneurship activity. The core challenge was turning dense, scattered policy documents into a clear personal decision path.", "contentZh": "该原型完成于一次徐汇区 AI 创业相关活动。项目关注的核心并不是政策信息缺失，而是如何把密集、分散的政策文件转化为清晰的个人判断路径。"},
+      {"title": "Product Flow", "titleZh": "产品流程", "content": "Resume upload, AI profile extraction, clarification of missing information, policy matching, gap and material analysis, then an actionable report.", "contentZh": "上传简历，AI 解析个人画像，追问缺失信息，匹配政策，分析条件差距与材料清单，最终生成可执行的准备报告。"},
+      {"title": "Rapid Build", "titleZh": "快速构建", "content": "Built in about 3-4 hours, the prototype prioritizes a complete demonstrable loop across applicant self-check, service guidance and administrative review.", "contentZh": "项目在约 3-4 小时内快速完成，优先建立从人才自查、服务引导到管理端查看的完整可演示闭环。"},
+      {"title": "Prototype Note", "titleZh": "原型说明", "content": "This is an independent product prototype. Matching results and generated reports are for demonstration only and do not replace official policy interpretation or review.", "contentZh": "这是一个独立产品原型。匹配结果与生成报告仅用于演示，不替代官方政策解释与审核结论。"}
     ],
-    "galleryImages": [
-      "./assets/img/hui-zhidao-cover.png"
-    ],
+    "galleryImages": ["./assets/img/hui-zhidao-cover.png"],
     "links": [
-      {
-        "label": "Open Website",
-        "url": "https://hui-zhidao.vercel.app"
-      },
-      {
-        "label": "View Source",
-        "url": "https://github.com/Alan-arch-w/Hui-Zhidao"
-      },
-      {
-        "label": "Activity Context",
-        "url": "https://mp.weixin.qq.com/s/mYQamx_fAvuIxbGY9eb7bw"
-      }
+      {"label": "Open Website", "url": "https://hui-zhidao.vercel.app"},
+      {"label": "View Source", "url": "https://github.com/Alan-arch-w/Hui-Zhidao"},
+      {"label": "Activity Context", "url": "https://mp.weixin.qq.com/s/mYQamx_fAvuIxbGY9eb7bw"}
     ],
     "featured": true
   },
@@ -68,47 +33,19 @@
     "year": 2026,
     "category": "AI Operations",
     "categoryZh": "AI 运营平台",
-    "tags": [
-      "AI",
-      "Dashboard",
-      "Customer Service"
-    ],
+    "tags": ["AI", "Dashboard", "Customer Service"],
     "summary": "An operations platform for AI customer-service agents, combining agent management, knowledge assets, analytics and workflow governance.",
     "summaryZh": "面向 AI 客服智能体的运营平台，整合智能体管理、知识资产、数据分析与流程治理。",
     "coverImage": "./assets/img/ai-customer-service-platform.png",
     "intro": "A dashboard-style workspace for operating AI customer-service agents, with modules for agent management, knowledge assets, visitor interactions, analytics and governance.",
     "introZh": "一个面向 AI 客服智能体运营的工作台式平台，包含智能体管理、知识资产、访客互动、数据分析与平台治理等模块。",
     "contentSections": [
-      {
-        "title": "Overview",
-        "titleZh": "项目概览",
-        "content": "The project focuses on the operational side of AI customer service. Rather than presenting a single chatbot, it organizes the workspace around agent performance, knowledge management, visitor interactions and platform governance.",
-        "contentZh": "项目关注 AI 客服的运营侧，而非单个聊天机器人本身。整个产品围绕智能体绩效、知识管理、访客互动与平台治理组织工作空间。"
-      },
-      {
-        "title": "Information System",
-        "titleZh": "信息系统",
-        "content": "The interface brings agent matrices, satisfaction, resolution rate, escalation rate, unknown-question rate, risk sessions and operational actions into one structured overview.",
-        "contentZh": "界面将智能体矩阵、满意度、解决率、转人工率、未知问题率、风险会话与运营动作整合在同一个结构化概览中。"
-      },
-      {
-        "title": "Interaction",
-        "titleZh": "交互方式",
-        "content": "A persistent intelligent operations assistant occupies the right side of the workspace, allowing operational tasks to be initiated without leaving the current analytical context.",
-        "contentZh": "智能运营助手常驻工作区右侧，使用户无需离开当前分析语境，即可发起知识库、报告与机器人配置等任务。"
-      }
+      {"title": "Overview", "titleZh": "项目概览", "content": "The project focuses on the operational side of AI customer service. Rather than presenting a single chatbot, it organizes the workspace around agent performance, knowledge management, visitor interactions and platform governance.", "contentZh": "项目关注 AI 客服的运营侧，而非单个聊天机器人本身。整个产品围绕智能体绩效、知识管理、访客互动与平台治理组织工作空间。"},
+      {"title": "Information System", "titleZh": "信息系统", "content": "The interface brings agent matrices, satisfaction, resolution rate, escalation rate, unknown-question rate, risk sessions and operational actions into one structured overview.", "contentZh": "界面将智能体矩阵、满意度、解决率、转人工率、未知问题率、风险会话与运营动作整合在同一个结构化概览中。"},
+      {"title": "Interaction", "titleZh": "交互方式", "content": "A persistent intelligent operations assistant occupies the right side of the workspace, allowing operational tasks to be initiated without leaving the current analytical context.", "contentZh": "智能运营助手常驻工作区右侧，使用户无需离开当前分析语境，即可发起知识库、报告与机器人配置等任务。"}
     ],
-    "galleryImages": [
-      "./assets/img/ai-customer-service-platform.png"
-    ],
-    "links": [
-      {
-        "label": "Open Website",
-        "labelZh": "打开网站",
-        "url": "https://ai-customer-service-79g2.vercel.app/",
-        "type": "demo"
-      }
-    ],
+    "galleryImages": ["./assets/img/ai-customer-service-platform.png"],
+    "links": [{"label": "Open Website", "labelZh": "打开网站", "url": "https://ai-customer-service-79g2.vercel.app/", "type": "demo"}],
     "featured": true
   },
   {
@@ -118,68 +55,50 @@
     "year": 2026,
     "category": "IF.Land Hackathon Finalist",
     "categoryZh": "IF.Land 黑客松决赛项目",
-    "tags": [
-      "Vibe Coding",
-      "AI Creativity",
-      "Interactive Prototype",
-      "Hackathon"
-    ],
+    "tags": ["Vibe Coding", "AI Creativity", "Interactive Prototype", "Hackathon"],
     "summary": "A playful sharing and remix platform for small AI-coding experiments, unfinished prototypes and strange-but-interesting web ideas.",
     "summaryZh": "IF.Land 黑客松决赛项目：面向 AI Coding 时代的轻量作品分享与二创平台，让简单、未完成但有趣的网页作品被看见、被体验、被再次改造。",
     "coverImage": "./assets/img/lawanle-cover.png",
     "intro": "Webcoding Trash is a low-pressure creative playground for the AI Coding era. Instead of asking every work to become a polished product, it gives small ideas, half-finished pages and strange experiments a place to be discovered, played with and continued by someone else.",
     "introZh": "“垃完了”是 IF.Land 黑客松决赛项目，也是一个面向 AI Coding 时代的低压力创作游乐场。它不要求每个作品都成为完成度很高的产品，而是让一个突然冒出的点子、一个半成品网页或一个奇怪的小实验，都有机会被发现、被体验，并被下一个人继续改造。",
     "contentSections": [
-      {
-        "title": "Hackathon Context",
-        "titleZh": "黑客松背景",
-        "content": "Webcoding Trash was developed as a finalist project for the IF.Land Hackathon. The challenge was to turn the fleeting, low-pressure spirit of Vibe Coding into a product experience that people could understand and play with immediately.",
-        "contentZh": "“垃完了”是 IF.Land 黑客松的决赛项目。项目希望把 Vibe Coding 中稍纵即逝、低压力、先做再说的创作状态，转化为一个用户可以立即理解和上手体验的产品。"
-      },
-      {
-        "title": "Product Positioning",
-        "titleZh": "产品定位",
-        "content": "The product combines AI-coding sharing with lightweight remixing. It is designed for Vibe Coding beginners, hackathon teams, creative developers and anyone who wants to make something playful without first proving that it is useful or complete.",
-        "contentZh": "项目定位为“AI Coding 分享 + 轻二创平台”，面向 Vibe Coding 初学者、黑客松团队、创意网页制作者，以及想先做出点好玩东西、而不是先证明它足够实用和完整的人。"
-      },
-      {
-        "title": "Core Loop",
-        "titleZh": "核心闭环",
-        "content": "The experience follows a simple loop: discover, experience, modify and rediscover. A random inspection deck makes browsing feel like digging through a playful archive; interactive previews let people use the work instead of only looking at a screenshot; the recycle queue turns a viewer into the next creator.",
-        "contentZh": "产品围绕“被看见 → 被体验 → 被改变 → 再次被看见”展开。随机质检牌组像翻找一个有趣的数字档案库，互动预览让用户真正操作作品，而不是只看截图；回收区则让浏览者成为下一位创作者。"
-      },
-      {
-        "title": "Feature System",
-        "titleZh": "功能模块",
-        "content": "The inspection area supports random draws, card flipping, live sandbox interaction, favorites and tags. The recycle area collects selected works and offers preset remix directions or natural-language instructions before publishing a mutant version back into the pool. The personal space records inspection progress, saved works, pending remixes and creation history.",
-        "contentZh": "“垃圾质检”支持随机抽取、翻开卡牌、进入沙盒体验、收藏和贴标签；“回收再造”收集感兴趣的作品，通过预置改造方向或自然语言指令完成二创，再把变异版本发布回作品池；“我的空间”则记录抽检进度、收藏、待回收项目和创作历史。"
-      },
-      {
-        "title": "Visual Language",
-        "titleZh": "视觉语言",
-        "content": "The final presentation uses a dark mobile container, acid-lime action color and playful trash/recycle metaphors. This makes experimentation feel casual and inviting rather than like a high-pressure work submission.",
-        "contentZh": "最终呈现采用深色移动端容器、酸性荧光绿操作色和“垃圾 / 回收”隐喻，让实验和试错变得轻松，而不是有压力的作品提交。"
-      }
+      {"title": "Hackathon Context", "titleZh": "黑客松背景", "content": "Webcoding Trash was developed as a finalist project for the IF.Land Hackathon. The challenge was to turn the fleeting, low-pressure spirit of Vibe Coding into a product experience that people could understand and play with immediately.", "contentZh": "“垃完了”是 IF.Land 黑客松的决赛项目。项目希望把 Vibe Coding 中稍纵即逝、低压力、先做再说的创作状态，转化为一个用户可以立即理解和上手体验的产品。"},
+      {"title": "Product Positioning", "titleZh": "产品定位", "content": "The product combines AI-coding sharing with lightweight remixing. It is designed for Vibe Coding beginners, hackathon teams, creative developers and anyone who wants to make something playful without first proving that it is useful or complete.", "contentZh": "项目定位为“AI Coding 分享 + 轻二创平台”，面向 Vibe Coding 初学者、黑客松团队、创意网页制作者，以及想先做出点好玩东西、而不是先证明它足够实用和完整的人。"},
+      {"title": "Core Loop", "titleZh": "核心闭环", "content": "The experience follows a simple loop: discover, experience, modify and rediscover. A random inspection deck makes browsing feel like digging through a playful archive; interactive previews let people use the work instead of only looking at a screenshot; the recycle queue turns a viewer into the next creator.", "contentZh": "产品围绕“被看见 → 被体验 → 被改变 → 再次被看见”展开。随机质检牌组像翻找一个有趣的数字档案库，互动预览让用户真正操作作品，而不是只看截图；回收区则让浏览者成为下一位创作者。"},
+      {"title": "Feature System", "titleZh": "功能模块", "content": "The inspection area supports random draws, card flipping, live sandbox interaction, favorites and tags. The recycle area collects selected works and offers preset remix directions or natural-language instructions before publishing a mutant version back into the pool. The personal space records inspection progress, saved works, pending remixes and creation history.", "contentZh": "“垃圾质检”支持随机抽取、翻开卡牌、进入沙盒体验、收藏和贴标签；“回收再造”收集感兴趣的作品，通过预置改造方向或自然语言指令完成二创，再把变异版本发布回作品池；“我的空间”则记录抽检进度、收藏、待回收项目和创作历史。"},
+      {"title": "Visual Language", "titleZh": "视觉语言", "content": "The final presentation uses a dark mobile container, acid-lime action color and playful trash/recycle metaphors. This makes experimentation feel casual and inviting rather than like a high-pressure work submission.", "contentZh": "最终呈现采用深色移动端容器、酸性荧光绿操作色和“垃圾 / 回收”隐喻，让实验和试错变得轻松，而不是有压力的作品提交。"}
     ],
-    "galleryImages": [
-      "./assets/img/lawanle-purifier.png",
-      "./assets/img/lawanle-recycle.png",
-      "./assets/img/lawanle-my-space.png"
-    ],
+    "galleryImages": ["./assets/img/lawanle-purifier.png", "./assets/img/lawanle-recycle.png", "./assets/img/lawanle-my-space.png"],
     "links": [
-      {
-        "label": "Open Website",
-        "labelZh": "打开网站",
-        "url": "https://lawanle.vercel.app",
-        "type": "demo"
-      },
-      {
-        "label": "View Source",
-        "labelZh": "查看源码",
-        "url": "https://github.com/Alan-arch-w/Lawanle",
-        "type": "github"
-      }
+      {"label": "Open Website", "labelZh": "打开网站", "url": "https://lawanle.vercel.app", "type": "demo"},
+      {"label": "View Source", "labelZh": "查看源码", "url": "https://github.com/Alan-arch-w/Lawanle", "type": "github"}
     ],
+    "featured": true
+  },
+  {
+    "id": "reblock-studio",
+    "title": "ReBlock Studio",
+    "titleZh": "ReBlock Studio · 住宅更新街区生成工作台",
+    "year": 2026,
+    "category": "Graduation Design",
+    "categoryZh": "毕业设计 · 数据驱动城市更新",
+    "tags": ["Data-driven Design", "Generative Design", "Urban Morphology", "GlobalMapper", "Graph Neural Network"],
+    "summary": "A web frontend for a data-driven residential-block generation study, translating GlobalMapper research into an interactive urban-renewal design workbench.",
+    "summaryZh": "面向城市更新的住宅街区生成与设计推演平台，将 GlobalMapper 的数据驱动研究转化为可交互的前端工作台。",
+    "coverImage": "./assets/img/reblock-studio-cover.png",
+    "intro": "ReBlock Studio is the web frontend for a graduation design research project on data-driven urban and architectural space generation. It explores how residential block layouts can be generated for stock renewal while retaining the spatial character of existing neighborhoods. The interface turns the research pipeline into a legible design workbench for testing boundaries, density tendencies and generated alternatives.",
+    "introZh": "ReBlock Studio 是毕业设计“数据驱动下的城市与建筑空间生成研究”的前端网页，关注城市从增量扩张转向存量更新后，如何在延续既有城市肌理的同时提升住宅街区设计效率。项目以 GlobalMapper 矢量街区生成框架为基础，引入建筑高度特征，并通过大规模住宅数据预训练与南京老城样本微调，将模型研究转化为一个可理解、可演示的街区生成与设计推演工作台。",
+    "video": {"url": "./assets/video/reblock-studio-demo.mp4", "label": "ReBlock Studio project demonstration", "labelZh": "ReBlock Studio 毕业设计前端演示视频"},
+    "contentSections": [
+      {"title": "Research Background", "titleZh": "研究背景", "content": "As Chinese cities move from incremental expansion to stock renewal, new residential design must work with existing urban fabric instead of replacing it wholesale. Traditional typological analysis and manual layout iteration are valuable but slow and subjective, which creates an opportunity for data-driven generation to provide more alternatives at the early design stage.", "contentZh": "随着中国城市从增量扩张转向存量更新，住宅设计需要在延续既有城市肌理的基础上推进，而不是简单替换原有空间。传统类型学分析和人工反复推演依然重要，但效率有限且容易受到主观经验影响，因此项目尝试用数据驱动生成方法，为前期设计提供更多可比较的方案。"},
+      {"title": "Research Question", "titleZh": "问题意识", "content": "Generic housing datasets often reflect low-density, large-block and regular street conditions. Directly transferring those patterns to Nanjing's old city can produce layouts with oversized spacing and insufficient density. The original GlobalMapper framework also lacked an explicit building-height feature, limiting its expression of three-dimensional urban organization.", "contentZh": "通用住宅数据集往往对应低密度、大街区和规则道路等条件，直接迁移到南京老城容易出现建筑间距过大、密度不足的问题。原有 GlobalMapper 框架也缺少明确的建筑高度特征，难以充分表达街区的三维组织关系。"},
+      {"title": "Data and Model", "titleZh": "数据与模型", "content": "The study standardizes the ReCo residential dataset and a self-built Nanjing old-city dataset as graph-structured samples. The model combines a conditional variational autoencoder with a graph attention network. It first learns general residential layout patterns from 37,029 cleaned ReCo samples, then uses weighted low-learning-rate fine-tuning on 800 Nanjing residential plots to improve local shape, height and spatial adaptation.", "contentZh": "研究将 ReCo 住宅数据集与自建南京老城住宅数据集整理为图结构样本，模型采用条件变分自编码器与图注意力网络的混合架构。训练先在清洗后的 37,029 个 ReCo 样本上学习通用住宅布局规律，再使用 800 个南京老城住宅地块进行低学习率加权微调，以改善局部形态、高度表达和地域适应性。"},
+      {"title": "Design Application", "titleZh": "设计应用", "content": "For renewal sites in Nanjing's Huaihai Road area, the generated alternatives are further processed through boundary alignment, edge fitting, merging, deletion, alignment and scale adjustment. The goal is not to replace architectural judgment, but to create a reliable set of spatial starting points that can be evaluated and refined into developable layouts.", "contentZh": "项目选取南京淮海路片区的真实更新地块进行生成实验，并通过边界对齐、边缘拟合、合并与删除、规整和尺度调整等后处理，将模型结果转化为更接近可实施条件的布局方案。生成模型不是替代建筑师判断，而是提供一组可比较、可继续深化的空间起点。"},
+      {"title": "Findings and Limits", "titleZh": "结论与边界", "content": "Height-aware features and Nanjing fine-tuning improve local shape distribution and height expression, while prototype conditions can influence density tendencies. Complex boundaries, overall density and volume scale remain difficult to control consistently, so the workflow keeps human evaluation and post-processing in the loop.", "contentZh": "加入高度特征并进行南京样本微调后，模型对局部形态分布和高度表达的适应性有所提升，不同原型条件也能影响生成结果的密度倾向。但复杂边界响应、整体密度和体量尺度仍存在波动，因此工作流保留人工评估与后处理环节。"},
+      {"title": "Web Workbench", "titleZh": "前端工作台", "content": "The ReBlock Studio frontend packages the research narrative into a visual presentation: a dark red spatial canvas, generative block graphics and a clear entry point into the design workspace. The attached demonstration video records the main interaction and presentation flow.", "contentZh": "ReBlock Studio 前端将研究叙事转化为可视化体验：以深红色空间画布、生成式街区图形和清晰的工作台入口，呈现城市更新场景中的街区生成逻辑。项目页同时提供前端演示视频，记录主要交互与展示流程。"}
+    ],
+    "galleryImages": ["./assets/img/reblock-studio-cover.png"],
+    "links": [{"label": "Open Website", "labelZh": "打开网站", "url": "https://globalmapper-page-ux-frontend.vercel.app/", "type": "demo"}],
     "featured": true
   }
 ]
