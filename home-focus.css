@@ -1,8 +1,4 @@
 /* Chapter focus: one readable face, rotated into a 45-degree diamond. */
-.home-page.story-active .cube-idle-spin {
-  /* Remove idle rotation before applying the deterministic chapter pose. */
-  transform: none !important;
-}
 
 .home-page.story-active .space-face.is-active-face .space-face__label {
   position: absolute;
@@ -19,6 +15,24 @@
   background: transparent !important;
   opacity: 0 !important;
   pointer-events: none;
+}
+
+/* A chapter transition briefly reveals the complete volume. The inactive
+   faces disappear only after the new face has reached its final pose. */
+.home-page.story-turning .spatial-cube .space-face,
+.home-page.story-turning .spatial-cube .space-face:not(.is-active-face) {
+  border-color: var(--cube-edge) !important;
+  background: var(--space-face) !important;
+  opacity: 1 !important;
+  pointer-events: none;
+}
+
+.home-page.story-turning .space-face__label {
+  opacity: 0.2 !important;
+}
+
+.home-page.story-turning .space-face.is-active-face .space-face__label {
+  opacity: 1 !important;
 }
 
 @media (max-width: 900px) {

@@ -3,7 +3,7 @@
 
   const focusStyles = document.createElement("link");
   focusStyles.rel = "stylesheet";
-  focusStyles.href = "./home-focus.css?v=20260916-3";
+  focusStyles.href = "./home-focus.css?v=20260916-4";
   document.head.append(focusStyles);
 
   const gsap = window.gsap;
@@ -18,15 +18,14 @@
   const explore = document.querySelector(".spatial-hero__explore");
   const idleLayer = document.querySelector(".cube-idle-spin");
   const tiltLayer = document.querySelector(".cube-tilt");
-  // Each chapter ends with one face square to the camera. The cube is then
-  // rotated 45deg in the screen plane and pushed beyond the right edge, so
-  // only the left corner of that single face remains visible.
+  // Chapter poses deliberately use unwrapped angles. Moving through the list
+  // therefore turns the same cube through space instead of swapping flat faces.
   const chapters = [
     { name: "projects", face: ".space-face--front", x: 0, y: 0, z: 0, label: "nav.projects" },
     { name: "photography", face: ".space-face--back", x: 0, y: 180, z: 0, label: "home.cube.photography" },
-    { name: "articles", face: ".space-face--right", x: 0, y: -90, z: 0, label: "nav.articles" },
-    { name: "about", face: ".space-face--top", x: -90, y: 0, z: 0, label: "nav.about" },
-    { name: "contact", face: ".space-face--bottom", x: 90, y: 0, z: 0, label: "nav.contact" },
+    { name: "articles", face: ".space-face--right", x: 0, y: 270, z: 0, label: "nav.articles" },
+    { name: "about", face: ".space-face--top", x: -90, y: 360, z: 0, label: "nav.about" },
+    { name: "contact", face: ".space-face--bottom", x: -270, y: 360, z: 0, label: "nav.contact" },
   ];
   const hashState = { work: 0, projects: 0, photography: 1, articles: 2, about: 3, contact: 4 };
   let state = -1;
@@ -42,13 +41,27 @@
     : { x: window.innerWidth * 0.42, y: window.innerHeight * 0.04, scale: 1.25 };
 
   const startIdle = () => {
-    if (reduceMotion || !idleLayer || idleTween || state >= 0) return;
-    idleTween = gsap.to(idleLayer, { rotationY: "+=360", duration: 18, ease: "none", repeat: -1 });
+    if (reduceMotion || !cube || idleTween || state >= 0) return;
+    idleTween = gsap.to(cube, { rotationY: "+=360", duration: 18, ease: "none", repeat: -1 });
   };
 
   const stopIdle = () => {
     idleTween?.kill();
     idleTween = null;
+  };
+
+  const firstChapterPose = (direction) => {
+    const currentY = Number(gsap.getProperty(cube, "rotationY")) || 0;
+    let targetY = Math.ceil(currentY / 360) * 360;
+    if (direction < 0) targetY = Math.floor(currentY / 360) * 360;
+    if (Math.abs(targetY - currentY) < 32) targetY += direction >= 0 ? 360 : -360;
+    return { rotationX: 0, rotationY: targetY, rotationZ: 0 };
+  };
+
+  const chapterPose = (index, previous, direction) => {
+    if (previous < 0 && index === 0) return firstChapterPose(direction);
+    const chapter = chapters[index];
+    return { rotationX: chapter.x, rotationY: chapter.y, rotationZ: chapter.z };
   };
 
   const nav = (() => {
@@ -74,6 +87,7 @@
   }
 
   function settle() {
+    document.body.classList.remove("story-turning");
     setActive(state);
     if (state < 0) {
       document.body.classList.remove("story-active");
@@ -104,32 +118,32 @@
     const previous = state;
     state = next;
     setActive(next);
+    document.body.classList.add("story-turning");
     const timeline = gsap.timeline({ defaults: { overwrite: "auto" }, onComplete: () => { transitioning = false; settle(); } });
     const currentPanel = previous >= 0 ? panels[previous] : null;
     const nextPanel = next >= 0 ? panels[next] : null;
     if (currentPanel) timeline.to(currentPanel, { autoAlpha: 0, x: direction > 0 ? -18 : 18, duration: 0.22 }, 0);
     if (next < 0) {
       document.body.classList.remove("story-active");
-      timeline.to(cube, { rotationX: -18, rotationY: 35, rotationZ: -2, duration: 0.72, ease: "expo.inOut" }, 0)
-        .to(tiltLayer, { rotation: 0, duration: 0.72, ease: "expo.inOut" }, 0)
-        .to(viewport, { ...introTarget(), duration: 0.72, ease: "expo.inOut" }, 0)
-        .to(copy, { autoAlpha: 1, x: 0, duration: 0.28 }, 0.45)
-        .to(explore, { autoAlpha: 1, y: 0, duration: 0.2 }, 0.52);
+      timeline.to(cube, { rotationX: -18, rotationY: 35, rotationZ: -2, duration: 0.92, ease: "power3.inOut" }, 0)
+        .to(tiltLayer, { rotation: 0, duration: 0.92, ease: "power3.inOut" }, 0)
+        .to(viewport, { ...introTarget(), duration: 0.92, ease: "power3.inOut" }, 0)
+        .to(copy, { autoAlpha: 1, x: 0, duration: 0.34, ease: "power2.out" }, 0.54)
+        .to(explore, { autoAlpha: 1, y: 0, duration: 0.24 }, 0.62);
       return;
     }
-    const chapter = chapters[next];
+    const pose = chapterPose(next, previous, direction);
     if (previous < 0) {
       stopIdle();
-      gsap.set(idleLayer, { rotationX: 0, rotationY: 0, rotationZ: 0 });
       document.body.classList.add("story-active");
       timeline.to(copy, { autoAlpha: 0, x: -18, duration: 0.28 }, 0)
         .to(explore, { autoAlpha: 0, y: 12, duration: 0.2 }, 0)
-        .to(viewport, { ...storyTarget(), duration: 0.78, ease: "expo.inOut" }, 0)
-        .to(tiltLayer, { rotation: 45, duration: 0.78, ease: "expo.inOut" }, 0);
+        .to(viewport, { ...storyTarget(), duration: 1.05, ease: "power3.inOut" }, 0)
+        .to(tiltLayer, { rotation: 45, duration: 1.05, ease: "power3.inOut" }, 0);
     }
     if (nextPanel) nextPanel.scrollTop = 0;
-    timeline.to(cube, { rotationX: chapter.x, rotationY: chapter.y, rotationZ: chapter.z, duration: 0.72, ease: "expo.inOut" }, 0)
-      .fromTo(nextPanel, { autoAlpha: 0, x: direction > 0 ? 18 : -18 }, { autoAlpha: 1, x: 0, duration: 0.36, ease: "expo.out" }, previous < 0 ? 0.38 : 0.16);
+    timeline.to(cube, { ...pose, duration: previous < 0 ? 1.05 : 0.88, ease: "power3.inOut" }, 0)
+      .fromTo(nextPanel, { autoAlpha: 0, x: direction > 0 ? 18 : -18 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: "power2.out" }, previous < 0 ? 0.56 : 0.38);
   }
 
   function selectChapter(index) {
@@ -219,5 +233,5 @@
   window.addEventListener("resize", () => { if (!transitioning && !introPlaying && !reduceMotion) settle(); }, { passive: true });
   window.addEventListener("pageshow", (event) => { if (event.persisted) resetHome(); });
   window.addEventListener("popstate", resetHome);
-  document.documentElement.dataset.homeMotionBuild = "20260916-3";
+  document.documentElement.dataset.homeMotionBuild = "20260916-4";
 })();
