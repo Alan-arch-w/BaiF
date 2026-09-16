@@ -3,7 +3,7 @@
 
   const focusStyles = document.createElement("link");
   focusStyles.rel = "stylesheet";
-  focusStyles.href = "./home-focus.css?v=20260916-4";
+  focusStyles.href = "./home-focus.css?v=20260916-5";
   document.head.append(focusStyles);
 
   const gsap = window.gsap;
@@ -75,10 +75,14 @@
     return element;
   })();
 
-  function setActive(index) {
+  const faces = gsap.utils.toArray(".space-face");
+
+  function setActive(index, { syncFace = true } = {}) {
     panels.forEach((panel, panelIndex) => panel.classList.toggle("is-active", panelIndex === index));
-    document.querySelectorAll(".space-face").forEach((face) => face.classList.remove("is-active-face"));
-    if (index >= 0) document.querySelector(chapters[index].face)?.classList.add("is-active-face");
+    if (syncFace) {
+      faces.forEach((face) => face.classList.remove("is-active-face", "is-outgoing-face", "is-incoming-face"));
+      if (index >= 0) document.querySelector(chapters[index].face)?.classList.add("is-active-face");
+    }
     nav.querySelectorAll("[data-story-nav]").forEach((button) => {
       const active = button.dataset.storyNav === chapters[index]?.name;
       button.classList.toggle("is-active", active);
@@ -86,9 +90,15 @@
     });
   }
 
+  function stageFaceTransition(previous, next) {
+    faces.forEach((face) => face.classList.remove("is-outgoing-face", "is-incoming-face"));
+    if (previous >= 0) document.querySelector(chapters[previous].face)?.classList.add("is-outgoing-face");
+    if (next >= 0) document.querySelector(chapters[next].face)?.classList.add("is-incoming-face");
+  }
+
   function settle() {
-    document.body.classList.remove("story-turning");
     setActive(state);
+    document.body.classList.remove("story-turning");
     if (state < 0) {
       document.body.classList.remove("story-active");
       gsap.set(viewport, introTarget());
@@ -117,7 +127,8 @@
     transitioning = true;
     const previous = state;
     state = next;
-    setActive(next);
+    setActive(next, { syncFace: false });
+    stageFaceTransition(previous, next);
     document.body.classList.add("story-turning");
     const timeline = gsap.timeline({ defaults: { overwrite: "auto" }, onComplete: () => { transitioning = false; settle(); } });
     const currentPanel = previous >= 0 ? panels[previous] : null;
@@ -233,5 +244,5 @@
   window.addEventListener("resize", () => { if (!transitioning && !introPlaying && !reduceMotion) settle(); }, { passive: true });
   window.addEventListener("pageshow", (event) => { if (event.persisted) resetHome(); });
   window.addEventListener("popstate", resetHome);
-  document.documentElement.dataset.homeMotionBuild = "20260916-4";
+  document.documentElement.dataset.homeMotionBuild = "20260916-5";
 })();

@@ -1,6 +1,8 @@
 /* Chapter focus: one readable face, rotated into a 45-degree diamond. */
 
-.home-page.story-active .space-face.is-active-face .space-face__label {
+.home-page.story-active .space-face.is-active-face .space-face__label,
+.home-page.story-turning .space-face.is-outgoing-face .space-face__label,
+.home-page.story-turning .space-face.is-incoming-face .space-face__label {
   position: absolute;
   left: 34%;
   top: 66%;
@@ -28,10 +30,12 @@
 }
 
 .home-page.story-turning .space-face__label {
-  opacity: 0.2 !important;
+  opacity: 0 !important;
 }
 
-.home-page.story-turning .space-face.is-active-face .space-face__label {
+.home-page.story-turning .space-face.is-active-face .space-face__label,
+.home-page.story-turning .space-face.is-outgoing-face .space-face__label,
+.home-page.story-turning .space-face.is-incoming-face .space-face__label {
   opacity: 1 !important;
 }
 
@@ -41,7 +45,9 @@
     top: 32% !important;
   }
 
-  .home-page.story-active .space-face.is-active-face .space-face__label {
+  .home-page.story-active .space-face.is-active-face .space-face__label,
+  .home-page.story-turning .space-face.is-outgoing-face .space-face__label,
+  .home-page.story-turning .space-face.is-incoming-face .space-face__label {
     left: 34%;
     top: 66%;
     max-width: 88%;

@@ -11,6 +11,16 @@
   overflow-x: clip;
 }
 
+/* The homepage header is a fixed text layer, not a separate surface. */
+.home-page .site-header,
+.home-page .site-header.mix-blend-difference {
+  background: transparent !important;
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
 html[data-theme="light"] .home-page {
   --space-ink: #161917;
   --space-muted: rgba(22, 25, 23, 0.54);
