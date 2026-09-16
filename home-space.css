@@ -344,7 +344,7 @@ html[data-theme="light"] .home-page {
   }
 
   .cube-anchor {
-    --cube-size: 36rem;
+    --cube-size: min(88vw, 30rem);
     left: 50%;
     top: 39%;
     transform: translate(-50%, -50%);

@@ -1,6 +1,8 @@
 /* Chapter focus: one readable face with only a narrow edge left in view. */
 .home-page.story-active .cube-idle-spin {
-  transform: rotateY(0deg) !important;
+  /* Remove any idle spin before the chapter rotation is applied. Using
+     `none` avoids browser-specific transform interpolation on the parent. */
+  transform: none !important;
 }
 
 .home-page.story-active .space-face.is-active-face .space-face__label {

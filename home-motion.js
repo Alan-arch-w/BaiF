@@ -3,7 +3,7 @@
 
   const focusStyles = document.createElement("link");
   focusStyles.rel = "stylesheet";
-  focusStyles.href = "./home-focus.css?v=20260914-1";
+  focusStyles.href = "./home-focus.css?v=20260916-1";
   document.head.append(focusStyles);
 
   const gsap = window.gsap;
@@ -17,12 +17,15 @@
   const copy = document.querySelector(".spatial-hero__copy");
   const explore = document.querySelector(".spatial-hero__explore");
   const idleLayer = document.querySelector(".cube-idle-spin");
+  // Keep every chapter in a deliberate three-quarter view. The previous
+  // values were multiples of 180deg, which made the expanded cube collapse
+  // into a flat front/back face (especially noticeable in Edge).
   const chapters = [
-    { name: "projects", face: ".space-face--front", x: -3, y: 364, z: 0, label: "nav.projects" },
-    { name: "photography", face: ".space-face--back", x: -3, y: 544, z: 0, label: "home.cube.photography" },
-    { name: "articles", face: ".space-face--right", x: -3, y: 634, z: 0, label: "nav.articles" },
-    { name: "about", face: ".space-face--top", x: -86, y: 720, z: 0, label: "nav.about" },
-    { name: "contact", face: ".space-face--bottom", x: 86, y: 720, z: 0, label: "nav.contact" },
+    { name: "projects", face: ".space-face--front", x: -18, y: 35, z: -2, label: "nav.projects" },
+    { name: "photography", face: ".space-face--back", x: -18, y: 215, z: -2, label: "home.cube.photography" },
+    { name: "articles", face: ".space-face--right", x: -18, y: 125, z: -2, label: "nav.articles" },
+    { name: "about", face: ".space-face--top", x: -68, y: 35, z: -2, label: "nav.about" },
+    { name: "contact", face: ".space-face--bottom", x: 68, y: 35, z: -2, label: "nav.contact" },
   ];
   const hashState = { work: 0, projects: 0, photography: 1, articles: 2, about: 3, contact: 4 };
   let state = -1;
@@ -34,7 +37,7 @@
   const mobile = () => window.innerWidth <= 900;
   const introTarget = () => ({ x: 0, y: 0, scale: mobile() ? 0.48 : 0.54 });
   const storyTarget = () => mobile()
-    ? { x: 0, y: 0, scale: 1.05 }
+    ? { x: 0, y: window.innerHeight * 0.015, scale: Math.min(0.86, Math.max(0.72, window.innerWidth / 440)) }
     : { x: window.innerWidth * 0.24, y: window.innerHeight * 0.02, scale: 0.9 };
 
   const startIdle = () => {
@@ -82,6 +85,7 @@
       return;
     }
     stopIdle();
+    gsap.set(idleLayer, { rotationX: 0, rotationY: 0, rotationZ: 0 });
     document.body.classList.add("story-active");
     const chapter = chapters[state];
     gsap.set(viewport, storyTarget());
@@ -112,6 +116,7 @@
     const chapter = chapters[next];
     if (previous < 0) {
       stopIdle();
+      gsap.set(idleLayer, { rotationX: 0, rotationY: 0, rotationZ: 0 });
       document.body.classList.add("story-active");
       timeline.to(copy, { autoAlpha: 0, x: -18, duration: 0.28 }, 0)
         .to(explore, { autoAlpha: 0, y: 12, duration: 0.2 }, 0)
@@ -209,5 +214,5 @@
   window.addEventListener("resize", () => { if (!transitioning && !introPlaying && !reduceMotion) settle(); }, { passive: true });
   window.addEventListener("pageshow", (event) => { if (event.persisted) resetHome(); });
   window.addEventListener("popstate", resetHome);
-  document.documentElement.dataset.homeMotionBuild = "20260914-5";
+  document.documentElement.dataset.homeMotionBuild = "20260916-1";
 })();
